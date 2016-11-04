@@ -11,19 +11,21 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-sm-12 header-wrapper">
-                    {% block header %}
-                        {% include 'header.html.twig' %}
-                    {% endblock %}
+                <div class="col-md-offset-2 col-md-10 col-sm-12">
+                    <div class="header-wrapper">
+                        {% block header %}
+                            {% include 'header.html.twig' %}
+                        {% endblock %}
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-sm-12 body-wrapper">
+                <div class="col-md-10 col-md-offset-2 col-sm-12 content-wrapper">
                     {% block body %}{% endblock %}
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-sm-12 header-wrapper">
+                <div class="col-md-10 col-md- col-sm-12 footer-wrapper">
                     {% block footer %}
                         {% include 'footer.html.twig' %}
                     {% endblock %}

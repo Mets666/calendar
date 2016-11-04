@@ -62,9 +62,16 @@ h3{
 }
 
 .content-wrapped{
-
+    height: 100%;
+    border: 2px solid #fff;
+    /*height: auto;*/
+    min-height: 100%;
 }
 
 .footer-wrapper{
-
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
 }
