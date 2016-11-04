@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
     {{ form_start(form) }}
         {{ form_row(form.username) }}
         {{ form_row(form.email) }}
@@ -9,4 +10,7 @@
 
         <button type="submit">Register!</button>
     {{ form_end(form) }}
+
+        <a class="btn btn-info" href="{{ url("login") }}">Back to login</a>
+    </div>
 {% endblock %}

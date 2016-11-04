@@ -8,30 +8,42 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 {#**************************************BODY**************************************#}
+
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-offset-2 col-md-10 col-sm-12">
-                    <div class="header-wrapper">
-                        {% block header %}
-                            {% include 'header.html.twig' %}
-                        {% endblock %}
+        {% include 'scripts.html.twig' %}
+        {% block body %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                        <div class="header-wrapper">
+                            {% block header %}
+                                {% include 'header.html.twig' %}
+                            {% endblock %}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-2 col-sm-12 content-wrapper">
-                    {% block body %}{% endblock %}
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-12">
+                        <div class="content-wrapper">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <div class="row">
-                <div class="col-md-10 col-md- col-sm-12 footer-wrapper">
-                    {% block footer %}
-                        {% include 'footer.html.twig' %}
-                    {% endblock %}
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 col-sm-12">
+                            <div class="footer-wrapper">
+                                {% block footer %}
+                                    {% include 'footer.html.twig' %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        {% include 'scripts.html.twig' %}
+            </footer>
+        {% endblock %}
     </body>
 </html>
