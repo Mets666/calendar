@@ -1,0 +1,209 @@
+/*SPACERS*/
+
+.spacer05 {
+    height: 5px;
+}
+
+.spacer10 {
+    height: 10px;
+}
+
+.spacer15 {
+    height: 15px;
+}
+
+.spacer20 {
+    height: 20px;
+}
+
+.spacer30 {
+    height: 30px;
+}
+
+.spacer40 {
+    height: 40px;
+}
+
+.spacer50 {
+    height: 50px;
+}
+
+.spacer75 {
+    height: 75px;
+}
+
+/*MARGINS*/
+
+/*Right*/
+.marginr10 {
+    margin-right: 10px;
+}
+
+.marginr20 {
+    margin-right: 20px;
+}
+
+/*Left*/
+.marginl10 {
+    margin-left: 10px;
+}
+
+.marginl20 {
+    margin-left: 20px;
+}
+
+/*Bottom*/
+.marginb5 {
+    margin-bottom: 5px !important;
+}
+
+.marginb10 {
+    margin-bottom: 10px !important;
+}
+
+.marginb20 {
+    margin-bottom: 20px !important;
+}
+
+/*Top*/
+.margint5 {
+    margin-top: 5px !important;
+}
+
+/*WIDTH*/
+
+/*%*/
+.width6p {
+    width: 6%;
+}
+
+.width8p {
+    width: 8%;
+}
+
+.width10p {
+    width: 10%;
+}
+
+.width12p {
+    width: 12%;
+}
+
+.width15p {
+    width: 15%;
+}
+
+.width17p {
+    width: 17%;
+}
+
+.width20p {
+    width: 20%;
+}
+
+.width24p {
+    width: 24%;
+}
+
+.width28p {
+    width: 28%;
+}
+
+.width30p {
+    width: 30%;
+}
+
+.width50p {
+    width: 50%;
+}
+
+.width56p {
+    width: 56%;
+}
+
+.width60p {
+    width: 60%;
+}
+
+.width80p {
+    width: 80%;
+}
+
+.width85p {
+    width: 85%;
+}
+
+.width100p {
+    width: 100%;
+}
+
+/*px*/
+.width80px {
+    width: 80px;
+}
+
+.width100px {
+    width: 100px;
+}
+
+.width120px {
+    width: 120px;
+}
+
+.width160px {
+    width: 160px;
+}
+
+.width300px {
+    width: 300px;
+}
+
+.width400px {
+    width: 400px;
+}
+
+.width500px {
+    width: 500px;
+}
+
+/*FONTS*/
+
+.fontNormal {
+    font-weight: normal;
+}
+
+.fontBold {
+    font-weight: bold;
+}
+
+.font10pt{
+    font-size: 10pt;
+}
+
+.font14pt{
+    font-size: 14pt;
+}
+
+.font16pt{
+    font-size: 16pt;
+}
+
+.font18pt{
+    font-size: 18pt;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.vertical-center{
+    vertical-align: middle;
+}

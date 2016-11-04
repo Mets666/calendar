@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+{#**************************************HEAD**************************************#}
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Life O'clock{% endblock %}</title>
         {% include 'styles.html.twig' %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+{#**************************************BODY**************************************#}
     <body>
-        {% block body %}{% endblock %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 header-wrapper">
+                    {% block header %}
+                        {% include 'header.html.twig' %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 body-wrapper">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 header-wrapper">
+                    {% block footer %}
+                        {% include 'footer.html.twig' %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
         {% include 'scripts.html.twig' %}
     </body>
 </html>

@@ -1,21 +1,39 @@
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+{% extends 'base.html.twig' %}
 
-<form action="{{ path('login') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-md-8 offset-md-2">
+            <h3 class="text-center major-title">Welcome to</h3>
+            <h1 class="text-center">Life O'clock</h1>
+            <h6 class="text-center minor-title">Your personal time manager</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 offset-xs-1 col-md-6 offset-md-3">
+            <div class="login">
+                {% if error %}
+                    <div class="message bg-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="spacer10"></div>
+                {% endif %}
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
+                <form action="{{ path('login') }}" method="post">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" />
+                    </div>
 
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="_password" class="form-control" />
+                    </div>
 
-    {#
-        If you want to control the URL the user
-        is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
-
-    <button type="submit">login</button>
-</form>
+                    <div class="form-group text-center">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <button type="submit" class="btn btn-success">Login</button>
+                        <a class="btn btn-warning" href="{{ url("registration") }}">Register now</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
