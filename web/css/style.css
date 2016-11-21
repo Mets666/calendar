@@ -1,6 +1,8 @@
 body{
     background-color: #FFE5AA;
-    padding-bottom: 50px;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 70px;
 }
 
 h1{
@@ -58,22 +60,40 @@ h3{
 /***Main page layout***/
 
 .header-wrapper{
-    height: 200px;
+    min-height: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    border-top: solid 5px #713707;
+    border-bottom: solid 5px #713707;
+    border-radius: 3px;
+    background-color: #FFCF90;
+
 }
 
 .content-wrapper{
-
+    padding: 10px;
 }
 
 .footer-wrapper{
-
+    padding: 0px 10px;
 }
 
 .footer {
     border-radius: 50px 50px 0 0;
     position: absolute;
+    right: 0;
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 50px;
-    background-color: #AA8739;
+    background-color: #AA7A3D;
+}
+
+.header-title{
+    min-height: 150px;
+}
+
+.header-navbar{
+    min-height: 50px;
+    margin-bottom: -10px;
 }

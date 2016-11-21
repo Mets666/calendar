@@ -7,3 +7,14 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+
+    app.calendar_listener:
+        class: AppBundle\EventListener\CalendarEventListener
+        arguments:
+            doctrine:       '@doctrine'
+            token_storage:  '@security.token_storage'
+
+
+        tags:
+            - { name: kernel.event_listener, event: calendar.load_events, method: loadEvents }

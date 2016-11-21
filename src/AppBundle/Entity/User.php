@@ -2,12 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
+ * @ORM\Table(name="user")
  * @ORM\Entity
  * @UniqueEntity(fields="email", message="Email already taken")
  * @UniqueEntity(fields="username", message="Username already taken")
@@ -44,11 +46,15 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="user", fetch="LAZY")
+     */
+    private $calendarEvents;
+
     public function __construct()
     {
         $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
+        $this->calendarEvents = new ArrayCollection();
     }
 
     public function getUsername()
@@ -58,8 +64,6 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
         return null;
     }
 
@@ -205,5 +209,39 @@ class User implements AdvancedUserInterface, \Serializable
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Add calendarEvent
+     *
+     * @param \AppBundle\Entity\CalendarEvent $calendarEvent
+     *
+     * @return User
+     */
+    public function addCalendarEvent(\AppBundle\Entity\CalendarEvent $calendarEvent)
+    {
+        $this->calendarEvents[] = $calendarEvent;
+
+        return $this;
+    }
+
+    /**
+     * Remove calendarEvent
+     *
+     * @param \AppBundle\Entity\CalendarEvent $calendarEvent
+     */
+    public function removeCalendarEvent(\AppBundle\Entity\CalendarEvent $calendarEvent)
+    {
+        $this->calendarEvents->removeElement($calendarEvent);
+    }
+
+    /**
+     * Get calendarEvents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCalendarEvents()
+    {
+        return $this->calendarEvents;
     }
 }

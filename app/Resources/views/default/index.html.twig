@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <a href="{{url("logout")}}" class="btn btn-danger">Logout</a>
+
+    <div>
+        {% include 'ADesignsCalendarBundle::calendar.html.twig' %}
+    </div>
 {% endblock %}
 
