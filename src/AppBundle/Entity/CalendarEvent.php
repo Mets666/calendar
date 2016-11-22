@@ -42,6 +42,8 @@ class CalendarEvent
     private $user;
     
 
+
+
     /**
      * Get id
      *

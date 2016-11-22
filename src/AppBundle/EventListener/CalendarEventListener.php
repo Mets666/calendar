@@ -12,16 +12,19 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 class CalendarEventListener
 {
     private $entityManager;
-    private $user;
+    private $token_storage;
 
-    public function __construct(EntityManager $doctrine, TokenStorage $token_storage)
+    public function __construct(ManagerRegistry $doctrine, TokenStorage $token_storage)
     {
         $this->entityManager = $doctrine;
-        $this->user = $token_storage->getToken()->getUser();
+        $this->token_storage = $token_storage;
     }
 
     public function loadEvents(CalendarEvent $calendarEvent)
     {
+
+        $user = $this->token_storage->getToken()->getUser();
+
         $startDate = $calendarEvent->getStartDatetime();
         $endDate = $calendarEvent->getEndDatetime();
 
@@ -32,19 +35,21 @@ class CalendarEventListener
         $filter = $request->get('filter');
 
 
+
+
         // load events using your custom logic here,
         // for instance, retrieving events from a repository
 
-        $calendarEvents = $this->entityManager->getRepository('AppBundle:CalendarEvent')
+        $userEvents = $this->entityManager->getRepository('AppBundle:CalendarEvent')
             ->createQueryBuilder('events')
-            ->where('events.start_date BETWEEN :startDate and :endDate')
-            ->andWhere('events.user_id = :userId')
+            ->where('events.startDate BETWEEN :startDate and :endDate')
+            ->andWhere('events.user = :userId')
             ->setParameter('startDate', $startDate->format('Y-m-d H:i:s'))
             ->setParameter('endDate', $endDate->format('Y-m-d H:i:s'))
-            ->setParameter('userId', $this->user->getId())
+            ->setParameter('userId', $user->getId())
             ->getQuery()->getResult();
 
-        dump($calendarEvents); die;
+//        dump($calendarEvents); die;
 
         // $companyEvents and $companyEvent in this example
         // represent entities from your database, NOT instances of EventEntity
@@ -53,14 +58,15 @@ class CalendarEventListener
         // Create EventEntity instances and populate it's properties with data
         // from your own entities/database values.
 
-        foreach($calendarEvents as $calendarEvent) {
+        /** @var \AppBundle\Entity\CalendarEvent $userEvent */
+        foreach($userEvents as $userEvent) {
 
             // create an event with a start/end time, or an all day event
-            if ($calendarEvent->getAllDayEvent() === false) {
-                $eventEntity = new EventEntity($calendarEvent->getTitle(), $calendarEvent->getStartDatetime(), $calendarEvent->getEndDatetime());
-            } else {
-                $eventEntity = new EventEntity($calendarEvent->getTitle(), $calendarEvent->getStartDatetime(), null, true);
-            }
+//            if ($calendarEvent->getAllDayEvent() === false) {
+                $eventEntity = new EventEntity($userEvent->getTitle(), $userEvent->getStartDate(), $userEvent->getEndDate());
+//            } else {
+//                $eventEntity = new EventEntity($calendarEvent->getTitle(), $calendarEvent->getStartDatetime(), null, true);
+//            }
 
             //optional calendar event settings
             $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event

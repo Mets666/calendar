@@ -14,7 +14,5 @@ services:
         arguments:
             doctrine:       '@doctrine'
             token_storage:  '@security.token_storage'
-
-
         tags:
             - { name: kernel.event_listener, event: calendar.load_events, method: loadEvents }
