@@ -15,16 +15,32 @@
                     <h3 class="text-center margin0 marginb10">Registration</h3>
                     {{ form_start(form) }}
                     <div class="form-group">
-                        {{ form_row(form.username) }}
+                        {{ form_label(form.username) }}
+                        <div class="form-field-error">
+                        {{ form_errors(form.username) }}
+                        </div>
+                        {{ form_widget(form.username) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.email) }}
+                        {{ form_label(form.email) }}
+                        <div class="form-field-error">
+                            {{ form_errors(form.email) }}
+                        </div>
+                        {{ form_widget(form.email) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.password.first) }}
+                        {{ form_label(form.password.first) }}
+                        <div class="form-field-error">
+                            {{ form_errors(form.password.first) }}
+                        </div>
+                        {{ form_widget(form.password.first) }}
                     </div>
                     <div class="form-group">
-                        {{ form_row(form.password.second) }}
+                        {{ form_label(form.password.second) }}
+                        <div class="form-field-error">
+                            {{ form_errors(form.password.second) }}
+                        </div>
+                        {{ form_widget(form.password.second) }}
                     </div>
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-success">Register</button>

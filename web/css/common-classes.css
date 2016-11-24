@@ -211,3 +211,7 @@
 .vertical-center{
     vertical-align: middle;
 }
+
+.bg-red{
+    background-color: #880000;
+}

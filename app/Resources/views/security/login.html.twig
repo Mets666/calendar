@@ -14,7 +14,7 @@
                 <div class="login">
 
                     {% if error %}
-                        <div class="message bg-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        <div class="message bg-red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         <div class="spacer10"></div>
                     {% endif %}
 

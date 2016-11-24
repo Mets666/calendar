@@ -1,3 +1,7 @@
+html{
+    height: 100%;
+}
+
 body{
     background-color: #FFE5AA;
     min-height: 100%;
@@ -14,8 +18,37 @@ h3{
     font-family: "Berlin Sans FB";
 }
 
+.footer {
+    position: absolute;
+    z-index: 999;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /*height: 50px;*/
+    border-top: solid 5px #713707;
+    border-radius: 3px;
+    background-color: #AA7A3D;
+}
+
+.form-field-error{
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+    background-color: #880000;
+}
+
+.form-field-error ul{
+    padding: 2px 5px;
+    margin-bottom: 3px;
+}
+
+.form-field-error li{
+    list-style: none;
+}
+
 .message{
-    border-radius: 5px;
+    border-radius: 4px;
     padding: 5px;
     text-align: center;
     vertical-align: middle;
@@ -75,18 +108,12 @@ h3{
 }
 
 .footer-wrapper{
-    padding: 0px 10px;
-}
-
-.footer {
-    border-radius: 50px 50px 0 0;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     height: 50px;
-    background-color: #AA7A3D;
+    padding: 5px 10px;
+    color: #fff;
+    /*border-top: solid 5px #713707;*/
+    /*border-radius: 3px;*/
+    /*background-color: #AA7A3D;*/
 }
 
 .header-title{
