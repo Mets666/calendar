@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    {{ form_start(time_log_category_form) }}
+    <div class="form-group">
+        {{ form_label(time_log_category_form.color) }}
+        {{ form_errors(time_log_category_form.color) }}
+        {{ form_widget(time_log_category_form.color) }}
+    </div>
+    {{ form_end(time_log_category_form) }}
+
+{% endblock %}
