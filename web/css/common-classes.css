@@ -34,6 +34,10 @@
 
 /*MARGINS*/
 
+.margin0{
+    margin: 0;
+}
+
 /*Right*/
 .marginr10 {
     margin-right: 10px;
@@ -54,20 +58,20 @@
 
 /*Bottom*/
 .marginb5 {
-    margin-bottom: 5px !important;
+    margin-bottom: 5px;
 }
 
 .marginb10 {
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
 }
 
 .marginb20 {
-    margin-bottom: 20px !important;
+    margin-bottom: 20px;
 }
 
 /*Top*/
 .margint5 {
-    margin-top: 5px !important;
+    margin-top: 5px;
 }
 
 /*WIDTH*/
