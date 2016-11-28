@@ -1,12 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    {% include 'flash.messages.html.twig' %}
+
+    <h3>New category</h3>
 
     {{ form_start(time_log_category_form) }}
+    <div class="form-group">
+        {{ form_label(time_log_category_form.title) }}
+        {{ form_errors(time_log_category_form.title) }}
+        {{ form_widget(time_log_category_form.title) }}
+    </div>
     <div class="form-group">
         {{ form_label(time_log_category_form.color) }}
         {{ form_errors(time_log_category_form.color) }}
         {{ form_widget(time_log_category_form.color) }}
+    </div>
+    <div class="form-group">
+        {{ form_widget(time_log_category_form.add) }}
     </div>
     {{ form_end(time_log_category_form) }}
 

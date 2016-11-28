@@ -43,7 +43,7 @@ class CalendarEvent
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\EventCategory", inversedBy="calendarEvents", fetch="LAZY")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     private $category;
     

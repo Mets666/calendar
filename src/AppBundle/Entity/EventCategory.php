@@ -37,7 +37,7 @@ class EventCategory
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EventCategory", mappedBy="eventCategory", fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="category", fetch="LAZY")
      */
     private $calendarEvents;
 

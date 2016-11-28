@@ -22,3 +22,10 @@ services:
         class: AppBundle\Form\Type\ColorType
         tags:
             - { name: form.type, alias: color }
+
+
+#AppBundle/Repository
+    app.event_category.repository:
+        class: AppBundle\Repository\EventCategoryRepository
+        arguments:
+            doctrine:       '@doctrine'

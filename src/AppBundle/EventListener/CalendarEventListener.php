@@ -68,17 +68,21 @@ class CalendarEventListener
 //                $eventEntity = new EventEntity($calendarEvent->getTitle(), $calendarEvent->getStartDatetime(), null, true);
 //            }
 
-            $bgColor = '#123456';
-
-            $textColor = $this->getContrastYIQ($bgColor);
-
+            if($userEvent->getCategory() !== null){
+                $bgColor = $userEvent->getCategory()->getColor();
+                $eventEntity->setCategory($userEvent->getCategory()->getTitle());
+            }
+            else{
+                $bgColor = "123456"; //Default background color
+            }
 
             //optional calendar event settings
-            $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
-            $eventEntity->setBgColor($bgColor); //set the background color of the event's label
-            $eventEntity->setFgColor($textColor); //set the foreground color of the event's label
+//            $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
+            
+            $eventEntity->setBgColor('#'.$bgColor); //set the background color of the event's label
+            $eventEntity->setFgColor('#'.$this->getContrastYIQ($bgColor)); //set the foreground color of the event's label with contrast to background
             $eventEntity->setUrl('#'); // url to send user to when event label is clicked
-            $eventEntity->setCssClass('calendar-event adabtable-color'); // a custom class you may want to apply to event labels
+            $eventEntity->setCssClass('calendar-event'); // a custom class you may want to apply to event labels
 
             //finally, add the event to the CalendarEvent for displaying on the calendar
             $calendarEvent->addEvent($eventEntity);
@@ -90,6 +94,6 @@ class CalendarEventListener
         $g = hexdec(substr($hexcolor,2,2));
         $b = hexdec(substr($hexcolor,4,2));
         $yiq = (($r*299)+($g*587)+($b*114))/1000;
-        return ($yiq >= 128) ? '#000000' : '#FFFFFF';
+        return ($yiq >= 128) ? '000000' : 'FFFFFF';
     }
 }
