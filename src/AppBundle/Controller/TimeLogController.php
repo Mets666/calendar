@@ -4,7 +4,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Form\TimeLogCategoryType;
+use AppBundle\Form\EventCategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +16,7 @@ class TimeLogController extends Controller
      */
     public function timeLogAction(Request $request)
     {
-        $timeLogCategoryForm = $this->createForm(TimeLogCategoryType::class);
+        $timeLogCategoryForm = $this->createForm(EventCategoryType::class);
 
         $timeLogCategoryForm->handleRequest($request);
 
