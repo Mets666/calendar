@@ -39,16 +39,8 @@ class TimeLogController extends Controller
             return $this->redirectToRoute('time_log');
         }
 
-        $bgColor = "#DBF1A1";
-        $r = hexdec(substr($bgColor,0,2));
-        $g = hexdec(substr($bgColor,2,2));
-        $b = hexdec(substr($bgColor,4,2));
-        $contrast = 1 - ( 0.299 * $r + 0.587 * $g + 0.114 * $b)/255;
-        if($contrast < 0.5){$textColor = '#000000';} else{$textColor = '#FFFFFF';}
-
-        dump($textColor); die();
-
         return $this->render('default/timeLog.html.twig', array(
-            'time_log_category_form' => $timeLogCategoryForm->createView()));
+            'time_log_category_form' => $timeLogCategoryForm->createView()
+        ));
     }
 }

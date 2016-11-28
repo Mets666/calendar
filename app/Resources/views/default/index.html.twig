@@ -2,9 +2,41 @@
 
 {% block content %}
 
-    <div>
+<div class="row">
+    <div class="col-md-3 col-sm-3">
+        <h3>Add new event</h3>
+
+        {{ form_start(calendar_event_form) }}
+        <div class="form-group">
+            {{ form_label(calendar_event_form.title) }}
+            {{ form_errors(calendar_event_form.title) }}
+            {{ form_widget(calendar_event_form.title) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(calendar_event_form.startDate) }}
+            {{ form_errors(calendar_event_form.startDate) }}
+            {{ form_widget(calendar_event_form.startDate) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(calendar_event_form.endDate) }}
+            {{ form_errors(calendar_event_form.endDate) }}
+            {{ form_widget(calendar_event_form.endDate) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(calendar_event_form.category) }}
+            {{ form_errors(calendar_event_form.category) }}
+            {{ form_widget(calendar_event_form.category) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(calendar_event_form.add) }}
+        </div>
+        {{ form_end(calendar_event_form) }}
+    </div>
+
+    <div class="col-md-9 col-sm-9">
         {% include 'ADesignsCalendarBundle::calendar.html.twig' %}
     </div>
+</div>
 
 
     {#Modal window - event detail #}
