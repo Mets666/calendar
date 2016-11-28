@@ -51,6 +51,11 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $calendarEvents;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EventCategory", mappedBy="user", fetch="LAZY")
+     */
+    private $eventCategories;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -243,5 +248,39 @@ class User implements AdvancedUserInterface, \Serializable
     public function getCalendarEvents()
     {
         return $this->calendarEvents;
+    }
+
+    /**
+     * Add eventCategory
+     *
+     * @param \AppBundle\Entity\EventCategory $eventCategory
+     *
+     * @return User
+     */
+    public function addEventCategory(\AppBundle\Entity\EventCategory $eventCategory)
+    {
+        $this->eventCategories[] = $eventCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventCategory
+     *
+     * @param \AppBundle\Entity\EventCategory $eventCategory
+     */
+    public function removeEventCategory(\AppBundle\Entity\EventCategory $eventCategory)
+    {
+        $this->eventCategories->removeElement($eventCategory);
+    }
+
+    /**
+     * Get eventCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventCategories()
+    {
+        return $this->eventCategories;
     }
 }

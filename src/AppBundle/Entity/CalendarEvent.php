@@ -20,7 +20,7 @@ class CalendarEvent
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private $title;
@@ -40,6 +40,12 @@ class CalendarEvent
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\EventCategory", inversedBy="calendarEvents", fetch="LAZY")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
     
 
 
@@ -148,5 +154,29 @@ class CalendarEvent
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\EventCategory $category
+     *
+     * @return CalendarEvent
+     */
+    public function setCategory(\AppBundle\Entity\EventCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\EventCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
