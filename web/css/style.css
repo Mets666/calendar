@@ -128,3 +128,30 @@ h3{
 .calendar-event{
     /*background-color: #1b6d85;*/
 }
+
+.flash-success {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    background-color: #66dd66;
+    border-radius: 5px;
+}
+
+.flash-error {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    background-color: #dd6666;
+    border-radius: 5px;
+}
+
+.flash-notice {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    background-color: #66afe9;
+    border-radius: 5px;
+}

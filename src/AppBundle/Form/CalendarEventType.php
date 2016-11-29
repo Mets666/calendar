@@ -7,7 +7,7 @@ namespace AppBundle\Form;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,14 +31,20 @@ class CalendarEventType extends AbstractType
                     'attr' => array('class' => 'form-control')
                 )
             )
-            ->add('startDate', DateTimeType::class, array(
+            ->add('startDate', TextType::class, array(
                     'label' => 'Start:',
-                    'attr' => array('class' => '')
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'id' => 'datetimepicker1'
+                    )
                 )
             )
-            ->add('endDate', DateTimeType::class, array(
+            ->add('endDate', TextType::class, array(
                     'label' => 'End:',
-                    'attr' => array('class' => '')
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'id' => 'datetimepicker2'
+                    )
                 )
             )
             ->add('category', EntityType::class, array(
@@ -61,6 +67,14 @@ class CalendarEventType extends AbstractType
                 'label' => 'Add',
                 'attr' => array('class' => 'btn btn-default btn-success')
             ));
+
+        $builder->get('startDate')
+            ->addModelTransformer(new DateTimeToStringTransformer(null, null, 'Y-m-d H:i'))
+        ;
+
+        $builder->get('endDate')
+            ->addModelTransformer(new DateTimeToStringTransformer(null, null, 'Y-m-d H:i'))
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

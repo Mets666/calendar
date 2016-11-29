@@ -25,6 +25,11 @@ services:
 
 
 #AppBundle/Repository
+    app.calendar_event.repository:
+        class: AppBundle\Repository\CalendarEventRepository
+        arguments:
+            doctrine:       '@doctrine'
+
     app.event_category.repository:
         class: AppBundle\Repository\EventCategoryRepository
         arguments:

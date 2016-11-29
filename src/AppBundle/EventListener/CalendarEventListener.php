@@ -33,9 +33,7 @@ class CalendarEventListener
 
         $request = $calendarEvent->getRequest();
         $filter = $request->get('filter');
-
-
-
+        
 
         // load events using your custom logic here,
         // for instance, retrieving events from a repository
@@ -49,7 +47,6 @@ class CalendarEventListener
             ->setParameter('userId', $user->getId())
             ->getQuery()->getResult();
 
-//        dump($calendarEvents); die;
 
         // $companyEvents and $companyEvent in this example
         // represent entities from your database, NOT instances of EventEntity
@@ -78,7 +75,8 @@ class CalendarEventListener
 
             //optional calendar event settings
 //            $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
-            
+
+            $eventEntity->setId($userEvent->getId());
             $eventEntity->setBgColor('#'.$bgColor); //set the background color of the event's label
             $eventEntity->setFgColor('#'.$this->getContrastYIQ($bgColor)); //set the foreground color of the event's label with contrast to background
             $eventEntity->setUrl('#'); // url to send user to when event label is clicked
