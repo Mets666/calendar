@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\CalendarEvent;
+use AppBundle\Entity\EventCategory;
 use AppBundle\Form\CalendarEventType;
+use AppBundle\Form\EventCategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +20,10 @@ class DefaultController extends Controller
         $calendarEventRepository = $this->get('app.calendar_event.repository');
         
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
+//        $category = new EventCategory();
+//        $category->setUser($user);
+        $addCategoryForm = $this->createForm(EventCategoryType::class);
 
         $event = new CalendarEvent();
         $event->setUser($user);
@@ -44,7 +50,8 @@ class DefaultController extends Controller
         
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-            'calendar_event_form' => $calendarEventForm->createView()
+            'calendar_event_form' => $calendarEventForm->createView(),
+            'add_category_form' => $addCategoryForm->createView()
         ]);
 
     }
@@ -81,6 +88,34 @@ class DefaultController extends Controller
             'success',
             'Event successfully deleted!'
         );
+        return $this->redirectToRoute('homepage');
+    }
+
+    /**
+     * @Route("/add_category", name="add_category", options = { "expose" = true })
+     */
+    public function addCategoryAction(Request $request)
+    {
+        $eventCategoryRepository = $this->get('app.event_category.repository');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $category = new EventCategory();
+        $category->setUser($user);
+        $addCategoryForm = $this->createForm(EventCategoryType::class, $category);
+
+        $addCategoryForm->handleRequest($request);
+        if ($addCategoryForm->isSubmitted() && $addCategoryForm->isValid()) {
+            try {
+                $eventCategoryRepository->add($category);
+            } catch (\Exception $e) {
+                $this->addFlash(
+                    'error',
+                    'Unable to create category!'
+                );
+            }
+            return $this->redirectToRoute('homepage');
+        }
+
         return $this->redirectToRoute('homepage');
     }
 }

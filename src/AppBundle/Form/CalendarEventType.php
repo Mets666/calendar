@@ -64,8 +64,8 @@ class CalendarEventType extends AbstractType
                 )
             )
             ->add('add', SubmitType::class, array(
-                'label' => 'Add',
-                'attr' => array('class' => 'btn btn-default btn-success')
+                'label' => 'Add event',
+                'attr' => array('class' => 'btn btn-default btn-success btn-block')
             ));
 
         $builder->get('startDate')

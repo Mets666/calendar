@@ -13,6 +13,18 @@
                 {{ form_widget(calendar_event_form.title) }}
             </div>
             <div class="form-group">
+                {{ form_label(calendar_event_form.category) }}
+                {{ form_errors(calendar_event_form.category) }}
+                <div class="row">
+                    <div class="col-md-9">
+                        {{ form_widget(calendar_event_form.category) }}
+                    </div>
+                    <div class="col-md-3" style="padding-left: 0;">
+                        <a href="#" id="openAddCategoryModal" class="btn btn-primary width100p">New</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 {{ form_label(calendar_event_form.startDate) }}
                 {{ form_errors(calendar_event_form.startDate) }}
                 <div class='input-group date' id='datetimepicker1'>
@@ -33,11 +45,6 @@
                 </div>
             </div>
             <div class="form-group">
-                {{ form_label(calendar_event_form.category) }}
-                {{ form_errors(calendar_event_form.category) }}
-                {{ form_widget(calendar_event_form.category) }}
-            </div>
-            <div class="form-group">
                 {{ form_widget(calendar_event_form.add) }}
             </div>
             {{ form_end(calendar_event_form) }}
@@ -52,6 +59,8 @@
 
     {#Modal window - event detail #}
     {% include 'modal/modalEventDetail.html.twig' %}
+
+    {% include 'modal/modalAddCategory.html.twig' %}
 
     <script type="text/javascript">
         $(function () {
