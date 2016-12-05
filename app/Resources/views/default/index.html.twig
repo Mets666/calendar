@@ -48,6 +48,19 @@
                 {{ form_widget(calendar_event_form.add) }}
             </div>
             {{ form_end(calendar_event_form) }}
+
+            {#<select id="filter_selector">#}
+                {#<option value="all">All</option>#}
+                {#<option value="School">School</option>#}
+                {#<option value="2">Work</option>#}
+            {#</select>#}
+
+            {{ form_start(filter_category_form) }}
+                {{ form_label(filter_category_form.category) }}
+                {{ form_errors(filter_category_form.category) }}
+                {{ form_widget(filter_category_form.category, { 'id': 'filter_selector'} )}}
+            {{ form_end(filter_category_form) }}
+
         </div>
 
         <div class="col-md-9 col-sm-9">

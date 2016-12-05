@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\CalendarEvent;
 use AppBundle\Entity\EventCategory;
 use AppBundle\Form\CalendarEventType;
+use AppBundle\Form\EventCategoryFilterType;
 use AppBundle\Form\EventCategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,6 +25,9 @@ class DefaultController extends Controller
 //        $category = new EventCategory();
 //        $category->setUser($user);
         $addCategoryForm = $this->createForm(EventCategoryType::class);
+        $filterCategoryForm = $this->createForm(EventCategoryFilterType::class, array(), array(
+            'user' => $user
+        ));
 
         $event = new CalendarEvent();
         $event->setUser($user);
@@ -51,7 +55,8 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
             'calendar_event_form' => $calendarEventForm->createView(),
-            'add_category_form' => $addCategoryForm->createView()
+            'add_category_form' => $addCategoryForm->createView(),
+            'filter_category_form' => $filterCategoryForm->createView()
         ]);
 
     }

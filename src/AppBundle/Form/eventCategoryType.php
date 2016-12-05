@@ -20,7 +20,10 @@ class EventCategoryType extends AbstractType
             )
             ->add('color', TextType::class, array(
                     'label' => 'Color:',
-                    'attr' => array('class' => 'form-control jscolor')
+                    'attr' => array('class' => 'form-control jscolor',
+                        'style' => 'text-indent: -9999px;',
+                        'readonly' => 'readonly'
+                        )
                 )
             )
             ->add('add', SubmitType::class, array(
