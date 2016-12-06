@@ -46,9 +46,21 @@ class CalendarEvent
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     private $category;
-    
 
 
+
+//    /**
+//     * Set id
+//     * fake method
+//     *
+//     * @param integer $id
+//     *
+//     * @return CalendarEvent
+//     */
+//    public function setId($id)
+//    {
+//        return $this;
+//    }
 
     /**
      * Get id

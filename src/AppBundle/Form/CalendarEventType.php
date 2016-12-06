@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,6 +27,7 @@ class CalendarEventType extends AbstractType
         $this->user = $options['user'];
 
         $builder
+            ->add('id', HiddenType::class, ['mapped'=>false])
             ->add('title', TextType::class, array(
                     'label' => 'Event name:',
                     'attr' => array('class' => 'form-control')

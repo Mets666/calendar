@@ -10,7 +10,6 @@
 {#**************************************BODY**************************************#}
 
     <body>
-        {% include 'scripts.html.twig' %}
         {% block body %}
             <div class="container-fluid">
                 <div class="row">
@@ -44,6 +43,7 @@
                     </div>
                 </div>
             </div>
+            {% include 'scripts.html.twig' %}
         {% endblock %}
     </body>
 </html>

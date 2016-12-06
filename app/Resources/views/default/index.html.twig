@@ -27,7 +27,7 @@
             <div class="form-group">
                 {{ form_label(calendar_event_form.startDate) }}
                 {{ form_errors(calendar_event_form.startDate) }}
-                <div class='input-group date' id='datetimepicker1'>
+                <div class='input-group date datetimepicker-identifier'>
                     {{ form_widget(calendar_event_form.startDate) }}
                     <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -37,7 +37,7 @@
             <div class="form-group">
                 {{ form_label(calendar_event_form.endDate) }}
                 {{ form_errors(calendar_event_form.endDate) }}
-                <div class='input-group date' id='datetimepicker2'>
+                <div class='input-group date datetimepicker-identifier'>
                     {{ form_widget(calendar_event_form.endDate) }}
                     <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -49,12 +49,7 @@
             </div>
             {{ form_end(calendar_event_form) }}
 
-            {#<select id="filter_selector">#}
-                {#<option value="all">All</option>#}
-                {#<option value="School">School</option>#}
-                {#<option value="2">Work</option>#}
-            {#</select>#}
-
+            {#Category filter#}
             {{ form_start(filter_category_form) }}
                 {{ form_label(filter_category_form.category) }}
                 {{ form_errors(filter_category_form.category) }}
@@ -74,15 +69,6 @@
     {% include 'modal/modalEventDetail.html.twig' %}
 
     {% include 'modal/modalAddCategory.html.twig' %}
-
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-        $(function () {
-            $('#datetimepicker2').datetimepicker();
-        });
-    </script>
 
 {% endblock %}
 

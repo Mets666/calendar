@@ -35,12 +35,14 @@ class DefaultController extends Controller
             'user' => $user
         ));
 
+        $editCalendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
+            'user' => $user
+        ));
+
         $calendarEventForm->handleRequest($request);
 
         if ($calendarEventForm->isSubmitted() && $calendarEventForm->isValid()) {
             try {
-//                $event->setStartDate(new \DateTime($event->getStartDate()));
-//                $event->setEndDate(new \DateTime($event->getEndDate()));
                 $calendarEventRepository->add($event);
             } catch (\Exception $e) {
                 $this->addFlash(
@@ -55,10 +57,56 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
             'calendar_event_form' => $calendarEventForm->createView(),
+            'edit_calendar_event_form' => $editCalendarEventForm->createView(),
             'add_category_form' => $addCategoryForm->createView(),
             'filter_category_form' => $filterCategoryForm->createView()
         ]);
 
+    }
+
+    /**
+     * @Route("/edit_event", name="edit_event", options = { "expose" = true })
+     */
+    public function editEventAction(Request $request, $eventId)
+    {
+
+        $calendarEventRepository = $this->get('app.calendar_event.repository');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $formData = $request->request->get('calendar_event');
+
+        /** @var \AppBundle\Entity\CalendarEvent $event */
+        $event = $calendarEventRepository->get($formData['id']);
+
+        $event->setTitle($formData['title']);
+
+
+
+        $editCalendarEventForm = $this->createForm(CalendarEventType::class, $event, array(
+            'user' => $user
+        ));
+
+        $editCalendarEventForm->handleRequest($request);
+
+//        dump($editCalendarEventForm->isValid()); die;
+
+        if ($editCalendarEventForm->isSubmitted()) {
+            try {
+//                dump($event); die;
+                $calendarEventRepository->save($event);
+            } catch (\Exception $e) {
+                $this->addFlash(
+                    'error',
+                    'Unable to edit event!'
+                );
+            }
+            return $this->redirectToRoute('homepage');
+        }
+
+        dump($editCalendarEventForm); die;
+
+        return $this->redirectToRoute('homepage');
     }
 
 
