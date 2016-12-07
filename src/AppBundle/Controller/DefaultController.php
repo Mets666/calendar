@@ -19,6 +19,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $calendarEventRepository = $this->get('app.calendar_event.repository');
+        $validator = $this->get('validator');
         
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -41,16 +42,28 @@ class DefaultController extends Controller
 
         $calendarEventForm->handleRequest($request);
 
-        if ($calendarEventForm->isSubmitted() && $calendarEventForm->isValid()) {
-            try {
-                $calendarEventRepository->add($event);
-            } catch (\Exception $e) {
-                $this->addFlash(
-                    'error',
-                    'Unable to create category!'
-                );
+        if ($calendarEventForm->isSubmitted()) {
+            if ($calendarEventForm->isValid()) {
+                try {
+                    $calendarEventRepository->add($event);
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to create category!'
+                    );
+                }
+                return $this->redirectToRoute('homepage');
             }
-            return $this->redirectToRoute('homepage');
+            else{
+                $errors = $validator->validate($event);
+
+                foreach ($errors as $error){
+                    $this->addFlash(
+                        'error',
+                        'Unable to add event: ' . $error->getMessage()
+                    );
+                }
+            }
         }
         
         
@@ -71,6 +84,7 @@ class DefaultController extends Controller
     {
 
         $calendarEventRepository = $this->get('app.calendar_event.repository');
+        $validator = $this->get('validator');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -79,29 +93,36 @@ class DefaultController extends Controller
         /** @var \AppBundle\Entity\CalendarEvent $event */
         $event = $calendarEventRepository->get($formData['id']);
 
-//        $event->setTitle($formData['title']);
-
-        dump($formData);
-
         $editCalendarEventForm = $this->createForm(CalendarEventType::class, $event, array(
             'user' => $user
         ));
 
         $editCalendarEventForm->handleRequest($request);
 
-        dump($event); die;
 
     //    dump($editCalendarEventForm->isValid()); die; //check this sh*t again
 
         if ($editCalendarEventForm->isSubmitted()) {
-            try {
-                $calendarEventRepository->save($event);
-            } catch (\Exception $e) {
-                $this->addFlash(
-                    'error',
-                    'Unable to edit event!'
-                );
-                return $this->redirectToRoute('homepage');
+            if($editCalendarEventForm->isValid()){
+                try {
+                    $calendarEventRepository->save($event);
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to edit event: Database error.'
+                    );
+                    return $this->redirectToRoute('homepage');
+                }
+            }
+            else{
+                $errors = $validator->validate($event);
+
+                foreach ($errors as $error){
+                    $this->addFlash(
+                        'error',
+                        'Unable to edit event: ' . $error->getMessage()
+                    );
+                }
             }
         }
 

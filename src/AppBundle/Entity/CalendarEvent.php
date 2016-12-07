@@ -21,7 +21,9 @@ class CalendarEvent
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="Title must be filled."
+     * )
      */
     private $title;
 
@@ -192,6 +194,10 @@ class CalendarEvent
         return $this->category;
     }
 
+
+    /**
+     * @Assert\IsTrue(message = "Start date must be sooner then end date.")
+     */
     public function isDatesValid()
     {
         return ($this->startDate < $this->endDate);
