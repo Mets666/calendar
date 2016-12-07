@@ -27,6 +27,7 @@ class CalendarEventType extends AbstractType
         $this->user = $options['user'];
 
         $builder
+            ->setMethod('POST')
             ->add('id', HiddenType::class, ['mapped'=>false])
             ->add('title', TextType::class, array(
                     'label' => 'Event name:',
@@ -37,7 +38,6 @@ class CalendarEventType extends AbstractType
                     'label' => 'Start:',
                     'attr' => array(
                         'class' => 'form-control',
-                        'id' => 'datetimepicker1'
                     )
                 )
             )
@@ -45,7 +45,6 @@ class CalendarEventType extends AbstractType
                     'label' => 'End:',
                     'attr' => array(
                         'class' => 'form-control',
-                        'id' => 'datetimepicker2'
                     )
                 )
             )
@@ -58,6 +57,7 @@ class CalendarEventType extends AbstractType
                             ->orderBy('category.title', 'ASC');
                     },
                     'choice_label' => 'title',
+                    'choice_value' => 'id',
                     'required' => false,
                     'placeholder' => 'None',
                     'empty_data' => null,
@@ -66,8 +66,8 @@ class CalendarEventType extends AbstractType
                 )
             )
             ->add('add', SubmitType::class, array(
-                'label' => 'Add event',
-                'attr' => array('class' => 'btn btn-default btn-success btn-block')
+                    'label' => 'Add event',
+                    'attr' => array('class' => 'btn btn-default btn-success btn-block')
             ));
 
         $builder->get('startDate')

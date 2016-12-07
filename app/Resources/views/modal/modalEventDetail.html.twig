@@ -9,54 +9,65 @@
             {{ form_widget(edit_calendar_event_form.title, {'attr': {'class': 'form-control input-eventTitle'}}) }}
         </div>
 
-        <label>Category:</label>
-        <div id="text-eventCategory">
-
-        </div>
-        <div id="form-eventCategory" class="collapse form-group">
-            {#{{ form_label(edit_calendar_event_form.category) }}#}
-            {{ form_errors(edit_calendar_event_form.category) }}
-            {{ form_widget(edit_calendar_event_form.category, {'attr': {'class': 'form-control input-eventCategory'}}) }}
-        </div>
-
-
-        <label>Start:</label>
-        <div id="text-eventStartTime">
-
-        </div>
-        <div id="form-eventStartTime" class="collapse form-group">
-            {#{{ form_label(edit_calendar_event_form.startDate) }}#}
-            {{ form_errors(edit_calendar_event_form.startDate) }}
-            <div class='input-group date datetimepicker-identifier'>
-                {{ form_widget(edit_calendar_event_form.startDate, {'attr': {'class': 'form-control input-eventStartTime'}}) }}
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-
-        <label>End:</label>
-        <div id="text-eventEndTime">
-
-        </div>
-        <div id="form-eventEndTime" class="collapse form-group">
-            {#{{ form_label(edit_calendar_event_form.endDate) }}#}
-            {{ form_errors(edit_calendar_event_form.endDate) }}
-            <div class='input-group date datetimepicker-identifier'>
-                {{ form_widget(edit_calendar_event_form.endDate, {'attr': {'class': 'form-control input-eventEndTime'}}) }}
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
         <div class="form-group">
-            <div id="form-event-edit">
-                <input type="button" class="btn btn-primary" value="Edit" onclick="editCalendarEvent()">
-            </div>
-            <div id="form-event-save" class="collapse">
-                {{ form_widget(edit_calendar_event_form.add, { 'label': 'Save' }) }}
-            </div>
+            <label>Category:</label>
+            <div id="text-eventCategory">
 
+            </div>
+            <div id="form-eventCategory" class="collapse">
+                {#{{ form_label(edit_calendar_event_form.category) }}#}
+                {{ form_errors(edit_calendar_event_form.category) }}
+                {{ form_widget(edit_calendar_event_form.category, {'attr': {'class': 'form-control input-eventCategory'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Start:</label>
+            <div id="text-eventStartTime">
+
+            </div>
+            <div id="form-eventStartTime" class="collapse">
+                {#{{ form_label(edit_calendar_event_form.startDate) }}#}
+                {{ form_errors(edit_calendar_event_form.startDate) }}
+                <div class='input-group date datetimepicker-identifier'>
+                    {{ form_widget(edit_calendar_event_form.startDate, {'attr': {'class': 'form-control input-eventStartTime'}}) }}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>End:</label>
+            <div id="text-eventEndTime">
+
+            </div>
+            <div id="form-eventEndTime" class="collapse form-group">
+                {#{{ form_label(edit_calendar_event_form.endDate) }}#}
+                {{ form_errors(edit_calendar_event_form.endDate) }}
+                <div class='input-group date datetimepicker-identifier'>
+                    {{ form_widget(edit_calendar_event_form.endDate, {'attr': {'class': 'form-control input-eventEndTime'}}) }}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="spacer20"></div>
+            <div class="col-md-6">
+                <div id="form-event-edit">
+                    <input type="button" class="btn btn-primary width100p" value="Edit" onclick="editCalendarEvent()">
+                </div>
+                <div id="form-event-save" class="collapse">
+                    {{ form_widget(edit_calendar_event_form.add, { 'label': 'Save' }) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a id="eventDeleteLink" onClick="return confirm('Are you sure?');" class="btn btn-danger width100p" style="color: #FFF">Delete</a>
+            </div>
         </div>
 
 
@@ -64,7 +75,7 @@
     {{ form_end(edit_calendar_event_form) }}
 
         <p><strong><a id="eventLink" href="" target="_blank">Read More</a></strong></p>
-        <a id="eventDeleteLink" onClick="return confirm('Are you sure?');" class="btn btn-danger" style="color: #FFF">Delete this event</a>
+
 </div>
 
 <script>

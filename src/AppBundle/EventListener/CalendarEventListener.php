@@ -67,7 +67,7 @@ class CalendarEventListener
 
             if($userEvent->getCategory() !== null){
                 $bgColor = $userEvent->getCategory()->getColor();
-                $eventEntity->setCategory($userEvent->getCategory()->getTitle());
+                $eventEntity->setCategory($userEvent->getCategory());
             }
             else{
                 $bgColor = "123456"; //Default background color

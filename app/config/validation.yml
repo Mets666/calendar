@@ -1,0 +1,4 @@
+AppBundle\Entity\CalendarEvent
+  getters:
+      datesValid:
+              - "True": { message: "Start date must be sooner then end date." }

@@ -191,4 +191,9 @@ class CalendarEvent
     {
         return $this->category;
     }
+
+    public function isDatesValid()
+    {
+        return ($this->startDate < $this->endDate);
+    }
 }

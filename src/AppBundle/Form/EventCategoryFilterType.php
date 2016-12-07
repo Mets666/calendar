@@ -18,7 +18,7 @@ class EventCategoryFilterType extends AbstractType
         $this->user = $options['user'];
 
         $builder
-            ->add('category', EntityType::class, array(
+            ->add('filter_category', EntityType::class, array(
                     'class' => 'AppBundle:EventCategory',
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('category')
@@ -27,7 +27,7 @@ class EventCategoryFilterType extends AbstractType
                             ->orderBy('category.title', 'ASC');
                     },
                     'choice_label' => 'title',
-                    'choice_value' => 'title',
+//                    'choice_value' => 'title',
                     'required' => false,
                     'placeholder' => 'All',
                     'empty_data' => null,

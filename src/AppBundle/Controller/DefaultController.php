@@ -35,7 +35,7 @@ class DefaultController extends Controller
             'user' => $user
         ));
 
-        $editCalendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
+        $editCalendarEventForm = $this->createForm(CalendarEventType::class, $event, array(
             'user' => $user
         ));
 
@@ -79,9 +79,9 @@ class DefaultController extends Controller
         /** @var \AppBundle\Entity\CalendarEvent $event */
         $event = $calendarEventRepository->get($formData['id']);
 
-        $event->setTitle($formData['title']);
+//        $event->setTitle($formData['title']);
 
-
+        dump($formData);
 
         $editCalendarEventForm = $this->createForm(CalendarEventType::class, $event, array(
             'user' => $user
@@ -89,22 +89,21 @@ class DefaultController extends Controller
 
         $editCalendarEventForm->handleRequest($request);
 
-//        dump($editCalendarEventForm->isValid()); die;
+        dump($event); die;
+
+    //    dump($editCalendarEventForm->isValid()); die; //check this sh*t again
 
         if ($editCalendarEventForm->isSubmitted()) {
             try {
-//                dump($event); die;
                 $calendarEventRepository->save($event);
             } catch (\Exception $e) {
                 $this->addFlash(
                     'error',
                     'Unable to edit event!'
                 );
+                return $this->redirectToRoute('homepage');
             }
-            return $this->redirectToRoute('homepage');
         }
-
-        dump($editCalendarEventForm); die;
 
         return $this->redirectToRoute('homepage');
     }
