@@ -142,6 +142,14 @@
 }
 
 /*px*/
+.width50px {
+    width: 50px;
+}
+
+.width60px {
+    width: 60px;
+}
+
 .width80px {
     width: 80px;
 }

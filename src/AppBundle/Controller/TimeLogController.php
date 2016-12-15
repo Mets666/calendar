@@ -27,26 +27,7 @@ class TimeLogController extends Controller
             'action' => $this->generateUrl('edit_category')
         ));
 
-        $category = new EventCategory();
-        $category->setUser($user);
-        $timeLogCategoryForm = $this->createForm(EventCategoryType::class, $category);
-
-        $timeLogCategoryForm->handleRequest($request);
-
-        if ($timeLogCategoryForm->isSubmitted() && $timeLogCategoryForm->isValid()) {
-            try {
-                $eventCategoryRepository->add($category);
-            } catch (\Exception $e) {
-                $this->addFlash(
-                    'error',
-                    'Unable to create category!'
-                );
-            }
-            return $this->redirectToRoute('time_log');
-        }
-
         return $this->render('default/timeLog.html.twig', array(
-            'time_log_category_form' => $timeLogCategoryForm->createView(),
             'category_form' => $editCategoryForm->createView(),
             'categories' => $categories,
         ));

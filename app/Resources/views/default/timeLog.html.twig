@@ -4,44 +4,52 @@
 
     <div class="row">
         <div class="col-md-3 col-sm-3">
-            <table>
-            {% for category in categories %}
-                <tr>
-                    <td class="col-md-6 col-sm-6">
-                        {{ category.title }}
-                    </td>
-                    <td>
-                        <a href="#" id="" class="btn btn-primary width100p openEditCategoryModal" data-id="{{ category.id }}" data-title="{{ category.title }}" data-color="{{ category.color }}">Edit</a>
-                    </td>
-                    <td>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h3>Manage categories:</h3>
+                </div>
+            </div>
 
-                        <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width100p">Delete</a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </table>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <table class="table table-hover table-category_list">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="width60px"></th>
+                                <th class="width80px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td class="col-md-6 col-sm-6">
+                                    <b>{{ category.title }}</b>
+                                </td>
+                                <td>
+                                    <a href="#" id="" class="btn btn-success width60px openEditCategoryModal" data-id="{{ category.id }}" data-title="{{ category.title }}" data-color="{{ category.color }}">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width80px">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <a href="#" id="openAddCategoryModal" class="btn btn-primary width100p">Add new</a>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-9 col-sm-9">
             {% include 'flash.messages.html.twig' %}
 
-            <h3>New category</h3>
-
-            {{ form_start(time_log_category_form) }}
-            <div class="form-group">
-                {{ form_label(time_log_category_form.title) }}
-                {{ form_errors(time_log_category_form.title) }}
-                {{ form_widget(time_log_category_form.title) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(time_log_category_form.color) }}
-                {{ form_errors(time_log_category_form.color) }}
-                {{ form_widget(time_log_category_form.color) }}
-            </div>
-            <div class="form-group">
-                {{ form_widget(time_log_category_form.add) }}
-            </div>
-            {{ form_end(time_log_category_form) }}
+            some stats will be here
 
         </div>
 
