@@ -16,10 +16,12 @@ class CalendarEventRepository
         $this->doctrine = $doctrine;
     }
 
-    public function save($object)
+    /**
+     * Execute queries and save changes to database
+     */
+    public function save()
     {
         $em = $this->doctrine->getManager();
-        $em->persist($object);
         $em->flush();
     }
 
@@ -30,7 +32,8 @@ class CalendarEventRepository
     public function add($event)
     {
         try {
-            $this->save($event);
+            $em = $this->doctrine->getManager();
+            $em->persist($event);
         } catch (\Exception $e) {
             throw new DatabaseException('Failed to save data to database!', $e->getCode(), $e);
         }
@@ -40,15 +43,7 @@ class CalendarEventRepository
     {
         $em = $this->doctrine->getManager();
         $em->remove($event);
-        $em->flush();
     }
-
-//    public function removeOwnedByUser($event, $user)
-//    {
-//        $em = $this->doctrine->getManager();
-//        $em->remove($event);
-//        $em->flush();
-//    }
 
     public function get($id)
     {

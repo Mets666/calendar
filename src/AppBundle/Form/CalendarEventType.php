@@ -30,7 +30,7 @@ class CalendarEventType extends AbstractType
             ->setMethod('POST')
             ->add('id', HiddenType::class, ['mapped'=>false])
             ->add('title', TextType::class, array(
-                    'label' => 'Event name:',
+                    'label' => 'Title:',
                     'attr' => array('class' => 'form-control')
                 )
             )

@@ -1,17 +1,18 @@
-<div id="addCategoryContent" title="Event Details" style="display:none;">
-    {{ form_start(add_category_form, {'action': path('add_category')}) }}
+<div id="addCategoryContent" title="Category detail" style="display:none;">
+    {{ form_start(category_form) }}
+    {{ form_widget(category_form.id, {'attr': {'class': 'input-categoryId'}}) }}
     <div class="form-group">
-        {{ form_label(add_category_form.title) }}
-        {{ form_errors(add_category_form.title) }}
-        {{ form_widget(add_category_form.title) }}
+        {{ form_label(category_form.title) }}
+        {{ form_errors(category_form.title) }}
+        {{ form_widget(category_form.title, {'attr': {'class': 'form-control input-categoryTitle'}}) }}
     </div>
     <div class="form-group">
-        {{ form_label(add_category_form.color) }}
-        {{ form_errors(add_category_form.color) }}
-        {{ form_widget(add_category_form.color) }}
+        {{ form_label(category_form.color) }}
+        {{ form_errors(category_form.color) }}
+        {{ form_widget(category_form.color, {'attr': {'class': 'form-control jscolor input-categoryColor'}}) }}
     </div>
     <div class="form-group">
-        {{ form_widget(add_category_form.add) }}
+        {{ form_widget(category_form.add) }}
     </div>
-    {{ form_end(add_category_form) }}
+    {{ form_end(category_form) }}
 </div>

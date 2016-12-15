@@ -21,6 +21,12 @@ class TimeLogController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        $categories = $eventCategoryRepository->allForUser($user);
+
+        $editCategoryForm = $this->createForm(EventCategoryType::class, array(), array(
+            'action' => $this->generateUrl('edit_category')
+        ));
+
         $category = new EventCategory();
         $category->setUser($user);
         $timeLogCategoryForm = $this->createForm(EventCategoryType::class, $category);
@@ -40,7 +46,9 @@ class TimeLogController extends Controller
         }
 
         return $this->render('default/timeLog.html.twig', array(
-            'time_log_category_form' => $timeLogCategoryForm->createView()
+            'time_log_category_form' => $timeLogCategoryForm->createView(),
+            'category_form' => $editCategoryForm->createView(),
+            'categories' => $categories,
         ));
     }
 }

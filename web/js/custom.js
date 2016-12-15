@@ -4,9 +4,21 @@ $(document).ready(function() {
         $(this).datetimepicker();
     });
 
-    $('#addCategoryContent').dialog({ modal: true, autoOpen: false, title: 'New Category', width:400 });
+    $('#addCategoryContent').dialog({ modal: true, autoOpen: false, title: 'Category', width:400 });
     
     $('#openAddCategoryModal').click(function(){ $('#addCategoryContent').dialog('open'); return false;});
+
+    $('.openEditCategoryModal').each(function(){
+        $(this).click(function () {
+
+            $(".input-categoryId").val($(this).data('id'));
+            $(".input-categoryTitle").val($(this).data('title'));
+            $(".input-categoryColor")[0].jscolor.fromString($(this).data('color'));
+
+            $('#addCategoryContent').dialog('open');
+            return false;
+        });
+    });
 
 });
 

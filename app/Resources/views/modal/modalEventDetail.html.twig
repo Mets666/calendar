@@ -1,5 +1,5 @@
-<div id="eventContent" title="Event Details" style="display:none;">
-    {{ form_start(edit_calendar_event_form, {'action':path('edit_event'), 'method':'post'}) }}
+<div id="eventContent" title="Event Detail" style="display:none;">
+    {{ form_start(edit_calendar_event_form) }}
         {{ form_widget(edit_calendar_event_form.id, {'attr': {'class': 'form-control input-eventId'}}) }}
 
         <div id="form-eventTitle" class="collapse form-group">
@@ -68,16 +68,7 @@
                 <a id="eventDeleteLink" onClick="return confirm('Are you sure?');" class="btn btn-danger width100p" style="color: #FFF">Delete</a>
             </div>
         </div>
-
-
-
     {{ form_end(edit_calendar_event_form) }}
 
-        {#<p><strong><a id="eventLink" href="" target="_blank">Read More</a></strong></p>#}
-
+    {#<p><strong><a id="eventLink" href="" target="_blank">Read More</a></strong></p>#}
 </div>
-
-<script>
-
-
-</script>
