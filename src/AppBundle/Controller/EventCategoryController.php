@@ -6,9 +6,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\EventCategory;
 use AppBundle\Form\EventCategoryType;
-use GuzzleHttp\Tests\Psr7\Str;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EventCategoryController extends Controller

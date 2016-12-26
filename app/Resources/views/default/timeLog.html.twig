@@ -49,7 +49,15 @@
         <div class="col-md-9 col-sm-9">
             {% include 'flash.messages.html.twig' %}
 
-            some stats will be here
+            {% for spend_by_category in spend_time %}
+                {% if spend_by_category.categoryId %}
+                    <h3>{{ spend_by_category.categoryTitle }}</h3>
+                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                {% else %}
+                    <h3>Without category</h3>
+                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                {% endif %}
+            {% endfor %}
 
         </div>
 

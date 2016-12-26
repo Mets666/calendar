@@ -18,8 +18,15 @@ class TimeLogController extends Controller
     public function timeLogAction(Request $request)
     {
         $eventCategoryRepository = $this->get('app.event_category.repository');
+        $calendarEventRepository = $this->get('app.calendar_event.repository');
+
+
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $spendTime = $calendarEventRepository->getSpendTimeByCategoriesForUser($user->getId());
+
+//        dump($spendTime); die;
 
         $categories = $eventCategoryRepository->allForUser($user);
 
@@ -30,6 +37,7 @@ class TimeLogController extends Controller
         return $this->render('default/timeLog.html.twig', array(
             'category_form' => $editCategoryForm->createView(),
             'categories' => $categories,
+            'spend_time' => $spendTime,
         ));
     }
 }

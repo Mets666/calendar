@@ -43,7 +43,7 @@ class CalendarEventController extends Controller
                     );
                 }
                 $this->addFlash(
-                    'error',
+                    'success',
                     'Event successfully added!'
                 );
             }
@@ -94,7 +94,7 @@ class CalendarEventController extends Controller
                     return $this->redirectToRoute('homepage');
                 }
                 $this->addFlash(
-                    'error',
+                    'success',
                     'Event successfully edited!'
                 );
             }

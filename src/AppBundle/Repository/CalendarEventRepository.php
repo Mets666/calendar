@@ -54,4 +54,16 @@ class CalendarEventRepository
         }
         return $event;
     }
+
+    public function getSpendTimeByCategoriesForUser($userId)
+    {
+        return $this->doctrine->getRepository('AppBundle:CalendarEvent')
+            ->createQueryBuilder('events')
+            ->select(array('SUM(TIME_DIFF(events.endDate, events.startDate)) as time' , 'IDENTITY(events.category) as categoryId', 'category.title as categoryTitle'))
+            ->leftjoin('events.category', 'category')
+            ->where('events.user = :userId')
+            ->groupBy('events.category')
+            ->setParameter('userId', $userId)
+            ->getQuery()->getResult();
+    }
 }
