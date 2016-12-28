@@ -47,28 +47,37 @@ class EventCategoryController extends Controller
     public function editCategoryAction(Request $request)
     {
         $eventCategoryRepository = $this->get('app.event_category.repository');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $formData = $request->request->get('event_category');
 
-        $category = $eventCategoryRepository->get($formData['id']);
+        if($formData['id']){
+            $category = $eventCategoryRepository->get($formData['id']);
+        }
+//      New category
+        else{
+            $category = new EventCategory();
+            $category->setUser($user);
+        }
 
         $categoryForm = $this->createForm(EventCategoryType::class, $category);
 
         $categoryForm->handleRequest($request);
         if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
             try {
+                $eventCategoryRepository->add($category);
                 $eventCategoryRepository->save();
             } catch (\Exception $e) {
                 $this->addFlash(
                     'error',
                     'Unable to edit category!'
                 );
+                return $this->redirectToRoute('time_log');
             }
             $this->addFlash(
                 'success',
                 'Category successfully edited!'
             );
-            return $this->redirectToRoute('time_log');
         }
 
         return $this->redirectToRoute('time_log');

@@ -6,7 +6,14 @@ $(document).ready(function() {
 
     $('#addCategoryContent').dialog({ modal: true, autoOpen: false, title: 'Category', width:400 });
     
-    $('#openAddCategoryModal').click(function(){ $('#addCategoryContent').dialog('open'); return false;});
+    $('#openAddCategoryModal').click(function(){
+
+        $(".input-categoryId").val("");
+        $(".input-categoryTitle").val("");
+        $(".input-categoryColor")[0].jscolor.fromString("FFFFFF");
+
+        $('#addCategoryContent').dialog('open');
+        return false;});
 
     $('.openEditCategoryModal').each(function(){
         $(this).click(function () {

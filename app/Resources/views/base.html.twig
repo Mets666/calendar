@@ -6,6 +6,7 @@
         <title>{% block title %}Life O'clock{% endblock %}</title>
         {% include 'styles.html.twig' %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% include 'scripts.html.twig' %}
     </head>
 {#**************************************BODY**************************************#}
 
@@ -43,7 +44,6 @@
                     </div>
                 </div>
             </div>
-            {% include 'scripts.html.twig' %}
         {% endblock %}
     </body>
 </html>

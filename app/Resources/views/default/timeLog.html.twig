@@ -12,30 +12,36 @@
 
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <table class="table table-hover table-category_list">
-                        <thead>
+                    {% if categories %}
+                        <table class="table table-hover table-category_list">
+                            <thead>
                             <tr>
                                 <th></th>
                                 <th class="width60px"></th>
                                 <th class="width80px"></th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        {% for category in categories %}
-                            <tr>
-                                <td class="col-md-6 col-sm-6">
-                                    <b>{{ category.title }}</b>
-                                </td>
-                                <td>
-                                    <a href="#" id="" class="btn btn-success width60px openEditCategoryModal" data-id="{{ category.id }}" data-title="{{ category.title }}" data-color="{{ category.color }}">Edit</a>
-                                </td>
-                                <td>
-                                    <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width80px">Delete</a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for category in categories %}
+                                <tr>
+                                    <td class="col-md-6 col-sm-6">
+                                        <b>{{ category.title }}</b>
+                                    </td>
+                                    <td>
+                                        <a href="#" id="" class="btn btn-success width60px openEditCategoryModal" data-id="{{ category.id }}" data-title="{{ category.title }}" data-color="{{ category.color }}">Edit</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width80px">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <div class="no-data-message">
+                            <i>There are no categories! Please add some first.</i>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -49,21 +55,104 @@
         <div class="col-md-9 col-sm-9">
             {% include 'flash.messages.html.twig' %}
 
-            {% for spend_by_category in spend_time %}
-                {% if spend_by_category.categoryId %}
-                    <h3>{{ spend_by_category.categoryTitle }}</h3>
-                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+            {#{% for spend_by_category in spend_time %}#}
+                {#{% if spend_by_category.id %}#}
+                    {#<h3>{{ spend_by_category.title }}</h3>#}
+                    {#<p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>#}
+                {#{% else %}#}
+                    {#<h3>Without category</h3>#}
+                    {#<p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>#}
+                {#{% endif %}#}
+            {#{% endfor %}#}
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h3>Statistics:</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                {% if spend_time %}
+                <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1">
+                    <canvas id="categoryChart" width="400" height="400"></canvas>
+                </div>
                 {% else %}
-                    <h3>Without category</h3>
-                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                <div class="col-md-12 col-sm-12">
+                    <div class="no-data-message">
+                        <i>There are no events to calculate statistics! Please add some first.</i>
+                    </div>
+                </div>
                 {% endif %}
-            {% endfor %}
+            </div>
 
         </div>
 
     </div>
 
     {#Modal window - add event category#}
-    {% include 'modal/modalAddCategory.html.twig' %}
+    {% include 'modal/modalCategoryDetail.html.twig' %}
+
+    {#Script and data setting for pie graph#}
+    <script>
+        var ctx = document.getElementById("categoryChart");
+
+        var data = {
+            labels: [
+                {% for category in spend_time %}
+                {% if category.id %}
+                    "{{ category.title }}",
+                {% else %}
+                    "Without category",
+                {% endif %}
+                {% endfor %}
+            ],
+            datasets: [
+                {
+                    data: [
+                        {% for category in spend_time %}
+                        "{{ category.time|round }}",
+                        {% endfor %}
+                    ],
+                    backgroundColor: [
+                        {% for category in spend_time %}
+                            {% if category.id %}
+                                "#{{ category.color }}",
+                            {% else %}
+                                "#BBBBBB",
+                            {% endif %}
+                        {% endfor %}
+                    ],
+                    hoverBackgroundColor: [
+                        {% for category in spend_time %}
+                            {% if category.id %}
+                                "#{{ category.color }}",
+                            {% else %}
+                                "#BBBBBB",
+                            {% endif %}
+                        {% endfor %}
+                    ]
+                }]
+        };
+
+        var myChart = new Chart(ctx,{
+            type: 'pie',
+            data: data,
+            options: {
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var cData = data.datasets[tooltipItem.datasetIndex].data;
+                            var _meta = data.datasets[tooltipItem.datasetIndex]._meta;
+                            var meta = _meta[Object.keys(_meta)[0]];
+                            var ttLbl = data.labels[tooltipItem.index];
+                            var ttData = cData[tooltipItem.index];
+                            var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
+                            return ttLbl + ' : ' + Math.floor(ttData/60) + ' hours '+ ttData%60 + ' minutes (' + ttPct + '%)';
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 
 {% endblock %}

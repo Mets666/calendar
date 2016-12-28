@@ -29,7 +29,7 @@ class EventCategoryType extends AbstractType
                 )
             )
             ->add('add', SubmitType::class, array(
-                'label' => 'Add',
+                'label' => 'Submit',
                 'attr' => array('class' => 'btn btn-default btn-success')
             ));
     }

@@ -156,6 +156,17 @@ h3{
     border-radius: 5px;
 }
 
+.no-data-message{
+    color: #000000;
+    background-color: #f9f9f9;
+    padding: 4px 10px;
+    margin: 10px 0;
+    text-align: center;
+    vertical-align: middle;
+    border: solid 2px #ddddff;
+    border-radius: 4px;
+}
+
 .table-category_list{
     width: 100%;
     table-layout: fixed;

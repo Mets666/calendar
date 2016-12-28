@@ -29,11 +29,11 @@ $(function () {
                     $("#text-eventCategory").html("None");
                 }
 
-                $("#text-eventStartTime").html(moment(event.start).format('MMM Do h:mm A'));
-                $(".input-eventStartTime").val(moment(event.start).format('YYYY-MM-DD hh:mm'));
+                $("#text-eventStartTime").html(moment(event.start).format('MMM Do hh:mm A'));
+                $(".input-eventStartTime").val(moment(event.start).format('YYYY-MM-DD HH:mm'));
 
-                $("#text-eventEndTime").html(moment(event.end).format('MMM Do h:mm A'));
-                $(".input-eventEndTime").val(moment(event.end).format('YYYY-MM-DD hh:mm'));
+                $("#text-eventEndTime").html(moment(event.end).format('MMM Do hh:mm A'));
+                $(".input-eventEndTime").val(moment(event.end).format('YYYY-MM-DD HH:mm'));
 
 
 

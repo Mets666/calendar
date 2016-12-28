@@ -18,13 +18,10 @@ class TimeLogController extends Controller
     public function timeLogAction(Request $request)
     {
         $eventCategoryRepository = $this->get('app.event_category.repository');
-        $calendarEventRepository = $this->get('app.calendar_event.repository');
-
-
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $spendTime = $calendarEventRepository->getSpendTimeByCategoriesForUser($user->getId());
+        $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUser($user->getId());
 
 //        dump($spendTime); die;
 
