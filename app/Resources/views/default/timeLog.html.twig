@@ -72,17 +72,25 @@
             </div>
 
             <div class="row">
-                {% if spend_time %}
-                <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1">
-                    <canvas id="categoryChart" width="400" height="400"></canvas>
-                </div>
-                {% else %}
-                <div class="col-md-12 col-sm-12">
-                    <div class="no-data-message">
-                        <i>There are no events to calculate statistics! Please add some first.</i>
+                <div class="col-md-3 col-sm-12" style="vertical-align: middle">
+                    {{ form_start(daterange_form, {'attr': {'id': 'daterange_form'}}) }}
+                    <div class="form-group">
+                        <a id="daterange_picker_button" class="btn btn-primary">Select dates</a>
+                        {{ form_widget(daterange_form.daterange, { 'id': 'daterange_picker_input'} ) }}
+                        {#{{ form_widget(daterange_form.daterange, { 'id': 'stat_datepicker'} ) }}#}
                     </div>
+                    {{ form_end(daterange_form) }}
                 </div>
-                {% endif %}
+
+                <div class="col-md-9 col-sm-12">
+                    {% if spend_time %}
+                        <canvas id="categoryChart" width="400" height="400"></canvas>
+                    {% else %}
+                        <div class="no-data-message">
+                            <i>There are no events to calculate statistics! Please add some first or select different dates.</i>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
 
         </div>
@@ -94,65 +102,99 @@
 
     {#Script and data setting for pie graph#}
     <script>
-        var ctx = document.getElementById("categoryChart");
+        $(function() {
+            if(document.getElementById("categoryChart")){
+                var ctx = document.getElementById("categoryChart");
 
-        var data = {
-            labels: [
-                {% for category in spend_time %}
-                {% if category.id %}
-                    "{{ category.title }}",
-                {% else %}
-                    "Without category",
-                {% endif %}
-                {% endfor %}
-            ],
-            datasets: [
-                {
-                    data: [
+                var data = {
+                    labels: [
                         {% for category in spend_time %}
-                        "{{ category.time|round }}",
+                        {% if category.id %}
+                            "{{ category.title }}",
+                        {% else %}
+                            "Without category",
+                        {% endif %}
                         {% endfor %}
                     ],
-                    backgroundColor: [
-                        {% for category in spend_time %}
-                            {% if category.id %}
-                                "#{{ category.color }}",
-                            {% else %}
-                                "#BBBBBB",
-                            {% endif %}
-                        {% endfor %}
-                    ],
-                    hoverBackgroundColor: [
-                        {% for category in spend_time %}
-                            {% if category.id %}
-                                "#{{ category.color }}",
-                            {% else %}
-                                "#BBBBBB",
-                            {% endif %}
-                        {% endfor %}
-                    ]
-                }]
-        };
+                    datasets: [
+                        {
+                            data: [
+                                {% for category in spend_time %}
+                                "{{ category.time|round }}",
+                                {% endfor %}
+                            ],
+                            backgroundColor: [
+                                {% for category in spend_time %}
+                                    {% if category.id %}
+                                        "#{{ category.color }}",
+                                    {% else %}
+                                        "#BBBBBB",
+                                    {% endif %}
+                                {% endfor %}
+                            ],
+                            hoverBackgroundColor: [
+                                {% for category in spend_time %}
+                                    {% if category.id %}
+                                        "#{{ category.color }}",
+                                    {% else %}
+                                        "#BBBBBB",
+                                    {% endif %}
+                                {% endfor %}
+                            ]
+                        }]
+                };
 
-        var myChart = new Chart(ctx,{
-            type: 'pie',
-            data: data,
-            options: {
-                tooltips: {
-                    callbacks: {
-                        label: function(tooltipItem, data) {
-                            var cData = data.datasets[tooltipItem.datasetIndex].data;
-                            var _meta = data.datasets[tooltipItem.datasetIndex]._meta;
-                            var meta = _meta[Object.keys(_meta)[0]];
-                            var ttLbl = data.labels[tooltipItem.index];
-                            var ttData = cData[tooltipItem.index];
-                            var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
-                            return ttLbl + ' : ' + Math.floor(ttData/60) + ' hours '+ ttData%60 + ' minutes (' + ttPct + '%)';
+                var myChart = new Chart(ctx,{
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var cData = data.datasets[tooltipItem.datasetIndex].data;
+                                    var _meta = data.datasets[tooltipItem.datasetIndex]._meta;
+                                    var meta = _meta[Object.keys(_meta)[0]];
+                                    var ttLbl = data.labels[tooltipItem.index];
+                                    var ttData = cData[tooltipItem.index];
+                                    var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
+                                    return ttLbl + ' : ' + Math.floor(ttData/60) + ' hours '+ ttData%60 + ' minutes (' + ttPct + '%)';
+                                }
+                            }
                         }
                     }
-                }
+                });
             }
         });
+
+        $(function() {
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end) {
+                $('#daterange_picker_input').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+            }
+
+            $("#daterange_picker_button").daterangepicker({
+                startDate: start,
+                endDate: end,
+                alwaysShowCalendars: true,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+            $('#daterange_picker_button').on('apply.daterangepicker', function(ev, picker) {
+                $('#daterange_form').submit();
+            });
+        });
+
     </script>
 
 {% endblock %}

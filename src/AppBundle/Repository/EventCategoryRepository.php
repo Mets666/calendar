@@ -79,15 +79,30 @@ class EventCategoryRepository
         return $category;
     }
 
-    public function getSpendTimeByCategoriesForUser($userId)
+    public function getSpendTimeByCategoriesForUser($userId, $startDate = null, $endDate = null)
     {
-        return $this->doctrine->getRepository('AppBundle:CalendarEvent')
-            ->createQueryBuilder('events')
-            ->select(array('SUM(TIME_DIFF(events.endDate, events.startDate)) as time' , 'IDENTITY(events.category) as id', 'category.title as title', 'category.color as color'))
-            ->leftjoin('events.category', 'category')
-            ->where('events.user = :userId')
-            ->groupBy('category')
-            ->setParameter('userId', $userId)
-            ->getQuery()->getResult();
+        if($startDate && $endDate){
+            return $this->doctrine->getRepository('AppBundle:CalendarEvent')
+                ->createQueryBuilder('events')
+                ->select(array('SUM(TIME_DIFF(events.endDate, events.startDate)) as time' , 'IDENTITY(events.category) as id', 'category.title as title', 'category.color as color'))
+                ->leftjoin('events.category', 'category')
+                ->where('events.startDate BETWEEN :startDate and :endDate')
+                ->andWhere('events.user = :userId')
+                ->groupBy('category')
+                ->setParameter('startDate', $startDate->format('Y-m-d H:i:s'))
+                ->setParameter('endDate', $endDate->format('Y-m-d H:i:s'))
+                ->setParameter('userId', $userId)
+                ->getQuery()->getResult();
+        }
+        else{
+            return $this->doctrine->getRepository('AppBundle:CalendarEvent')
+                ->createQueryBuilder('events')
+                ->select(array('SUM(TIME_DIFF(events.endDate, events.startDate)) as time' , 'IDENTITY(events.category) as id', 'category.title as title', 'category.color as color'))
+                ->leftjoin('events.category', 'category')
+                ->where('events.user = :userId')
+                ->groupBy('category')
+                ->setParameter('userId', $userId)
+                ->getQuery()->getResult();
+        }
     }
 }
