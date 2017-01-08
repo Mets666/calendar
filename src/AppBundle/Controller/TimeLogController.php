@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Form\EventCategoryType;
+use AppBundle\Service\GeoIpService;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,12 @@ class TimeLogController extends Controller
      */
     public function timeLogAction(Request $request)
     {
+        $geoIp = new GeoIpService();
+
+        $ip = $this->get('request_stack')->getCurrentRequest()->getClientIp();
+
+        dump($geoIp->getCity($ip)); die;
+
         $eventCategoryRepository = $this->get('app.event_category.repository');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
