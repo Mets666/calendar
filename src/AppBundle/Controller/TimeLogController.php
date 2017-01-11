@@ -5,9 +5,8 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Form\EventCategoryType;
-use AppBundle\Service\GeoIpService;
+use Symfony\Component\Cache\Adapter\ApcuAdapter;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,11 +18,14 @@ class TimeLogController extends Controller
      */
     public function timeLogAction(Request $request)
     {
-        $geoIp = new GeoIpService();
 
-        $ip = $this->get('request_stack')->getCurrentRequest()->getClientIp();
+        $weatherService = $this->get('app.weather.api.service');
 
-        dump($geoIp->getCity($ip)); die;
+        $weather = $weatherService->getByIp($this->get('request_stack')->getMasterRequest()->getClientIp());
+
+//        dump($weather); die;
+//        $cache = new ApcuAdapter();
+
 
         $eventCategoryRepository = $this->get('app.event_category.repository');
 
@@ -67,6 +69,7 @@ class TimeLogController extends Controller
             'daterange_form' => $daterangeForm->createView(),
             'categories' => $categories,
             'spend_time' => $spendTime,
+            'weather' => $weather,
         ));
     }
 }

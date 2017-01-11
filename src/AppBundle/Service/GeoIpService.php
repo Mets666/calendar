@@ -13,7 +13,7 @@ class GeoIpService
 //        $record = $reader->city($ip);
         $record = $reader->city('46.39.178.136');
 
-        return $record->city->name;
+        return $record->city->name.','.$record->country->isoCode;
     }
 
 }

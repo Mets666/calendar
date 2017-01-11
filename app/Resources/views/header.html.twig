@@ -6,10 +6,19 @@
 
     <div class="col-md-9 col-sm-9">
         <div class="row">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-9 col-sm-12">
                 <div class="header-title">
                     <h1 class="">Life O'clock</h1>
                     <h6 class="minor-title">Your personal time manager</h6>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <div id="weather_widget">
+                    {% if weather %}
+                        <h3>{{ weather.city }}, {{ weather.country_code }}</h3>
+                        <label>Temperature: </label><p>{{ weather.temperature }}°C</p>
+                        <label>Humidity: </label><p>{{ weather.humidity }}%</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-12 col-sm-12">
