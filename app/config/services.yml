@@ -12,11 +12,10 @@ services:
 
 
     guzzlehttp.client:
-            class:        GuzzleHttp\Client
+        class: GuzzleHttp\Client
 
     cache.adapter:
-        class: Symfony\Component\Cache\Adapter\ApcuAdapter
-
+        class: Symfony\Component\Cache\Adapter\FilesystemAdapter
 
     app.calendar_listener:
         class: AppBundle\EventListener\CalendarEventListener
@@ -53,6 +52,6 @@ services:
         arguments:
             key: '%api.key%'
             url: '%api.url%'
-            guzzleClient: '@guzzlehttp.client'
             cacheAdapter: '@cache.adapter'
+            guzzleClient: '@guzzlehttp.client'
             geoIpService: '@app.geo.ip.service'

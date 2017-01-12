@@ -1,0 +1,23 @@
+/*#weather_widget{*/
+    /*width: 250px;*/
+/*}*/
+
+.weather-widget-city{
+    /*display: inline-block;*/
+    vertical-align: middle;
+}
+
+.weather-widget-image{
+    /*display: inline-block;*/
+}
+
+.weather-widget-temperature{
+    vertical-align: middle;
+    /*text-align: center;*/
+    font-weight: bold;
+    font-size: 34pt;
+}
+
+.weather-widget-details{
+    font-size: 10pt;
+}

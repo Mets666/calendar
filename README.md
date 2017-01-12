@@ -11,3 +11,8 @@ Note:
 -weather api
 -project managment (time consumption and dividing to time parts )
 -push notifications or mail
+
+Write about:
+-weather api + caching
+-statistics
+

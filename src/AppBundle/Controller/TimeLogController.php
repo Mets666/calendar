@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Form\EventCategoryType;
-use Symfony\Component\Cache\Adapter\ApcuAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,8 +24,7 @@ class TimeLogController extends Controller
         $weather = $weatherService->getByIp($this->get('request_stack')->getMasterRequest()->getClientIp());
 
 //        dump($weather); die;
-//        $cache = new ApcuAdapter();
-
+        
 
         $eventCategoryRepository = $this->get('app.event_category.repository');
 

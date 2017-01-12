@@ -1,0 +1,54 @@
+<div id="weather_widget">
+    {% if weather %}
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="weather-widget-city">
+                <h3>{{ weather.city }}, {{ weather.country_code }}</h3>
+                <p>{{ weather.description }}</p>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="weather-widget-image">
+                <img src="{{ weather.image_url }}" width="128" height="108" alt="Weather in {{ weather.city }}">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-12">
+            <div class="weather-widget-temperature">
+                <p>{{ weather.temperature }}°C</p>
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-12">
+            <div class="weather-widget-details">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <p>Wind:</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <b>{{ weather.wind }} m/s</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <p>Humidity:</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <b>{{ weather.humidity }}%</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <p>Pressure:</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <b>{{ weather.pressure }} mb</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+</div>
