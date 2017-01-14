@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TimeLogController extends Controller
+class TimeLogController extends DefaultController
 {
     /**
      * @Route("/time_log", name="time_log")

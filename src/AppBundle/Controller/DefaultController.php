@@ -7,42 +7,28 @@ use AppBundle\Form\EventCategoryFilterType;
 use AppBundle\Form\EventCategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction()
+    protected function render($view, array $parameters = array(), Response $response = null)
     {
+        $parameters['weather'] = $this->container->get('app.weather.api.service')->getByIp($this->container->get('request_stack')->getMasterRequest()->getClientIp());
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if ($this->container->has('templating')) {
+            return $this->container->get('templating')->renderResponse($view, $parameters, $response);
+        }
 
-        $categoryForm = $this->createForm(EventCategoryType::class, array(), array(
-            'action' => $this->generateUrl('add_category')
-        ));
+        if (!$this->container->has('twig')) {
+            throw new \LogicException('You can not use the "render" method if the Templating Component or the Twig Bundle are not available.');
+        }
 
-        $filterCategoryForm = $this->createForm(EventCategoryFilterType::class, array(), array(
-            'user' => $user
-        ));
+        if (null === $response) {
+            $response = new Response();
+        }
 
-        $calendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
-            'action' => $this->generateUrl('add_event'),
-            'user' => $user
-        ));
+        $response->setContent($this->container->get('twig')->render($view, $parameters));
 
-        $editCalendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
-            'action' => $this->generateUrl('edit_event'),
-            'user' => $user
-        ));
-        
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-            'calendar_event_form' => $calendarEventForm->createView(),
-            'edit_calendar_event_form' => $editCalendarEventForm->createView(),
-            'category_form' => $categoryForm->createView(),
-            'filter_category_form' => $filterCategoryForm->createView()
-        ]);
-
+        return $response;
     }
 }
