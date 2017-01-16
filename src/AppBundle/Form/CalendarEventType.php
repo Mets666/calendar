@@ -31,20 +31,20 @@ class CalendarEventType extends AbstractType
             ->add('id', HiddenType::class, ['mapped'=>false])
             ->add('title', TextType::class, array(
                     'label' => 'Title:',
-                    'attr' => array('class' => 'form-control')
+                    'attr' => array('class' => 'form-control input-sm')
                 )
             )
             ->add('startDate', TextType::class, array(
                     'label' => 'Start:',
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control input-sm',
                     )
                 )
             )
             ->add('endDate', TextType::class, array(
                     'label' => 'End:',
                     'attr' => array(
-                        'class' => 'form-control',
+                        'class' => 'form-control input-sm',
                     )
                 )
             )
@@ -62,7 +62,7 @@ class CalendarEventType extends AbstractType
                     'placeholder' => 'None',
                     'empty_data' => null,
                     'label' => 'Category:',
-                    'attr' => array('class' => 'form-control')
+                    'attr' => array('class' => 'form-control input-sm')
                 )
             )
             ->add('add', SubmitType::class, array(

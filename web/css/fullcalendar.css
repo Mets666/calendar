@@ -62,6 +62,7 @@ html .fc,
 .fc-header-title h2 {
 	margin-top: 0;
 	white-space: nowrap;
+	font-family: "Berlin Sans FB";
 	}
 	
 .fc .fc-header-space {
@@ -122,10 +123,18 @@ html .fc,
 /* Cell Styles
 ------------------------------------------------------------------------*/
 
-.fc-widget-header,    /* <th>, usually */
+.fc-widget-header { /* <th>, usually */
+	/*border-width: 2px 2px 1px 2px;*/
+	border-style: groove;
+	border-color: #713707;
+	background-color: #713707;
+	color: #ffffff;
+}
 .fc-widget-content {  /* <td>, usually */
-	border: 1px solid #713707;
-	max-height: 40px;
+	/*border-width: 0px 2px 1px 2px;*/
+	border-style: groove;
+	border-color: #713707;
+	background-color: #FFCF90;
 	}
 	
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
@@ -416,25 +425,37 @@ a.fc-event:hover{
 table.fc-border-separate {
 	border-collapse: separate;
 	}
-	
+
 .fc-border-separate th,
 .fc-border-separate td {
 	border-width: 1px 0 0 1px;
 	}
-	
+
 .fc-border-separate th.fc-last,
 .fc-border-separate td.fc-last {
-	border-right-width: 1px;
-	}
-	
-.fc-border-separate tr.fc-last th,
-.fc-border-separate tr.fc-last td {
+	border-right-width: 2px;
+}
+
+.fc-border-separate th.fc-first,
+.fc-border-separate td.fc-first {
+	border-left-width: 2px;
+}
+
+.fc-border-separate tr.fc-last th{
 	border-bottom-width: 1px;
-	}
-	
+}
+
+.fc-border-separate tr.fc-first th{
+	border-top-width: 2px;
+}
+
+.fc-border-separate tr.fc-last td {
+	border-bottom-width: 2px;
+}
+
 .fc-border-separate tbody tr.fc-first td,
 .fc-border-separate tbody tr.fc-first th {
-	border-top-width: 0;
+	border-top-width: 1px;
 	}
 	
 	

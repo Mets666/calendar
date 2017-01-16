@@ -1,6 +1,9 @@
-/*#weather_widget{*/
-    /*width: 250px;*/
-/*}*/
+#weather_widget{
+    border: 2px solid #FFE5AA;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #FFE5AA;
+}
 
 .weather-widget-city{
     /*display: inline-block;*/
@@ -8,14 +11,13 @@
 }
 
 .weather-widget-image{
-    /*display: inline-block;*/
+    margin: -10px -15px -10px -15px;
 }
 
 .weather-widget-temperature{
-    vertical-align: middle;
-    /*text-align: center;*/
     font-weight: bold;
     font-size: 34pt;
+    line-height: 100%;
 }
 
 .weather-widget-details{
