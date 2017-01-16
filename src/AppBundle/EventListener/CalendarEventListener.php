@@ -3,8 +3,7 @@
 namespace AppBundle\EventListener;
 
 use ADesigns\CalendarBundle\Event\CalendarEvent;
-use ADesigns\CalendarBundle\Entity\EventEntity;
-use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\FullcalendarEventEntity;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Tests\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -60,7 +59,7 @@ class CalendarEventListener
 
             // create an event with a start/end time, or an all day event
 //            if ($calendarEvent->getAllDayEvent() === false) {
-                $eventEntity = new EventEntity($userEvent->getTitle(), $userEvent->getStartDate(), $userEvent->getEndDate());
+                $eventEntity = new FullcalendarEventEntity($userEvent->getTitle(), $userEvent->getStartDate(), $userEvent->getEndDate());
 //            } else {
 //                $eventEntity = new EventEntity($calendarEvent->getTitle(), $calendarEvent->getStartDatetime(), null, true);
 //            }
