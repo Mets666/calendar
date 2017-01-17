@@ -7,18 +7,22 @@
     <div class="col-md-9 col-sm-9">
         <div class="row">
             <div class="col-md-8 col-sm-12">
-                <div class="header-title">
-                    <h1 class="">Life O'clock</h1>
-                    <h6 class="minor-title">Your personal time manager</h6>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="header-title">
+                            <h1 class="">Life O'clock</h1>
+                            <h6 class="minor-title">Your personal time manager</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="header-navbar">
+                            {% include 'navbar.html.twig' %}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 {% include 'weatherWidget.html.twig' %}
-            </div>
-            <div class="col-md-12 col-sm-12">
-                <div class="header-navbar">
-                    {% include 'navbar.html.twig' %}
-                </div>
             </div>
         </div>
     </div>

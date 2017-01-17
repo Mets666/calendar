@@ -53,7 +53,7 @@ $(function () {
             }
             
         },
-        lazyFetching: true,
+        // lazyFetching: true,
         timeFormat: {
             // for agendaWeek and agendaDay
             agenda: 'h:mmtt',    // 5:00 - 6:30

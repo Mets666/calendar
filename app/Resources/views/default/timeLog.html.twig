@@ -54,17 +54,6 @@
 
         <div class="col-md-9 col-sm-9">
             {% include 'flashMessages.html.twig' %}
-
-            {#{% for spend_by_category in spend_time %}#}
-                {#{% if spend_by_category.id %}#}
-                    {#<h3>{{ spend_by_category.title }}</h3>#}
-                    {#<p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>#}
-                {#{% else %}#}
-                    {#<h3>Without category</h3>#}
-                    {#<p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>#}
-                {#{% endif %}#}
-            {#{% endfor %}#}
-
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <h3>Statistics:</h3>
@@ -77,9 +66,18 @@
                     <div class="form-group">
                         <a id="daterange_picker_button" class="btn btn-primary">Select dates</a>
                         {{ form_widget(daterange_form.daterange, { 'id': 'daterange_picker_input'} ) }}
-                        {#{{ form_widget(daterange_form.daterange, { 'id': 'stat_datepicker'} ) }}#}
                     </div>
                     {{ form_end(daterange_form) }}
+
+                    {% for spend_by_category in spend_time %}
+                    {% if spend_by_category.id %}
+                    <label>{{ spend_by_category.title }}</label>
+                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                    {% else %}
+                    <label>Without category</label>
+                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                    {% endif %}
+                    {% endfor %}
                 </div>
 
                 <div class="col-md-9 col-sm-12">

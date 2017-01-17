@@ -93,7 +93,7 @@ h3{
 /***Main page layout***/
 
 .header-wrapper{
-    min-height: 200px;
+    /*min-height: 200px;*/
     padding: 10px;
     margin-top: 10px;
     border-top: solid 5px #713707;
@@ -117,11 +117,11 @@ h3{
 }
 
 .header-title{
-    min-height: 150px;
+    min-height: 130px;
 }
 
 .header-navbar{
-    min-height: 50px;
+    /*min-height: 50px;*/
     margin-bottom: -10px;
 }
 
