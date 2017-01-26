@@ -49,20 +49,10 @@ class CalendarEvent
      */
     private $category;
 
-
-
-//    /**
-//     * Set id
-//     * fake method
-//     *
-//     * @param integer $id
-//     *
-//     * @return CalendarEvent
-//     */
-//    public function setId($id)
-//    {
-//        return $this;
-//    }
+    /**
+     * @ORM\Column(type="string", length=1000)
+     */
+    private $description;
 
     /**
      * Get id
@@ -201,5 +191,29 @@ class CalendarEvent
     public function isDatesValid()
     {
         return ($this->startDate < $this->endDate);
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return CalendarEvent
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

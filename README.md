@@ -15,4 +15,6 @@ Note:
 Write about:
 -weather api + caching
 -statistics
+- OOP
+- Doctrine + query builder
 

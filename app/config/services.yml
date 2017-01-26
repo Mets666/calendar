@@ -43,6 +43,11 @@ services:
         arguments:
             doctrine:       '@doctrine'
 
+    app.todo_list.repository:
+            class: AppBundle\Repository\TodoListRepository
+            arguments:
+                doctrine:       '@doctrine'
+
 #AppBundle\Service
     app.geo.ip.service:
         class: AppBundle\Service\GeoIpService

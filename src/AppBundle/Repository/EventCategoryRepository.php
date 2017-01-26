@@ -3,7 +3,6 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Repository\Exception\DatabaseException;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 class EventCategoryRepository
