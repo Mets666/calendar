@@ -50,7 +50,7 @@ class CalendarEvent
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=1000, nullable=true)
      */
     private $description;
 

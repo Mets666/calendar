@@ -33,6 +33,11 @@ services:
 
 
 #AppBundle\Repository
+    app.basic.repository:
+        class: AppBundle\Repository\BasicRepository
+        arguments:
+            doctrine:       '@doctrine'
+
     app.calendar_event.repository:
         class: AppBundle\Repository\CalendarEventRepository
         arguments:

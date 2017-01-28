@@ -18,19 +18,12 @@ class TimeLogController extends DefaultController
      */
     public function timeLogAction(Request $request)
     {
-
-        $weatherService = $this->get('app.weather.api.service');
-
-        $weather = $weatherService->getByIp($this->get('request_stack')->getMasterRequest()->getClientIp());
-
-//        dump($weather); die;
-        
-
         $eventCategoryRepository = $this->get('app.event_category.repository');
 
+        /** @var \AppBundle\Entity\User $user */
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $categories = $eventCategoryRepository->allForUser($user);
+        $categories = $user->getEventCategories();
 
         $daterangeForm = $this->createFormBuilder()
             ->setAction($this->generateUrl('time_log'))
@@ -68,7 +61,6 @@ class TimeLogController extends DefaultController
             'daterange_form' => $daterangeForm->createView(),
             'categories' => $categories,
             'spend_time' => $spendTime,
-            'weather' => $weather,
         ));
     }
 }

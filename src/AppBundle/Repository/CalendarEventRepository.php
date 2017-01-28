@@ -5,44 +5,16 @@ namespace AppBundle\Repository;
 use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class CalendarEventRepository
+class CalendarEventRepository extends BasicRepository
 {
 
-    /** @var ManagerRegistry $doctrine */
-    protected $doctrine;
-
+    /**
+     * CalendarEventRepository constructor.
+     * @param ManagerRegistry $doctrine
+     */
     public function __construct(ManagerRegistry $doctrine)
     {
-        $this->doctrine = $doctrine;
-    }
-
-    /**
-     * Execute queries and save changes to database
-     */
-    public function save()
-    {
-        $em = $this->doctrine->getManager();
-        $em->flush();
-    }
-
-    /**
-     * @param \AppBundle\Entity\EventCategory $category
-     * @throws DatabaseException
-     */
-    public function add($event)
-    {
-        try {
-            $em = $this->doctrine->getManager();
-            $em->persist($event);
-        } catch (\Exception $e) {
-            throw new DatabaseException('Failed to save data to database!', $e->getCode(), $e);
-        }
-    }
-
-    public function remove($event)
-    {
-        $em = $this->doctrine->getManager();
-        $em->remove($event);
+        parent::__construct($doctrine);
     }
 
     public function get($id)

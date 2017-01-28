@@ -12,7 +12,6 @@ use AppBundle\Form\CalendarEventType;
 use AppBundle\Form\EventCategoryFilterType;
 use AppBundle\Form\EventCategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class HomepageController extends DefaultController
 {

@@ -33,15 +33,15 @@ class CalendarEventController extends Controller
 
         if ($calendarEventForm->isSubmitted()) {
             if ($calendarEventForm->isValid()) {
-                try {
+//                try {
                     $calendarEventRepository->add($event);
                     $calendarEventRepository->save();
-                } catch (\Exception $e) {
-                    $this->addFlash(
-                        'error',
-                        'Unable to create category!'
-                    );
-                }
+//                } catch (\Exception $e) {
+//                    $this->addFlash(
+//                        'error',
+//                        'Unable to create event!'
+//                    );
+//                }
                 $this->addFlash(
                     'success',
                     'Event successfully added!'

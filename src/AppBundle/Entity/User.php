@@ -57,9 +57,9 @@ class User implements AdvancedUserInterface, \Serializable
     private $eventCategories;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ToDoList", mappedBy="user", fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TodoList", mappedBy="user", fetch="LAZY")
      */
-    private $toDoLists;
+    private $todoLists;
 
     public function __construct()
     {
@@ -292,13 +292,13 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Add toDoList
      *
-     * @param \AppBundle\Entity\TodoList $toDoList
+     * @param \AppBundle\Entity\TodoList $todoList
      *
      * @return User
      */
-    public function addTodoList(\AppBundle\Entity\TodoList $toDoList)
+    public function addTodoList(\AppBundle\Entity\TodoList $todoList)
     {
-        $this->toDoLists[] = $toDoList;
+        $this->todoLists[] = $todoList;
 
         return $this;
     }
@@ -306,11 +306,11 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Remove toDoList
      *
-     * @param \AppBundle\Entity\TodoList $toDoList
+     * @param \AppBundle\Entity\TodoList $todoList
      */
-    public function removeTodoList(\AppBundle\Entity\TodoList $toDoList)
+    public function removeTodoList(\AppBundle\Entity\TodoList $todoList)
     {
-        $this->toDoLists->removeElement($toDoList);
+        $this->todoLists->removeElement($todoList);
     }
 
     /**
@@ -320,6 +320,6 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function getTodoLists()
     {
-        return $this->toDoLists;
+        return $this->todoLists;
     }
 }
