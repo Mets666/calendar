@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AppBundle\Repository\Exception;
+namespace AppBundle\Repository;
 
 
 use AppBundle\Repository\BasicRepository;

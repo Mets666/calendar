@@ -14,6 +14,7 @@ class DefaultController extends Controller
     protected function render($view, array $parameters = array(), Response $response = null)
     {
         $parameters['weather'] = $this->container->get('app.weather.api.service')->getByIp($this->container->get('request_stack')->getMasterRequest()->getClientIp());
+        $parameters['base_dir'] = realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR;
 
         if ($this->container->has('templating')) {
             return $this->container->get('templating')->renderResponse($view, $parameters, $response);

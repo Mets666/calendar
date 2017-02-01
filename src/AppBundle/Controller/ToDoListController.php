@@ -7,7 +7,7 @@ namespace AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TodoListController
+class TodoListController extends DefaultController
 {
 
     /**
@@ -27,10 +27,12 @@ class TodoListController
     }
 
     /**
-     * @Route("/remove_todo_list", name="remove_todo_list", options = { "expose" = true })
+     * @Route("/delete_todo_list/{listId}", name="delete_todo_list", options = { "expose" = true })
      */
-    public function removeList(Request $request)
+    public function deleteList($listId)
     {
+        $todoListRepository = $this->get('app.todo_list.repository');
 
+        return $this->redirectToRoute('lists');
     }
 }

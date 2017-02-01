@@ -45,9 +45,12 @@ class BasicRepository
         }
     }
 
-    public function remove($event)
+    /**
+     * @param Object $object
+     */
+    public function remove($object)
     {
         $em = $this->doctrine->getManager();
-        $em->remove($event);
+        $em->remove($object);
     }
 }

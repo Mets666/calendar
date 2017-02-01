@@ -41,15 +41,9 @@ class TimeLogController extends DefaultController
 
         if ($daterangeForm->isSubmitted() && $daterangeForm->isValid()) {
             $data = $daterangeForm->getData();
-
-//            dump($data); die;
-
             $dates = explode("-", $data["daterange"]);
             $startDate = date_time_set(date_create_from_format('d/m/Y' ,trim($dates[0])), 0, 0, 0);
             $endDate = date_time_set(date_create_from_format('d/m/Y' ,trim($dates[1])), 23, 59 ,59);
-
-//            dump($endDate);die;
-
             $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUser($user->getId(), $startDate, $endDate);
         }
         else{

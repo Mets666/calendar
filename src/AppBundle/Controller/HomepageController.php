@@ -18,17 +18,16 @@ class HomepageController extends DefaultController
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function homepageAction()
     {
-
         $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        $categoryForm = $this->createForm(EventCategoryType::class, array(), array(
-            'action' => $this->generateUrl('add_category')
-        ));
 
         $filterCategoryForm = $this->createForm(EventCategoryFilterType::class, array(), array(
             'user' => $user
+        ));
+
+        $categoryForm = $this->createForm(EventCategoryType::class, array(), array(
+            'action' => $this->generateUrl('add_category')
         ));
 
         $calendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
@@ -42,7 +41,6 @@ class HomepageController extends DefaultController
         ));
 
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
             'calendar_event_form' => $calendarEventForm->createView(),
             'edit_calendar_event_form' => $editCalendarEventForm->createView(),
             'category_form' => $categoryForm->createView(),

@@ -2,10 +2,7 @@
     <ul class="list-inline" style="float: left">
         <li><a href="{{ path('homepage') }}" class="btn btn-info">Calendar</a></li>
         <li><a href="{{ path('time_log') }}" class="btn btn-info">Time Log</a></li>
-        <li><a href="" class="btn btn-info">Menu item</a></li>
-        <li>
-            <a data-toggle="modal" href="{# parh to controler with template and modal ajax action#}" data-target="#modal">modal</a>
-        </li>
+        <li><a href="{{ path('lists') }}" class="btn btn-info">To-Do Lists</a></li>
     </ul>
     <a href="{{url("logout")}}" class="btn btn-danger" style="float: right">Logout</a>
     <div class="clearfix"></div>

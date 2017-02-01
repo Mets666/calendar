@@ -304,7 +304,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Remove toDoList
+     * Remove todoList
      *
      * @param \AppBundle\Entity\TodoList $todoList
      */

@@ -6,7 +6,7 @@
 }
 
 .weather-widget-city{
-    /*display: inline-block;*/
+    margin-top: -10px;
     vertical-align: middle;
 }
 
