@@ -5,43 +5,84 @@
 <div class="row">
     <div class="col-md-3 col-sm-3">
         <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <h3>To-Do Lists:</h3>
-                </div>
+            <div class="col-md-12 col-sm-12">
+                <h3>To-Do Lists:</h3>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    {% if todo_lists is not empty %}
-                        <table class="table table-hover table-category_list">
-                            <thead>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                {% if todo_lists is not empty %}
+                    <table class="table table-hover table-category_list">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for list in todo_lists %}
                             <tr>
-                                <th></th>
-                                <th class="width60px"></th>
-                                <th class="width80px"></th>
+                                <td class="width100p">
+                                    <a href="{{ path('lists', { 'listId' : list.id }) }}"><b>{{ list.title }}</b></a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('delete_todo_list', { 'listId' : list.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width80px">Delete</a>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            {% for list in todo_lists %}
-                                <tr>
-                                    <td class="col-md-6 col-sm-6">
-                                        <b>{{ list.title }}</b>
-                                    </td>
-                                    <td>
-                                        <a href="#" id="" class="btn btn-success width60px">Rename</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ path('delete_todo_list', { 'listId' : list.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width80px">Delete</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    {% endif %}
-                </div>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
             </div>
+        </div>
     </div>
     <div class="col-md-9 col-sm-9">
+        {% if selected_list is empty %}
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="no-data-message">
+                        <i>There is no list to display! Please add some first.</i>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-md-12 col-sm-12 form-group">
+                    <div id="list-title-text">
+                        <h3>{{ selected_list.title }}</h3>
+                    </div>
+                    <div id="list-title-input" class="collapse">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 form-group">
+                    <div id="list-description-text">
+                        {{ selected_list.description }}
+                    </div>
+                    <div id="list-description-input" class="collapse">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 form-group">
+                    <label>Things to do:</label>
+                    {% for item in selected_list.items %}
+                        <div class="list-item">
+                            <div class="row">
+                                <div class="col-md-11 col-sm-11">
+                                    {{ item.text }}
+                                </div>
+                                <div class="col-md-1 col-sm-1">
+                                    <input type="checkbox" name="itemDone[]" {% if item.done %} checked {% endif %} class="checkbox list-item-checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

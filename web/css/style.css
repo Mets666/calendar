@@ -196,3 +196,19 @@ h3{
 .table-category_list > tbody > tr:hover td{
     background-color: #D9A25B !important;
 }
+
+.list-item{
+    border: solid 1px black;
+    border-radius: 15px;
+    background-color: #ffffcc;
+    padding: 6px 10px 6px 10px;
+    margin-bottom: 3px;
+}
+
+.list-item-checkbox{
+    -ms-transform: scale(1.8); /* IE */
+    -moz-transform: scale(1.8); /* FF */
+    -webkit-transform: scale(1.8); /* Safari and Chrome */
+    -o-transform: scale(1.8); /* Opera */
+    float: right;
+}
