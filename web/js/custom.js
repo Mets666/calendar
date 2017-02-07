@@ -62,3 +62,13 @@ function revertEditCalendarEvent() {
     document.getElementById("form-eventEndTime").classList.add("collapse");
 
 }
+
+function editTodoList(){
+    document.getElementById("text-list-edit").classList.add("collapse");
+    document.getElementById("text-list-title").classList.add("collapse");
+    document.getElementById("text-list-description").classList.add("collapse");
+
+    document.getElementById("form-list-save").classList.remove("collapse");
+    document.getElementById("form-list-title").classList.remove("collapse");
+    document.getElementById("form-list-description").classList.remove("collapse");
+}

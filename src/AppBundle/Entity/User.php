@@ -53,11 +53,13 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\EventCategory", mappedBy="user", fetch="LAZY")
+     * @ORM\OrderBy({"title" = "ASC"})
      */
     private $eventCategories;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\TodoList", mappedBy="user", fetch="LAZY")
+     * @ORM\OrderBy({"title" = "ASC"})
      */
     private $todoLists;
 

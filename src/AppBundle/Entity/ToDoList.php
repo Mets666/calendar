@@ -28,15 +28,9 @@ class TodoList
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=1000, nullable=true)
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="string", length=10)
-     * @Assert\NotBlank()
-     */
-    private $color;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ListItem", mappedBy="list", fetch="LAZY")
@@ -173,28 +167,5 @@ class TodoList
     {
         return $this->user;
     }
-
-    /**
-     * Set color
-     *
-     * @param string $color
-     *
-     * @return TodoList
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
+    
 }

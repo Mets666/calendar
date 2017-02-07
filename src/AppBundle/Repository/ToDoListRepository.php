@@ -5,6 +5,7 @@ namespace AppBundle\Repository;
 
 
 use AppBundle\Repository\BasicRepository;
+use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 class TodoListRepository extends BasicRepository

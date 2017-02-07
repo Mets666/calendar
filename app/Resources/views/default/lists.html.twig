@@ -36,8 +36,24 @@
                 {% endif %}
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                {{ form_start(add_todo_list_form) }}
+                <div class="form-group">
+                    {{ form_label(add_todo_list_form.title) }}
+                    {{ form_errors(add_todo_list_form.title) }}
+                    {{ form_widget(add_todo_list_form.title) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(add_todo_list_form.add, {'label': 'Add'}) }}
+                </div>
+                {{ form_end(add_todo_list_form) }}
+            </div>
+        </div>
     </div>
     <div class="col-md-9 col-sm-9">
+        {% include 'flashMessages.html.twig' %}
         {% if selected_list is empty %}
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -47,41 +63,73 @@
                 </div>
             </div>
         {% else %}
+            {{ form_start(edit_todo_list_form) }}
+            {{ form_widget(edit_todo_list_form.id, {'value': selected_list.id}) }}
             <div class="row">
-                <div class="col-md-12 col-sm-12 form-group">
-                    <div id="list-title-text">
+                <div class="col-md-10 col-sm-10 form-group">
+                    <div id="text-list-title">
                         <h3>{{ selected_list.title }}</h3>
                     </div>
-                    <div id="list-title-input" class="collapse">
+                    <div id="form-list-title" class="collapse">
+                        {{ form_label(edit_todo_list_form.title) }}
+                        {{ form_errors(edit_todo_list_form.title) }}
+                        {{ form_widget(edit_todo_list_form.title, {'value': selected_list.title}) }}
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 form-group">
+                    <div id="text-list-edit">
+                        <input type="button" value="Edit" class="btn btn-primary" onclick="return editTodoList()">
+                    </div>
+                    <div id="form-list-save" class="collapse">
+                        {{ form_widget(edit_todo_list_form.add, {'label': 'Save'}) }}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 form-group">
-                    <div id="list-description-text">
+                    <div id="text-list-description">
                         {{ selected_list.description }}
                     </div>
-                    <div id="list-description-input" class="collapse">
+                    <div id="form-list-description" class="collapse">
+                        {{ form_label(edit_todo_list_form.description) }}
+                        {{ form_errors(edit_todo_list_form.description) }}
+                        {{ form_widget(edit_todo_list_form.description) }}
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-12 col-sm-12 form-group">
                     <label>Things to do:</label>
-                    {% for item in selected_list.items %}
+                    {#{% for item in selected_list.items %}#}
+                        {#<div class="list-item">#}
+                            {#<div class="row">#}
+                                {#<div class="col-md-11 col-sm-11">#}
+                                    {#<input type="text" name="itemText[]" form="todo_list" class="form-control width100p" value="{{ item.text }}">#}
+                                    {#{{ item.text }}#}
+                                {#</div>#}
+                                {#<div class="col-md-1 col-sm-1">#}
+                                    {#<input type="checkbox" name="itemDone[]" form="todo_list" {% if item.done %} checked {% endif %} class="checkbox list-item-checkbox">#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#{% endfor %}#}
+                    {{ form_errors(edit_todo_list_form.items) }}
+                    {% for item in edit_todo_list_form.items %}
                         <div class="list-item">
                             <div class="row">
                                 <div class="col-md-11 col-sm-11">
-                                    {{ item.text }}
+                                    {{ form_widget(item.text) }}
                                 </div>
                                 <div class="col-md-1 col-sm-1">
-                                    <input type="checkbox" name="itemDone[]" {% if item.done %} checked {% endif %} class="checkbox list-item-checkbox">
+                                    {{ form_widget(item.done) }}
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
             </div>
+            {{ form_end(edit_todo_list_form) }}
         {% endif %}
     </div>
 </div>

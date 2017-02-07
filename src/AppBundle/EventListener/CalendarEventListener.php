@@ -11,18 +11,18 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 class CalendarEventListener
 {
     private $entityManager;
-    private $token_storage;
+    private $tokenStorage;
 
-    public function __construct(ManagerRegistry $doctrine, TokenStorage $token_storage)
+    public function __construct(ManagerRegistry $doctrine, TokenStorage $tokenStorage)
     {
         $this->entityManager = $doctrine;
-        $this->token_storage = $token_storage;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function loadEvents(CalendarEvent $calendarEvent)
     {
 
-        $user = $this->token_storage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()->getUser();
 
         $startDate = $calendarEvent->getStartDatetime();
         $endDate = $calendarEvent->getEndDatetime();
