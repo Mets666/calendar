@@ -51,9 +51,6 @@ class TodoListController extends DefaultController
     public function editList(Request $request)
     {
         $todoListRepository = $this->get('app.todo_list.repository');
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-//        dump($request); die;
-
 
         $formData = $request->request->get('todo_list');
         try {
@@ -68,8 +65,6 @@ class TodoListController extends DefaultController
         }
 
         $originalItems = new ArrayCollection();
-
-        // Create an ArrayCollection of the current Tag objects in the database
         foreach ($list->getItems() as $item) {
             $originalItems->add($item);
         }
@@ -137,6 +132,7 @@ class TodoListController extends DefaultController
             'success',
             'To-Do list successfully deleted!'
         );
+        
         return $this->redirectToRoute('lists');
     }
 }
