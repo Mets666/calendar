@@ -67,6 +67,17 @@ function editTodoList(){
     document.getElementById("text-list-edit").classList.add("collapse");
     document.getElementById("text-list-title").classList.add("collapse");
     document.getElementById("text-list-description").classList.add("collapse");
+    // document.getElementById("text-list-item-text").classList.add("collapse");
+    var checkboxes = document.getElementsByClassName("list-item-checkbox");
+    for(var i = 0; i < checkboxes.length; i++)
+    {
+        checkboxes.item(i).disabled = false;
+    };
+    var texts = document.getElementsByClassName("list-item-text");
+    for(var i = 0; i < texts.length; i++)
+    {
+        texts.item(i).disabled = false;
+    };
 
     document.getElementById("form-list-save").classList.remove("collapse");
     document.getElementById("form-list-title").classList.remove("collapse");

@@ -1,0 +1,39 @@
+{% macro list_item(item) %}
+    <div class="list-item" >
+        <div class="row">
+            <div class="col-md-10 col-sm-10">
+                {{ form_widget(item.text,{'attr' : {'class'  : 'form-control list-item-text'}}) }}
+            </div>
+            <div class="col-md-1 col-sm-1">
+                {{ form_widget(item.done,{'attr' : {'class'  : 'list-item-checkbox'}}) }}
+            </div>
+            <div class="col-md-1 col-sm-1">
+                <div class="list-item-delete-link"></div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro list_item_disabled(item) %}
+    <div class="list-item" >
+        <div class="row">
+            <div class="col-md-10 col-sm-10">
+                {{ form_widget(item.text,{'attr' : {'class'  : 'form-control list-item-text', 'disabled' : 'disabled'}}) }}
+            </div>
+            <div class="col-md-1 col-sm-1">
+                {{ form_widget(item.done,{'attr' : {'class'  : 'list-item-checkbox', 'disabled' : 'disabled'}}) }}
+            </div>
+            <div class="col-md-1 col-sm-1 ">
+                <div class="list-item-delete-link"></div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% block _todo_list_items_widget %}
+    <div class="list-items" data-prototype="{{ _self.list_item(form.vars.prototype)|e('html_attr') }}">
+        {% for item in form.children %}
+            {{ _self.list_item_disabled(item) }}
+        {% endfor %}
+    </div>
+{% endblock %}

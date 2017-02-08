@@ -50,6 +50,7 @@ class ListsController extends DefaultController
         ));
         $addListForm->remove('id');
         $addListForm->remove('description');
+        $addListForm->remove('items');
 
         $editListForm = $this->createForm(TodoListType::class, $selectedList, array(
             'action' => $this->generateUrl('edit_todo_list')

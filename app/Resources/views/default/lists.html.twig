@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme edit_todo_list_form with [
+'form/fields/listItems.html.twig'
+] %}
+
 {% block content %}
 
 <div class="row">
@@ -99,38 +103,91 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12 col-sm-12 form-group">
+                <div class="col-md-12 col-sm-12 form-group" >
                     <label>Things to do:</label>
-                    {#{% for item in selected_list.items %}#}
-                        {#<div class="list-item">#}
-                            {#<div class="row">#}
-                                {#<div class="col-md-11 col-sm-11">#}
-                                    {#<input type="text" name="itemText[]" form="todo_list" class="form-control width100p" value="{{ item.text }}">#}
-                                    {#{{ item.text }}#}
-                                {#</div>#}
-                                {#<div class="col-md-1 col-sm-1">#}
-                                    {#<input type="checkbox" name="itemDone[]" form="todo_list" {% if item.done %} checked {% endif %} class="checkbox list-item-checkbox">#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#{% endfor %}#}
+                    {{ form_label(edit_todo_list_form.items) }}
                     {{ form_errors(edit_todo_list_form.items) }}
-                    {% for item in edit_todo_list_form.items %}
-                        <div class="list-item">
-                            <div class="row">
-                                <div class="col-md-11 col-sm-11">
-                                    {{ form_widget(item.text) }}
-                                </div>
-                                <div class="col-md-1 col-sm-1">
-                                    {{ form_widget(item.done) }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+                    {{ form_widget(edit_todo_list_form.items) }}
                 </div>
             </div>
             {{ form_end(edit_todo_list_form) }}
         {% endif %}
     </div>
 </div>
+
+    <script type="application/javascript">
+        var $collectionHolder;
+
+        // setup an "add a tag" link
+        var $addTagLink = $('<a href="#" class="add_list_item_link">Add a tag</a>');
+        var $newLinkLi = $('<li></li>').append($addTagLink);
+
+        jQuery(document).ready(function() {
+            // Get the element that holds the collection of tags
+            $collectionHolder = $('div.list-items');
+
+            $collectionHolder.find('div.list-item').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addTagLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addListItemForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addListItemForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+//            alert(newForm);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<div></div>').append(newForm);
+            $newFormLi.find('div.list-item').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+//            alert($newFormLi);
+            $newLinkLi.before($newFormLi);
+//            addTagFormDeleteLink($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#"><span class="glyphicon glyphicon-remove glyphicon-lg"></span></a>');
+//            $tagFormLi.append($removeFormA);
+            var $delteLinktag = $tagFormLi.find('div.list-item-delete-link');
+            $delteLinktag.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                if(confirm('Are you sure?')) {
+                    $tagFormLi.remove();
+                }
+            });
+        }
+    </script>
+
+
 {% endblock %}
