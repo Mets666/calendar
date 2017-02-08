@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f18fc0c-6138-471e-9622-9a7bb3efedec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/form/fields/listItems.html.twig" />
+    <list default="true" id="1f18fc0c-6138-471e-9622-9a7bb3efedec" name="Default" comment="minor edit">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/default/lists.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/default/lists.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ListsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ListsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/ListItem.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/ListItem.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/ToDoList.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/ToDoList.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/custom.js" afterPath="$PROJECT_DIR$/web/js/custom.js" />
     </list>
     <ignored path="calendar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ListsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ListsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ListsController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="281">
@@ -43,27 +36,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TodoListController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/TodoListController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="92" column="17" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
-              <folding>
-                <element signature="e#42#66#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="lists.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/default/lists.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2370">
+            <state relative-caret-position="3696">
               <caret line="168" column="32" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
-              <folding>
-                <marker date="1486566560644" expanded="true" signature="113:7732" ph="{% block content ...%}" />
-                <marker date="1486566560644" expanded="true" signature="2228:4770" ph="{% if selected_list is empty ...%}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,7 +49,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="742">
+            <state relative-caret-position="4840">
               <caret line="220" column="17" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
               <folding />
             </state>
@@ -91,7 +69,7 @@
       <file leaf-file-name="custom.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/custom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="752">
+            <state relative-caret-position="1826">
               <caret line="83" column="82" selection-start-line="83" selection-start-column="82" selection-end-line="83" selection-end-column="82" />
               <folding />
             </state>
@@ -101,7 +79,7 @@
       <file leaf-file-name="TodoList.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/TodoList.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1901">
+            <state relative-caret-position="748">
               <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
               <folding />
             </state>
@@ -111,7 +89,7 @@
       <file leaf-file-name="ListItem.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/ListItem.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
+            <state relative-caret-position="770">
               <caret line="35" column="128" selection-start-line="35" selection-start-column="128" selection-end-line="35" selection-end-column="128" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
@@ -701,7 +679,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../platform/fo-site" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -823,7 +801,8 @@
       <workItem from="1485961711923" duration="4296000" />
       <workItem from="1486389881891" duration="9199000" />
       <workItem from="1486469033001" duration="15658000" />
-      <workItem from="1486540927095" duration="22562000" />
+      <workItem from="1486540927095" duration="22804000" />
+      <workItem from="1486571763013" duration="311000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1476719119080</created>
@@ -1105,18 +1084,32 @@
       <option name="project" value="LOCAL" />
       <updated>1486486516358</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="lists edit full functionality added - css edit needed">
+      <created>1486569949653</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1486569949653</updated>
+    </task>
+    <task id="LOCAL-00042" summary="minor edit">
+      <created>1486572057389</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1486572057389</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="353512000" />
+    <option name="totallyTimeSpent" value="354065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1911" y="-9" width="1938" height="1098" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21244635" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21512875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1149,8 +1142,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Registration CSS done" />
-    <MESSAGE value="CSS edit" />
     <MESSAGE value="event category entity added" />
     <MESSAGE value="event text color is now adaptable to background" />
     <MESSAGE value="event category added to event" />
@@ -1174,7 +1165,9 @@
     <MESSAGE value="lists controller + twig edit" />
     <MESSAGE value="lists edit" />
     <MESSAGE value="lists edit in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="lists edit in progress" />
+    <MESSAGE value="lists edit full functionality added - css edit needed" />
+    <MESSAGE value="minor edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor edit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1263,7 +1256,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1423,7 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="704">
           <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1431,7 +1422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1439,7 +1429,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="126" column="18" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1447,9 +1436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
           <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
-          <folding>
-            <element signature="e#36#66#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1468,7 +1454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-440">
           <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1476,13 +1461,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
+        <state relative-caret-position="1826">
           <caret line="83" column="82" selection-start-line="83" selection-start-column="82" selection-end-line="83" selection-end-column="82" />
           <folding />
         </state>
@@ -1490,7 +1474,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
+        <state relative-caret-position="4840">
           <caret line="220" column="17" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
           <folding />
         </state>
@@ -1498,12 +1482,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/default/lists.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2370">
+        <state relative-caret-position="3696">
           <caret line="168" column="32" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
-          <folding>
-            <marker date="1486566560644" expanded="true" signature="113:7732" ph="{% block content ...%}" />
-            <marker date="1486566560644" expanded="true" signature="2228:4770" ph="{% if selected_list is empty ...%}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1517,7 +1498,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/ListItem.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
+        <state relative-caret-position="770">
           <caret line="35" column="128" selection-start-line="35" selection-start-column="128" selection-end-line="35" selection-end-column="128" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
@@ -1535,7 +1516,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/TodoList.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1901">
+        <state relative-caret-position="748">
           <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
           <folding />
         </state>
@@ -1561,11 +1542,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/TodoListController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="92" column="17" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
-          <folding>
-            <element signature="e#42#66#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
