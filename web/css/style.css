@@ -220,3 +220,15 @@ h3{
     width: 32px;
     font-size: 30px;
 }
+
+.delete-list-item-link{
+    height: 30px;
+    width: 32px;
+    font-size: 30px;
+}
+
+.disabled-btn {
+    pointer-events: none;
+    opacity: 0.4;
+}
+

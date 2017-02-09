@@ -67,7 +67,6 @@ function editTodoList(){
     document.getElementById("text-list-edit").classList.add("collapse");
     document.getElementById("text-list-title").classList.add("collapse");
     document.getElementById("text-list-description").classList.add("collapse");
-    // document.getElementById("text-list-item-text").classList.add("collapse");
     var checkboxes = document.getElementsByClassName("list-item-checkbox");
     for(var i = 0; i < checkboxes.length; i++)
     {
@@ -79,7 +78,16 @@ function editTodoList(){
         texts.item(i).disabled = false;
     };
 
+    var items = document.getElementsByClassName("disabled-btn");
+    for(var z = 0; z < items.length; z++)
+    {
+        items.item(z).classList.remove("disabled-btn");
+    };
+
+
     document.getElementById("form-list-save").classList.remove("collapse");
     document.getElementById("form-list-title").classList.remove("collapse");
     document.getElementById("form-list-description").classList.remove("collapse");
+    document.getElementById("form-add-item").classList.remove("collapse");
 }
+

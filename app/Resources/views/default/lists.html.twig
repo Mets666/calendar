@@ -110,6 +110,12 @@
                     {{ form_widget(edit_todo_list_form.items) }}
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 form-group" >
+                    <div id="form-add-item" class="collapse">
+                    </div>
+                </div>
+            </div>
             {{ form_end(edit_todo_list_form) }}
         {% endif %}
     </div>
@@ -117,10 +123,8 @@
 
     <script type="application/javascript">
         var $collectionHolder;
-
-        // setup an "add a tag" link
-        var $addTagLink = $('<a href="#" class="add_list_item_link">Add a tag</a>');
-        var $newLinkLi = $('<li></li>').append($addTagLink);
+        var $addTagLink = $('<a href="#" title="Add new list item" class=""><span class="glyphicon glyphicon-plus"></span></a>');
+        var $newLinkLi = $('<div class="add-list-item-link"></div>').append($addTagLink);
 
         jQuery(document).ready(function() {
             // Get the element that holds the collection of tags
@@ -130,11 +134,7 @@
                 addTagFormDeleteLink($(this));
             });
 
-            // add the "add a tag" anchor and li to the tags ul
-            $collectionHolder.append($newLinkLi);
-
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
+            $('div#form-add-item').append($newLinkLi);
             $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
             $addTagLink.on('click', function(e) {
@@ -147,34 +147,25 @@
         });
 
         function addListItemForm($collectionHolder, $newLinkLi) {
-            // Get the data-prototype explained earlier
             var prototype = $collectionHolder.data('prototype');
-
-            // get the new index
             var index = $collectionHolder.data('index');
-
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
             var newForm = prototype.replace(/__name__/g, index);
 
             // increase the index with one for the next item
             $collectionHolder.data('index', index + 1);
-//            alert(newForm);
 
             // Display the form in the page in an li, before the "Add a tag" link li
-            var $newFormLi = $('<div></div>').append(newForm);
+            var $newFormLi = $('<div class="list-item-prototype"></div>').append(newForm);
             $newFormLi.find('div.list-item').each(function() {
                 addTagFormDeleteLink($(this));
             });
-//            alert($newFormLi);
-            $newLinkLi.before($newFormLi);
-//            addTagFormDeleteLink($newFormLi);
+            $collectionHolder.append($newFormLi);
         }
 
         function addTagFormDeleteLink($tagFormLi) {
-            var $removeFormA = $('<a href="#"><span class="glyphicon glyphicon-remove glyphicon-lg"></span></a>');
+            var $removeFormA = $('<a href="#" title="Delete this list item"><span class="glyphicon glyphicon-remove"></span></a>');
 //            $tagFormLi.append($removeFormA);
-            var $delteLinktag = $tagFormLi.find('div.list-item-delete-link');
+            var $delteLinktag = $tagFormLi.find('div.delete-list-item-link');
             $delteLinktag.append($removeFormA);
 
             $removeFormA.on('click', function(e) {
