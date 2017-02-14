@@ -44,7 +44,7 @@ class TodoListType extends AbstractType
             )
             ->add('add', SubmitType::class, array(
                     'label' => 'Submit',
-                    'attr' => array('class' => 'btn btn-default btn-success')
+                    'attr' => array('class' => 'btn btn-default btn-success width80px')
                 )
             );
     }

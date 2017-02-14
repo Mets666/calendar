@@ -81,10 +81,12 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2 form-group">
-                    <div id="text-list-edit">
-                        <input type="button" value="Edit" class="btn btn-primary" onclick="return editTodoList()">
+                    <div id="text-list-edit" style="float: right">
+                        <div class="spacer20"></div>
+                        <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editTodoList()">
                     </div>
-                    <div id="form-list-save" class="collapse">
+                    <div id="form-list-save" class="collapse" style="float: right">
+                        <div class="spacer25"></div>
                         {{ form_widget(edit_todo_list_form.add, {'label': 'Save'}) }}
                     </div>
                 </div>
@@ -103,15 +105,18 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12 col-sm-12 form-group" >
+                <div class="col-md-12 col-sm-12" >
                     <label>Things to do:</label>
-                    {{ form_label(edit_todo_list_form.items) }}
+                    <div class="line1px" style="border-color: #CCCCCC"></div>
+                    <div class="spacer5"></div>
+                    {#{{ form_label(edit_todo_list_form.items) }}#}
                     {{ form_errors(edit_todo_list_form.items) }}
                     {{ form_widget(edit_todo_list_form.items) }}
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 form-group" >
+                    <div class="line1px" style="border-color: #CCCCCC"></div>
                     <div id="form-add-item" class="collapse">
                     </div>
                 </div>

@@ -1,21 +1,22 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $('.datetimepicker-identifier').each(function(i, obj) {
+    $('.datetimepicker-identifier').each(function (i, obj) {
         $(this).datetimepicker();
     });
 
-    $('#addCategoryContent').dialog({ modal: true, autoOpen: false, title: 'Category', width:400 });
-    
-    $('#openAddCategoryModal').click(function(){
+    $('#addCategoryContent').dialog({modal: true, autoOpen: false, title: 'Category', width: 400});
+
+    $('#openAddCategoryModal').click(function () {
 
         $(".input-categoryId").val("");
         $(".input-categoryTitle").val("");
         $(".input-categoryColor")[0].jscolor.fromString("FFFFFF");
 
         $('#addCategoryContent').dialog('open');
-        return false;});
+        return false;
+    });
 
-    $('.openEditCategoryModal').each(function(){
+    $('.openEditCategoryModal').each(function () {
         $(this).click(function () {
 
             $(".input-categoryId").val($(this).data('id'));
@@ -63,27 +64,26 @@ function revertEditCalendarEvent() {
 
 }
 
-function editTodoList(){
+function editTodoList() {
     document.getElementById("text-list-edit").classList.add("collapse");
     document.getElementById("text-list-title").classList.add("collapse");
     document.getElementById("text-list-description").classList.add("collapse");
     var checkboxes = document.getElementsByClassName("list-item-checkbox");
-    for(var i = 0; i < checkboxes.length; i++)
-    {
+    for (var i = 0; i < checkboxes.length; i++) {
         checkboxes.item(i).disabled = false;
-    };
+    }
+    ;
     var texts = document.getElementsByClassName("list-item-text");
-    for(var i = 0; i < texts.length; i++)
-    {
+    for (i = 0; i < texts.length; i++) {
         texts.item(i).disabled = false;
-    };
+    }
+    ;
 
     var items = document.getElementsByClassName("disabled-btn");
-    for(var z = 0; z < items.length; z++)
-    {
-        items.item(z).classList.remove("disabled-btn");
-    };
-
+    while (items.length) {
+        items[0].classList.remove("disabled-btn");
+    }
+    ;
 
     document.getElementById("form-list-save").classList.remove("collapse");
     document.getElementById("form-list-title").classList.remove("collapse");

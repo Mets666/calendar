@@ -198,33 +198,52 @@ h3{
 }
 
 .list-item{
-    border: solid 1px black;
-    border-radius: 15px;
-    background-color: #ffffcc;
-    padding: 6px 10px 6px 10px;
-    margin-bottom: 3px;
+    /*border: solid 1px black;*/
+    border-radius: 20px;
+    /*background-color: #ffffcc;*/
+    padding: 3px 10px 3px 10px;
+    margin-bottom: 5px;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #FFE5AA , #D9A25B); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFE5AA, #B67D32); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #FFE5AA, #FFCF90); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #FFE5AA , #FFCF90); /* Standard syntax */
 }
 
-.list-item-checkbox{
-    -ms-transform: scale(2.5); /* IE */
-    -moz-transform: scale(2.5); /* FF */
-    -webkit-transform: scale(2.5); /* Safari and Chrome */
-    -o-transform: scale(2.5); /* Opera */
-    float: right;
-    margin: 12px !important;
+
+.list-item input[type='checkbox']{
+    -ms-transform: scale(2.3); /* IE */
+    -moz-transform: scale(2.3); /* FF */
+    -webkit-transform: scale(2.3); /* Safari and Chrome */
+    -o-transform: scale(2.2); /* Opera */
+    /*float: right;*/
+    margin: 10px !important;
     vertical-align: middle;
 }
 
-.list-item-delete-link{
-    height: 30px;
-    width: 32px;
-    font-size: 30px;
+.list-item input[type='text']{
+    border-radius: 15px;
+}
+
+/*.list-item-checkbox{*/
+    /*-ms-transform: scale(2.2); !* IE *!*/
+    /*-moz-transform: scale(2.2); !* FF *!*/
+    /*-webkit-transform: scale(2.2); !* Safari and Chrome *!*/
+    /*-o-transform: scale(2.2); !* Opera *!*/
+    /*!*float: right;*!*/
+    /*margin: 10px !important;*/
+    /*vertical-align: middle;*/
+/*}*/
+
+.add-list-item-link{
+    font-size: 40px;
+    text-align: center;
 }
 
 .delete-list-item-link{
-    height: 30px;
-    width: 32px;
-    font-size: 30px;
+    height: 28px;
+    width: 28px;
+    font-size: 28px;
 }
 
 .disabled-btn {

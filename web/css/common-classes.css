@@ -1,6 +1,6 @@
 /*SPACERS*/
 
-.spacer05 {
+.spacer5 {
     height: 5px;
 }
 
@@ -14,6 +14,10 @@
 
 .spacer20 {
     height: 20px;
+}
+
+.spacer25 {
+    height: 25px;
 }
 
 .spacer30 {
@@ -222,4 +226,23 @@
 
 .bg-red{
     background-color: #880000;
+}
+
+/*LINES*/
+
+.line1px{
+    border-bottom: solid 1px;
+    margin: 2px 0px;
+}
+
+.line2px{
+    border-bottom: solid 2px;
+}
+
+.line3px{
+    border-bottom: solid 3px;
+}
+
+.line4px{
+    border-bottom: solid 4px;
 }
