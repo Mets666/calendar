@@ -204,12 +204,32 @@ h3{
     padding: 3px 10px 3px 10px;
     margin-bottom: 5px;
     background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #FFE5AA , #D9A25B); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #FFE5AA, #B67D32); /* For Opera 11.1 to 12.0 */
+    background: -webkit-linear-gradient(left, #FFE5AA , #FFCF90); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFE5AA, #FFCF90); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #FFE5AA, #FFCF90); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #FFE5AA , #FFCF90); /* Standard syntax */
 }
 
+.list-menu{
+    /*overflow: auto;*/
+}
+
+.list-menu-item{
+    border-radius: 15px;
+    background-color: #FFCF90;
+    margin: 2px 5px;
+    padding: 3px 3px 3px 10px;
+}
+
+.list-menu-item-title{
+    overflow: auto;
+}
+
+.list-menu-item-delete-link{
+    font-size: 15px;
+}
+
+.list{}
 
 .list-item input[type='checkbox']{
     -ms-transform: scale(2.3); /* IE */
@@ -224,16 +244,6 @@ h3{
 .list-item input[type='text']{
     border-radius: 15px;
 }
-
-/*.list-item-checkbox{*/
-    /*-ms-transform: scale(2.2); !* IE *!*/
-    /*-moz-transform: scale(2.2); !* FF *!*/
-    /*-webkit-transform: scale(2.2); !* Safari and Chrome *!*/
-    /*-o-transform: scale(2.2); !* Opera *!*/
-    /*!*float: right;*!*/
-    /*margin: 10px !important;*/
-    /*vertical-align: middle;*/
-/*}*/
 
 .add-list-item-link{
     font-size: 40px;
