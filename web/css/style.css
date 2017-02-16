@@ -93,7 +93,6 @@ h3{
 /***Main page layout***/
 
 .header-wrapper{
-    /*min-height: 200px;*/
     padding: 10px;
     margin-top: 10px;
     border-top: solid 5px #713707;
@@ -117,12 +116,23 @@ h3{
 }
 
 .header-title{
-    min-height: 130px;
+    padding: 0 10px;
 }
 
 .header-navbar{
     /*min-height: 50px;*/
+    margin-top: 10px;
     margin-bottom: -10px;
+}
+
+.navbar-btn{
+    background-color: rgba(113, 55, 7, 0.71);
+    color: #ffffff;
+}
+
+.navbar-btn:hover{
+    background-color: #713707;
+    color: #ffffff;
 }
 
 .calendar-event{
@@ -197,39 +207,60 @@ h3{
     background-color: #D9A25B !important;
 }
 
+/*LIST MENU*/
+.list-menu{
+    /*overflow: auto;*/
+}
+
+.list-menu-item{
+    border: solid 1px #CCCCCC;
+    border-radius: 15px;
+    margin: 2px 5px;
+    padding: 4px 10px 3px 10px;
+    background: #faf2cc;
+    /*background: -webkit-linear-gradient(left, #faf2cc 80%, #FFCF90); !* For Safari 5.1 to 6.0 *!*/
+    /*background: -o-linear-gradient(right, #faf2cc 80%, #FFCF90); !* For Opera 11.1 to 12.0 *!*/
+    /*background: -moz-linear-gradient(right, #faf2cc 80%, #FFCF90); !* For Firefox 3.6 to 15 *!*/
+    /*background: linear-gradient(to right, #faf2cc 80%, #FFCF90); !* Standard syntax *!*/
+}
+
+.list-menu-item a{
+    text-decoration: none !important;
+}
+
+.list-menu-item:hover{
+    background: #FFCF90;
+    background: -webkit-linear-gradient(left, #FFCF90 80%, #faf2cc); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFCF90 80%, #faf2cc); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #FFCF90 80%, #faf2cc); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #FFCF90 70%, #faf2cc); /* Standard syntax */
+}
+
+.list-menu-item-title{
+    font-size: 10pt;
+    color: #555;
+}
+
+.list-menu-item-delete-link{
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/*LIST*/
+.list{}
+
 .list-item{
     /*border: solid 1px black;*/
     border-radius: 20px;
     /*background-color: #ffffcc;*/
     padding: 3px 10px 3px 10px;
     margin-bottom: 5px;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #FFE5AA , #FFCF90); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #FFE5AA, #FFCF90); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #FFE5AA, #FFCF90); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #FFE5AA , #FFCF90); /* Standard syntax */
+    background: #FFCF90; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, transparent , #FFCF90); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, transparent, #FFCF90); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, transparent, #FFCF90); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, transparent , #FFCF90); /* Standard syntax */
 }
-
-.list-menu{
-    /*overflow: auto;*/
-}
-
-.list-menu-item{
-    border-radius: 15px;
-    background-color: #FFCF90;
-    margin: 2px 5px;
-    padding: 3px 3px 3px 10px;
-}
-
-.list-menu-item-title{
-    overflow: auto;
-}
-
-.list-menu-item-delete-link{
-    font-size: 15px;
-}
-
-.list{}
 
 .list-item input[type='checkbox']{
     -ms-transform: scale(2.3); /* IE */
@@ -249,6 +280,11 @@ h3{
     font-size: 40px;
     text-align: center;
 }
+
+.add-list-item-link a:visited{
+    color: #1b6d85;
+}
+
 
 .delete-list-item-link{
     height: 28px;

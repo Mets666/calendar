@@ -1,7 +1,7 @@
-#weather_widget{
+#weather-widget{
     border: 2px solid #FFE5AA;
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 10px;
     background-color: #FFE5AA;
 }
 

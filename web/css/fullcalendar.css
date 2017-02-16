@@ -239,13 +239,14 @@ html .fc,
 .fc-state-down,
 .fc-state-down .fc-button-inner {
 	border-color: #555;
-	background: #777;
+	background: rgba(113, 55, 7, 0.71);
+	color: #ffffff;
 	}
 	
 .fc-state-active,
 .fc-state-active .fc-button-inner {
 	border-color: #555;
-	background: #777;
+	background: rgba(113, 55, 7, 0.71);
 	color: #fff;
 	}
 	
