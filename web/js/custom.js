@@ -28,6 +28,13 @@ $(document).ready(function () {
         });
     });
 
+    $('#addListContent').dialog({modal: true, autoOpen: false, title: 'Add new list', width: 400});
+
+    $('#openAddListModal').click(function () {
+        $('#addListContent').dialog('open');
+        return false;
+    });
+
 });
 
 function editCalendarEvent() {

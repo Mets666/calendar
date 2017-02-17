@@ -18,35 +18,13 @@
             <div class="col-md-12 col-sm-12">
                 <div class="list-menu">
                 {% if todo_lists is not empty %}
-                    {#<table class="table table-hover table-category_list">#}
-                        {#<thead>#}
-                        {#<tr>#}
-                            {#<th></th>#}
-                            {#<th></th>#}
-                        {#</tr>#}
-                        {#</thead>#}
-                        {#<tbody>#}
-                        {#{% for list in todo_lists %}#}
-                            {#<tr>#}
-                                {#<td class="width100p">#}
-                                    {#<a href="{{ path('lists', { 'listId' : list.id }) }}"><b>{{ list.title }}</b></a>#}
-                                {#</td>#}
-                                {#<td>#}
-                                    {#<a href="{{ path('delete_todo_list', { 'listId' : list.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width80px">Delete</a>#}
-                                {#</td>#}
-                            {#</tr>#}
-                        {#{% endfor %}#}
-                        {#</tbody>#}
-                    {#</table>#}
-
                     {% for list in todo_lists %}
-                        <div class="list-menu-item" title="{{ list.title }}">
+                        <div class="list-menu-item {% if list.id == selected_list.id %} list-menu-item-selected {% endif %}" title="{{ list.title }}">
                             <div class="row">
                                 <a href="{{ path('lists', { 'listId' : list.id }) }}">
                                     <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
                                         <div class="list-menu-item-title">
-                                            {#<a href="{{ path('lists', { 'listId' : list.id }) }}"><b>{{ list.title }}</b></a>#}
-                                            <b>{{ list.title|length > 40 ? list.title|slice(0, 40) ~ '...' : list.title  }}</b>
+                                            <b>{{ list.title|length > 35 ? list.title|slice(0, 35) ~ '...' : list.title  }}</b>
                                         </div>
                                     </div>
                                 </a>
@@ -65,16 +43,7 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                {{ form_start(add_todo_list_form) }}
-                <div class="form-group">
-                    {{ form_label(add_todo_list_form.title) }}
-                    {{ form_errors(add_todo_list_form.title) }}
-                    {{ form_widget(add_todo_list_form.title) }}
-                </div>
-                <div class="form-group">
-                    {{ form_widget(add_todo_list_form.add, {'label': 'Add'}) }}
-                </div>
-                {{ form_end(add_todo_list_form) }}
+                <a href="#" id="openAddListModal" class="btn btn-sm btn-primary width100p">Add new</a>
             </div>
         </div>
     </div>
@@ -147,6 +116,9 @@
         {% endif %}
     </div>
 </div>
+
+    {#Modal window - add lsit #}
+    {% include 'modal/modalListAdd.html.twig' %}
 
     <script type="application/javascript">
         var $collectionHolder;

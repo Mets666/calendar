@@ -1,0 +1,12 @@
+<div id="addListContent" title="Add new To-Do List" style="display:none;">
+    {{ form_start(add_todo_list_form) }}
+    <div class="form-group">
+        {{ form_label(add_todo_list_form.title) }}
+        {{ form_errors(add_todo_list_form.title) }}
+        {{ form_widget(add_todo_list_form.title) }}
+    </div>
+    <div class="form-group">
+        {{ form_widget(add_todo_list_form.add, {'label': 'Add'}) }}
+    </div>
+    {{ form_end(add_todo_list_form) }}
+</div>

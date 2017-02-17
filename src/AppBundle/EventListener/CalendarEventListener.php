@@ -22,8 +22,6 @@ class CalendarEventListener
     public function loadEvents(CalendarEvent $calendarEvent)
     {
 
-        sleep(2);
-
         $user = $this->tokenStorage->getToken()->getUser();
 
         $startDate = $calendarEvent->getStartDatetime();

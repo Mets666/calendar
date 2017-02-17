@@ -117,6 +117,7 @@ class TodoListController extends DefaultController
             $list = $todoListRepository->get($listId);
             if($list->getUser() === $user) {
                 $todoListRepository->remove($list);
+                $todoListRepository->save();
             }
             else{
                 throw new \Exception();
