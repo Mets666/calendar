@@ -43,7 +43,9 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <a href="#" id="openAddListModal" class="btn btn-sm btn-primary width100p">Add new</a>
+                <div id="list-menu-add-new">
+                    <a href="#" id="openAddListModal" class="btn btn-sm btn-primary width100p">Add new</a>
+                </div>
             </div>
         </div>
     </div>
@@ -85,7 +87,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 form-group">
                     <div id="text-list-description">
-                        {{ selected_list.description }}
+                        <p>{{ selected_list.description }}</p>
                     </div>
                     <div id="form-list-description" class="collapse">
                         {{ form_label(edit_todo_list_form.description) }}
@@ -96,8 +98,27 @@
             </div>
 
             <div class="row">
+                <div class="col-md-9 col-sm-9">
+                    <p class="font16pt fontBold">Things to do:</p>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="list-items-counter">
+                        {% set done_count = 0 %}
+                        {% for item in selected_list.items %}
+                            {% if item.done %}
+                                {% set done_count = done_count + 1%}
+                            {% endif %}
+                        {% endfor %}
+                        {% set percentage = done_count/selected_list.items|length*100 %}
+                        <span class="list-items-counter-ratio">{{ done_count }}/{{ selected_list.items|length }}</span>
+                        <span class="list-items-counter-percentage {% if percentage > 75 %}text-success{% elseif percentage < 25 %}text-danger{% endif %} ">({{ percentage }}%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-12 col-sm-12" >
-                    <label>Things to do:</label>
+
                     <div class="line1px" style="border-color: #CCCCCC"></div>
                     <div class="spacer5"></div>
                     {#{{ form_label(edit_todo_list_form.items) }}#}

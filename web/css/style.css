@@ -249,8 +249,36 @@ h3{
     vertical-align: middle;
 }
 
+#list-menu-add-new{
+    padding: 8px 5px;
+}
+
 /*LIST*/
 .list{}
+
+#text-list-description{
+    background: #FFCF90;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#text-list-description p{
+    white-space: pre-wrap;
+}
+
+.list-items-counter{
+
+    float: right;
+    padding: 0 15px 0 15px;
+}
+.list-items-counter-ratio{
+    font-size: 20pt;
+    font-weight: bold;
+}
+.list-items-counter-percentage{
+    font-size: 10pt;
+    font-weight: bold;
+}
 
 .list-item{
     /*border: solid 1px black;*/
