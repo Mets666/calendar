@@ -75,6 +75,7 @@ class CalendarEventListener
             //optional calendar event settings
 //            $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
 
+            $eventEntity->setNote($userEvent->getNote());
             $eventEntity->setId($userEvent->getId());
             $eventEntity->setBgColor('#'.$bgColor); //set the background color of the event's label
             $eventEntity->setFgColor('#'.$this->getContrastYIQ($bgColor)); //set the foreground color of the event's label with contrast to background

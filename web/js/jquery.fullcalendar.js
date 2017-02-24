@@ -1,7 +1,7 @@
 (function ($, undefined) {
     var defaults = {
         defaultView: 'month',
-        aspectRatio: 2,
+        aspectRatio: 2.5,
         header: {left: 'title', center: '', right: 'today prev,next'},
         weekends: true,
         allDayDefault: true,

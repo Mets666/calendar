@@ -21,6 +21,9 @@ $(function () {
 
                 $(".input-eventTitle").val(event.title);
 
+                $("#text-eventNote").html(event.note);
+                $(".input-eventNote").val(event.note);
+
                 if(event.category){
                     $("#text-eventCategory").html(event.category.title);
                     $(".input-eventCategory").val(event.category.id);
@@ -38,7 +41,7 @@ $(function () {
 
 
                 $("#eventLink").attr('href', event.url);
-                $("#eventContent").dialog({ modal: true, title: event.title, width:400});
+                $("#eventContent").dialog({ modal: true, title: event.title, width:400, position: {at: 'top'}});
                 $("#eventDeleteLink").attr('href',
                     Routing.generate('delete_event', {'eventId': event.id})
                 );
@@ -52,6 +55,11 @@ $(function () {
                 return false;
             }
             
+        },
+        dayClick: function(date, jsEvent, view) {
+            $(".new-input-eventStart").val(moment(date).format('YYYY-MM-DD HH:mm'));
+
+            $("#addEventContent").dialog({ modal: true, title: 'New event', width:400, position: {at: 'top'}});
         },
         // lazyFetching: true,
         timeFormat: {

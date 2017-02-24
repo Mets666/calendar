@@ -32,7 +32,7 @@ class EventCategoryFilterType extends AbstractType
                     'placeholder' => 'All',
                     'empty_data' => null,
                     'label' => 'Filter by category:',
-                    'attr' => array('class' => 'form-control', 'id' => 'filter_selector')
+                    'attr' => array('class' => 'form-control input-sm', 'id' => 'filter_selector')
                 )
             );
     }

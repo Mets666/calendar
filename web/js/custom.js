@@ -4,7 +4,7 @@ $(document).ready(function () {
         $(this).datetimepicker();
     });
 
-    $('#addCategoryContent').dialog({modal: true, autoOpen: false, title: 'Category', width: 400});
+    $('#addCategoryContent').dialog({modal: true, autoOpen: false, title: 'Category', width: 400, position: {at: 'top'}});
 
     $('#openAddCategoryModal').click(function () {
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#addListContent').dialog({modal: true, autoOpen: false, title: 'Add new list', width: 400});
+    $('#addListContent').dialog({modal: true, autoOpen: false, title: 'Add new list', width: 400, position: {at: 'top'}});
 
     $('#openAddListModal').click(function () {
         $('#addListContent').dialog('open');
@@ -40,6 +40,7 @@ $(document).ready(function () {
 function editCalendarEvent() {
     document.getElementById("form-event-edit").classList.add("collapse");
 
+    document.getElementById("text-eventNote").classList.add("collapse");
     document.getElementById("text-eventCategory").classList.add("collapse");
     document.getElementById("text-eventStartTime").classList.add("collapse");
     document.getElementById("text-eventEndTime").classList.add("collapse");
@@ -48,6 +49,7 @@ function editCalendarEvent() {
     document.getElementById("form-event-save").classList.remove("collapse");
 
     document.getElementById("form-eventTitle").classList.remove("collapse");
+    document.getElementById("form-eventNote").classList.remove("collapse");
     document.getElementById("form-eventCategory").classList.remove("collapse");
     document.getElementById("form-eventStartTime").classList.remove("collapse");
     document.getElementById("form-eventEndTime").classList.remove("collapse");
@@ -57,6 +59,7 @@ function editCalendarEvent() {
 function revertEditCalendarEvent() {
     document.getElementById("form-event-edit").classList.remove("collapse");
 
+    document.getElementById("text-eventNote").classList.remove("collapse");
     document.getElementById("text-eventCategory").classList.remove("collapse");
     document.getElementById("text-eventStartTime").classList.remove("collapse");
     document.getElementById("text-eventEndTime").classList.remove("collapse");
@@ -65,6 +68,7 @@ function revertEditCalendarEvent() {
     document.getElementById("form-event-save").classList.add("collapse");
 
     document.getElementById("form-eventTitle").classList.add("collapse");
+    document.getElementById("form-eventNote").classList.add("collapse");
     document.getElementById("form-eventCategory").classList.add("collapse");
     document.getElementById("form-eventStartTime").classList.add("collapse");
     document.getElementById("form-eventEndTime").classList.add("collapse");

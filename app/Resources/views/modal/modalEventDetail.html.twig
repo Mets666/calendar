@@ -10,6 +10,18 @@
         </div>
 
         <div class="form-group">
+            <label>Note:</label>
+            <div id="text-eventNote">
+
+            </div>
+            <div id="form-eventNote" class="collapse">
+                {#{{ form_label(edit_calendar_event_form.note) }}#}
+                {{ form_errors(edit_calendar_event_form.note) }}
+                {{ form_widget(edit_calendar_event_form.note, {'attr': {'class': 'form-control input-eventNote'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
             <label>Category:</label>
             <div id="text-eventCategory">
 

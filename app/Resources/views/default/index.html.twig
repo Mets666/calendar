@@ -3,67 +3,29 @@
 {% block content %}
 
     <div class="row">
-        <div class="col-md-3 col-sm-3">
-            <h3>Add new event</h3>
-
-            {{ form_start(calendar_event_form) }}
-            <div class="form-group">
-                {{ form_label(calendar_event_form.title) }}
-                {{ form_errors(calendar_event_form.title) }}
-                {{ form_widget(calendar_event_form.title) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(calendar_event_form.category) }}
-                {{ form_errors(calendar_event_form.category) }}
-                <div class="row">
-                    <div class="col-md-9">
-                        {{ form_widget(calendar_event_form.category) }}
-                    </div>
-                    <div class="col-md-3" style="padding-left: 0;">
-                        <a href="#" id="openAddCategoryModal" class="btn btn-sm btn-primary width100p">New</a>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                {{ form_label(calendar_event_form.startDate) }}
-                {{ form_errors(calendar_event_form.startDate) }}
-                <div class='input-group date datetimepicker-identifier'>
-                    {{ form_widget(calendar_event_form.startDate) }}
-                    <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                </div>
-            </div>
-            <div class="form-group">
-                {{ form_label(calendar_event_form.endDate) }}
-                {{ form_errors(calendar_event_form.endDate) }}
-                <div class='input-group date datetimepicker-identifier'>
-                    {{ form_widget(calendar_event_form.endDate) }}
-                    <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                </div>
-            </div>
-            <div class="form-group">
-                {{ form_widget(calendar_event_form.add) }}
-            </div>
-            {{ form_end(calendar_event_form) }}
-
+        <div class="col-md-12 col-sm-12">
+            {% include 'flashMessages.html.twig' %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-12 col-md-offset-4">
             {#Category filter#}
             {{ form_start(filter_category_form) }}
-                {{ form_label(filter_category_form.filter_category) }}
-                {{ form_errors(filter_category_form.filter_category) }}
-                {{ form_widget(filter_category_form.filter_category, { 'id': 'filter_selector'} )}}
+            {{ form_label(filter_category_form.filter_category) }}
+            {{ form_errors(filter_category_form.filter_category) }}
+            {{ form_widget(filter_category_form.filter_category, { 'id': 'filter_selector'} )}}
             {{ form_end(filter_category_form) }}
-
         </div>
-
-        <div class="col-md-9 col-sm-9">
-            {% include 'flashMessages.html.twig' %}
-
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="spacer10"></div>
             {% include 'ADesignsCalendarBundle::calendar.html.twig' %}
         </div>
     </div>
+
+    {#Modal window - event creation #}
+    {% include 'modal/modalEventAdd.html.twig' %}
 
     {#Modal window - event detail/edit #}
     {% include 'modal/modalEventDetail.html.twig' %}

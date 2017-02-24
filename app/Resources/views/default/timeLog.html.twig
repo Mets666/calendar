@@ -12,42 +12,45 @@
 
             <div class="row">
                 <div class="col-md-12 col-sm-12">
+                    <div class="list-menu">
                     {% if categories is not empty %}
-                        <table class="table table-hover table-category_list">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th class="width60px"></th>
-                                <th class="width80px"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for category in categories %}
-                                <tr>
-                                    <td class="col-md-6 col-sm-6">
-                                        <b>{{ category.title }}</b>
-                                    </td>
-                                    <td>
-                                        <a href="#" id="" class="btn btn-success width60px openEditCategoryModal" data-id="{{ category.id }}" data-title="{{ category.title }}" data-color="{{ category.color }}">Edit</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}" onClick="return confirm('Are you sure?');" class="btn btn-danger width80px">Delete</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                        {% for category in categories %}
+                            <div class="category-menu-item">
+                                <div class="row">
+                                    <a href="#" id="" class="openEditCategoryModal" data-id="{{ category.id }}" data-title="{{ category.title }}" data-color="{{ category.color }}">
+                                    <div class="col-md-9 col-sm-9" style="padding-right: 3px;">
+                                        <div class="category-menu-item-title">
+                                            <b>{{ category.title|length > 25 ? category.title|slice(0, 25) ~ '...' : category.title  }}</b>
+                                        </div>
+                                    </div>
+                                    </a>
+                                    <div class="col-md-1 col-sm-1">
+                                        <div class="category-menu-item-edit-link">
+                                            <a href="#" id="" class="openEditCategoryModal" data-id="{{ category.id }}" data-title="{{ category.title }}" data-color="{{ category.color }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1">
+                                        <div class="category-menu-item-delete-link">
+                                            <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     {% else %}
                         <div class="no-data-message">
                             <i>There are no categories! Please add some first.</i>
                         </div>
                     {% endif %}
+                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <a href="#" id="openAddCategoryModal" class="btn btn-sm btn-primary width100p">Add new</a>
+                    <div id="category-menu-add-new">
+                        <a href="#" id="openAddCategoryModal" class="btn btn-sm btn-primary width100p">Add new</a>
+                    </div>
                 </div>
             </div>
         </div>

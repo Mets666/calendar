@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,6 +33,12 @@ class CalendarEventType extends AbstractType
             ->add('title', TextType::class, array(
                     'label' => 'Title:',
                     'attr' => array('class' => 'form-control input-sm')
+                )
+            )
+            ->add('note', TextareaType::class, array(
+                    'label' => 'Note:',
+                    'attr' => array('class' => 'form-control input-sm'),
+                    'required' => false
                 )
             )
             ->add('startDate', TextType::class, array(

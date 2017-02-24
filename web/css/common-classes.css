@@ -246,3 +246,10 @@
 .line4px{
     border-bottom: solid 4px;
 }
+
+/*BUTTONS*/
+
+.disabled-btn {
+    pointer-events: none;
+    opacity: 0.4;
+}

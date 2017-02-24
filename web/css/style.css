@@ -20,7 +20,7 @@ h3{
 
 .footer {
     position: absolute;
-    z-index: 999;
+    z-index: 10;
     right: 0;
     bottom: 0;
     left: 0;
@@ -120,7 +120,6 @@ h3{
 }
 
 .header-navbar{
-    /*min-height: 50px;*/
     margin-top: 10px;
     margin-bottom: -10px;
 }
@@ -137,6 +136,8 @@ h3{
 .calendar-event{
     /*background-color: #1b6d85;*/
 }
+
+/*FLASH MESSAGES*/
 
 .flash-success {
     text-align: center;
@@ -174,36 +175,6 @@ h3{
     vertical-align: middle;
     border: solid 2px #ddddff;
     border-radius: 4px;
-}
-
-.table-category_list{
-    width: 100%;
-    table-layout: fixed;
-    border: solid 3px #713707;
-}
-
-.table-category_list > thead{
-    height: 0;
-    display: block;
-}
-
-.table-category_list > tbody{
-    background-color: #FFCF90;
-    display: block;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.table-category_list > tbody > tr > td{
-    vertical-align: middle;
-    text-align: center;
-    font-size: 10pt;
-    padding: 3px 2px;
-    border-top: 1px solid #B67D32 !important;
-}
-
-.table-category_list > tbody > tr:hover td{
-    background-color: #D9A25B !important;
 }
 
 /*LIST MENU*/
@@ -316,15 +287,76 @@ h3{
     color: #1b6d85;
 }
 
-
 .delete-list-item-link{
     height: 28px;
     width: 28px;
     font-size: 28px;
 }
 
-.disabled-btn {
-    pointer-events: none;
-    opacity: 0.4;
+/*CATEGORY*/
+
+.category-menu{
+
 }
+
+.category-menu-item{
+    border: solid 1px #CCCCCC;
+    border-radius: 15px;
+    margin: 2px 5px;
+    padding: 4px 10px 3px 10px;
+    background: #faf2cc;
+}
+
+.category-menu-item:hover{
+    background: #FFCF90;
+    background: -webkit-linear-gradient(left, #FFCF90 60%, #faf2cc); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #FFCF90 60%, #faf2cc); /* Standard syntax */
+}
+
+.openEditCategoryModal:focus{
+    outline: none;
+}
+
+.category-menu-item-title{
+    font-size: 10pt;
+    color: #555;
+}
+
+#category-menu-add-new{
+    padding: 8px 5px;
+}
+
+
+.table-category_list{
+    width: 100%;
+    table-layout: fixed;
+    border: solid 3px #713707;
+}
+
+.table-category_list > thead{
+    height: 0;
+    display: block;
+}
+
+.table-category_list > tbody{
+    background-color: #FFCF90;
+    display: block;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.table-category_list > tbody > tr > td{
+    vertical-align: middle;
+    text-align: center;
+    font-size: 10pt;
+    padding: 3px 2px;
+    border-top: 1px solid #B67D32 !important;
+}
+
+.table-category_list > tbody > tr:hover td{
+    background-color: #D9A25B !important;
+}
+
 

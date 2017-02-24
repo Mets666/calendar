@@ -52,7 +52,7 @@ class CalendarEvent
     /**
      * @ORM\Column(type="string", length=1000, nullable=true)
      */
-    private $description;
+    private $note;
 
     /**
      * Get id
@@ -193,27 +193,28 @@ class CalendarEvent
         return ($this->startDate < $this->endDate);
     }
 
+
     /**
-     * Set description
+     * Set note
      *
-     * @param string $description
+     * @param string $note
      *
      * @return CalendarEvent
      */
-    public function setDescription($description)
+    public function setNote($note)
     {
-        $this->description = $description;
+        $this->note = $note;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get note
      *
      * @return string
      */
-    public function getDescription()
+    public function getNote()
     {
-        return $this->description;
+        return $this->note;
     }
 }

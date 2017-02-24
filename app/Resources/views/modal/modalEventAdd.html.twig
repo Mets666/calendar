@@ -1,0 +1,54 @@
+<div id="addEventContent" title="New event" style="display:none;">
+    {{ form_start(calendar_event_form) }}
+    {{ form_widget(calendar_event_form.id, {'attr': {'class': 'form-control input-eventId'}}) }}
+
+    <div class="form-group">
+        {{ form_label(calendar_event_form.title) }}
+        {{ form_errors(calendar_event_form.title) }}
+        {{ form_widget(calendar_event_form.title, {'attr': {'class': 'form-control input-eventTitle'}}) }}
+    </div>
+
+    <div class="form-group">
+        <div>
+            {{ form_label(calendar_event_form.note) }}
+            {{ form_errors(calendar_event_form.note) }}
+            {{ form_widget(calendar_event_form.note, {'attr': {'class': 'form-control input-eventNote'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            {{ form_label(calendar_event_form.category) }}
+            {{ form_errors(calendar_event_form.category) }}
+            {{ form_widget(calendar_event_form.category, {'attr': {'class': 'form-control input-eventCategory'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(calendar_event_form.startDate) }}
+        {{ form_errors(calendar_event_form.startDate) }}
+        <div class='input-group date datetimepicker-identifier'>
+            {{ form_widget(calendar_event_form.startDate, {'attr': {'class': 'form-control new-input-eventStart'}}) }}
+            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(calendar_event_form.endDate) }}
+        {{ form_errors(calendar_event_form.endDate) }}
+        <div class='input-group date datetimepicker-identifier'>
+            {{ form_widget(calendar_event_form.endDate) }}
+            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            {{ form_widget(calendar_event_form.add, { 'label': 'Save' }) }}
+        </div>
+    </div>
+    {{ form_end(calendar_event_form) }}
+</div>
