@@ -111,7 +111,7 @@
                         {% endfor %}
                         {% set percentage = done_count/selected_list.items|length*100 %}
                         <span class="list-items-counter-ratio">{{ done_count }}/{{ selected_list.items|length }}</span>
-                        <span class="list-items-counter-percentage {% if percentage > 75 %}text-success{% elseif percentage < 25 %}text-danger{% endif %} ">({{ percentage }}%)</span>
+                        <span class="list-items-counter-percentage {% if percentage > 75 %}text-success{% elseif percentage < 25 %}text-danger{% endif %} ">({{ percentage|round(2) }}%)</span>
                     </div>
                 </div>
             </div>
