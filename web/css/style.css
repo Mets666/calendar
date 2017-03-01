@@ -110,9 +110,6 @@ h3{
     height: 50px;
     padding: 5px 10px;
     color: #fff;
-    /*border-top: solid 5px #713707;*/
-    /*border-radius: 3px;*/
-    /*background-color: #AA7A3D;*/
 }
 
 .header-title{
@@ -328,35 +325,5 @@ h3{
     padding: 8px 5px;
 }
 
-
-.table-category_list{
-    width: 100%;
-    table-layout: fixed;
-    border: solid 3px #713707;
-}
-
-.table-category_list > thead{
-    height: 0;
-    display: block;
-}
-
-.table-category_list > tbody{
-    background-color: #FFCF90;
-    display: block;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.table-category_list > tbody > tr > td{
-    vertical-align: middle;
-    text-align: center;
-    font-size: 10pt;
-    padding: 3px 2px;
-    border-top: 1px solid #B67D32 !important;
-}
-
-.table-category_list > tbody > tr:hover td{
-    background-color: #D9A25B !important;
-}
 
 

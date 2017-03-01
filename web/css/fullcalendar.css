@@ -270,12 +270,12 @@ html .fc,
 ------------------------------------------------------------------------*/
 	 
 .fc-event {
-	border-style: solid;
-	border-width: 0px;
+	border: solid 1px transparent !important;
 	border-radius: 3px;
 	font-family: "Century Gothic";
 	padding: 2px 5px;
-	margin-top: 3px;
+	margin-top: 2px;
+	/*margin-bottom: 2px;*/
 	font-size: .85em;
 	cursor: default;
 	}
@@ -287,10 +287,13 @@ a.fc-event,
 	
 a.fc-event {
 	text-decoration: none;
+	white-space: nowrap;
 	}
 
 a.fc-event:hover{
-	border: solid 1px #000;
+	border: solid 1px #7f7f7f !important;
+	white-space: inherit;
+	z-index: 99 !important;
 }
 	
 .fc-rtl .fc-event {
@@ -300,21 +303,22 @@ a.fc-event:hover{
 .fc-event-skin {
 	/*border-color: #36c;     !* default BORDER color *!*/
 	/*background-color: #36c; !* default BACKGROUND color *!*/
-	color: #fff;            /* default TEXT color */
+	/*color: #fff;            !* default TEXT color *!*/
 	}
 	
 .fc-event-inner {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	border-style: solid;
-	border-width: 0;
 	overflow: hidden;
 	}
 	
-.fc-event-time,
-.fc-event-title {
+.fc-event-time{
 	padding: 0 1px;
+}
+
+.fc-event-title {
+	padding: 0 1px 0 5px;
 	}
 	
 .fc .ui-resizable-handle { /*** TODO: don't use ui-resizable anymore, change class ***/
