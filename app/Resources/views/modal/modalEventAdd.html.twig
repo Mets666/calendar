@@ -1,18 +1,18 @@
 <div id="addEventContent" title="New event" style="display:none;">
     {{ form_start(calendar_event_form) }}
-    {{ form_widget(calendar_event_form.id, {'attr': {'class': 'form-control input-eventId'}}) }}
+    {{ form_widget(calendar_event_form.id, {'attr': {'class': 'form-control'}}) }}
 
     <div class="form-group">
         {{ form_label(calendar_event_form.title) }}
         {{ form_errors(calendar_event_form.title) }}
-        {{ form_widget(calendar_event_form.title, {'attr': {'class': 'form-control input-eventTitle'}}) }}
+        {{ form_widget(calendar_event_form.title, {'attr': {'class': 'form-control'}}) }}
     </div>
 
     <div class="form-group">
         <div>
             {{ form_label(calendar_event_form.note) }}
             {{ form_errors(calendar_event_form.note) }}
-            {{ form_widget(calendar_event_form.note, {'attr': {'class': 'form-control input-eventNote'}}) }}
+            {{ form_widget(calendar_event_form.note, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 
@@ -20,7 +20,7 @@
         <div>
             {{ form_label(calendar_event_form.category) }}
             {{ form_errors(calendar_event_form.category) }}
-            {{ form_widget(calendar_event_form.category, {'attr': {'class': 'form-control input-eventCategory'}}) }}
+            {{ form_widget(calendar_event_form.category, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 

@@ -314,11 +314,13 @@ a.fc-event:hover{
 	}
 	
 .fc-event-time{
-	padding: 0 1px;
+	padding: 0 1px 0 5px;
+	margin-left: -5px;
 }
 
 .fc-event-title {
 	padding: 0 1px 0 5px;
+	display: inline-block;
 	}
 	
 .fc .ui-resizable-handle { /*** TODO: don't use ui-resizable anymore, change class ***/
