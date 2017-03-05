@@ -31,6 +31,7 @@ class TodoListType extends AbstractType
             )
             ->add('description', TextareaType::class, array(
                     'label' => 'Description:',
+                    'required' => false,
                     'attr' => array('class' => 'form-control', 'rows' => '4')
                 )
             )

@@ -7,7 +7,7 @@ use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-class EventCategoryRepository extends BasicRepository
+class EventCategoryRepository extends BasicRepository implements RepositoryInterface
 {
 
     /**

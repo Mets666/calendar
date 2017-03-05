@@ -12,7 +12,7 @@ namespace AppBundle\Repository;
 use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class BasicRepository
+class BasicRepository implements RepositoryInterface
 {
     /** @var ManagerRegistry $doctrine */
     protected $doctrine;
@@ -52,5 +52,10 @@ class BasicRepository
     {
         $em = $this->doctrine->getManager();
         $em->remove($object);
+    }
+
+    public function get($id)
+    {
+        // TODO: Implement get() method.
     }
 }
