@@ -17,7 +17,7 @@ class ListItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('id', HiddenType::class, ['mapped'=>false])
+            ->add('id', HiddenType::class, ['mapped'=>false])
             ->add('text', TextType::class, array(
                     'label' => 'List title:',
                     'attr' => array('class' => 'form-control')

@@ -9,8 +9,6 @@
 namespace AppBundle\Repository;
 
 
-
-
 interface RepositoryInterface
 {
     public function get($id);

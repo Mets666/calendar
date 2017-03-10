@@ -33,7 +33,7 @@ class ListItem
     private $done;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TodoList", inversedBy="items", fetch="LAZY", cascade={"persist", "remove" })
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TodoList", inversedBy="items", fetch="LAZY", cascade={"persist", "remove" } )
      * @ORM\JoinColumn(name="list_id", referencedColumnName="id", nullable=false)
      */
     private $list;

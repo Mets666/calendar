@@ -32,7 +32,7 @@ class WeatherApiService
         $this->cacheAdapter->deleteItem($location);
 
         $cachedData = $this->cacheAdapter->getItem($location);
-
+        
         if (!$cachedData->isHit()) {
             $weather = $this->getAndParseWeather($location);
             $cachedData->set($weather);

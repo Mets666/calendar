@@ -48,9 +48,14 @@ services:
             doctrine:       '@doctrine'
 
     app.todo_list.repository:
-            class: AppBundle\Repository\TodoListRepository
-            arguments:
-                doctrine:       '@doctrine'
+        class: AppBundle\Repository\TodoListRepository
+        arguments:
+            doctrine:       '@doctrine'
+
+    app.project.repository:
+        class: AppBundle\Repository\ProjectRepository
+        arguments:
+            doctrine:       '@doctrine'
 
 #AppBundle\Service
     app.geo.ip.service:

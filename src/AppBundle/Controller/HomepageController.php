@@ -18,7 +18,7 @@ class HomepageController extends DefaultController
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function homepageAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 

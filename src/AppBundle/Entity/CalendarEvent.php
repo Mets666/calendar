@@ -50,6 +50,12 @@ class CalendarEvent
     private $category;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="calendarEvents", fetch="LAZY")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", nullable=true)
+     */
+    private $project;
+
+    /**
      * @ORM\Column(type="string", length=1000, nullable=true)
      */
     private $note;
@@ -216,5 +222,29 @@ class CalendarEvent
     public function getNote()
     {
         return $this->note;
+    }
+
+    /**
+     * Set project
+     *
+     * @param \AppBundle\Entity\EventCategory $project
+     *
+     * @return CalendarEvent
+     */
+    public function setProject(\AppBundle\Entity\EventCategory $project = null)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return \AppBundle\Entity\EventCategory
+     */
+    public function getProject()
+    {
+        return $this->project;
     }
 }

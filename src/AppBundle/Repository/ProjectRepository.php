@@ -7,9 +7,8 @@ namespace AppBundle\Repository;
 use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class TodoListRepository extends BasicRepository
+class ProjectRepository extends BasicRepository implements RepositoryInterface
 {
-
     /**
      * TodoListRepository constructor.
      * @param ManagerRegistry $doctrine
@@ -19,7 +18,6 @@ class TodoListRepository extends BasicRepository
         parent::__construct($doctrine);
     }
 
-
     /**
      * @param $id
      * @return object
@@ -28,11 +26,10 @@ class TodoListRepository extends BasicRepository
     public function get($id)
     {
         try {
-            $list = $this->doctrine->getRepository('AppBundle:TodoList')->find($id);
+            $list = $this->doctrine->getRepository('AppBundle:Project')->find($id);
         } catch (\Exception $e) {
             throw new DatabaseException('Failed to get data from database!');
         }
         return $list;
     }
-    
 }

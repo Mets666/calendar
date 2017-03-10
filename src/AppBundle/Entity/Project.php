@@ -1,5 +1,6 @@
 <?php
 
+
 namespace AppBundle\Entity;
 
 
@@ -7,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="todo_list")
+ * @ORM\Table(name="project")
  * @ORM\Entity
  */
-class TodoList
+class Project
 {
     /**
      * @ORM\Column(type="integer")
@@ -28,31 +29,37 @@ class TodoList
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=2000, nullable=true)
-     * @Assert\Length(max=2000,
-     *     maxMessage="Description is too long."
-     * )
+     * @ORM\Column(type="string", length=10)
+     */
+    private $acronym;
+
+    /**
+     * @ORM\Column(type="string", length=2000)
      */
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ListItem", mappedBy="list", fetch="LAZY",cascade={"persist", "remove" })
+     * @ORM\Column(type="integer")
      */
-    private $items;
+    private $timeLimit;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="todoLists", fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="project", fetch="LAZY")
+     */
+    private $calendarEvents;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="projects", fetch="LAZY")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
-
-
+    
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->calendarEvents = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -70,7 +77,7 @@ class TodoList
      *
      * @param string $title
      *
-     * @return TodoList
+     * @return Project
      */
     public function setTitle($title)
     {
@@ -94,7 +101,7 @@ class TodoList
      *
      * @param string $description
      *
-     * @return TodoList
+     * @return Project
      */
     public function setDescription($description)
     {
@@ -114,45 +121,69 @@ class TodoList
     }
 
     /**
-     * Add item
+     * Set timeLimit
      *
-     * @param \AppBundle\Entity\ListItem $item
+     * @param integer $timeLimit
      *
-     * @return TodoList
+     * @return Project
      */
-    public function addItem(\AppBundle\Entity\ListItem $item)
+    public function setTimeLimit($timeLimit)
     {
-        $this->items[] = $item;
+        $this->timeLimit = $timeLimit;
 
         return $this;
     }
 
     /**
-     * Remove item
+     * Get timeLimit
      *
-     * @param \AppBundle\Entity\ListItem $item
+     * @return integer
      */
-    public function removeItem(\AppBundle\Entity\ListItem $item)
+    public function getTimeLimit()
     {
-        $this->items->removeElement($item);
+        return $this->timeLimit;
     }
 
     /**
-     * Get items
+     * Add calendarEvent
+     *
+     * @param \AppBundle\Entity\CalendarEvent $calendarEvent
+     *
+     * @return Project
+     */
+    public function addCalendarEvent(\AppBundle\Entity\CalendarEvent $calendarEvent)
+    {
+        $this->calendarEvents[] = $calendarEvent;
+
+        return $this;
+    }
+
+    /**
+     * Remove calendarEvent
+     *
+     * @param \AppBundle\Entity\CalendarEvent $calendarEvent
+     */
+    public function removeCalendarEvent(\AppBundle\Entity\CalendarEvent $calendarEvent)
+    {
+        $this->calendarEvents->removeElement($calendarEvent);
+    }
+
+    /**
+     * Get calendarEvents
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getItems()
+    public function getCalendarEvents()
     {
-        return $this->items;
+        return $this->calendarEvents;
     }
 
     /**
-     * Set user
+     * Set user 
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return TodoList
+     * @return Project
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -170,5 +201,28 @@ class TodoList
     {
         return $this->user;
     }
-    
+
+    /**
+     * Set acronym
+     *
+     * @param string $acronym
+     *
+     * @return Project
+     */
+    public function setAcronym($acronym)
+    {
+        $this->acronym = $acronym;
+
+        return $this;
+    }
+
+    /**
+     * Get acronym
+     *
+     * @return string
+     */
+    public function getAcronym()
+    {
+        return $this->acronym;
+    }
 }

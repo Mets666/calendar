@@ -14,16 +14,11 @@ class ListsController extends DefaultController
 
     /**
      * @Route("/lists/{listId}", name="lists", defaults={"listId" = 0})
-     * @param Request $request
-     * @param $id
+     * @param $listId
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listsAction(Request $request, $listId)
+    public function listsAction($listId)
     {
-
-        $todoListRepository = $this->get('app.todo_list.repository');
-
-
         /** @var \AppBundle\Entity\User $user */
         $user = $this->get('security.token_storage')->getToken()->getUser();
 

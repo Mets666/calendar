@@ -63,6 +63,12 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $todoLists;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="user", fetch="LAZY")
+     * @ORM\OrderBy({"acronym" = "ASC"})
+     */
+    private $projects;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -323,5 +329,39 @@ class User implements AdvancedUserInterface, \Serializable
     public function getTodoLists()
     {
         return $this->todoLists;
+    }
+
+    /**
+     * Add project
+     *
+     * @param \AppBundle\Entity\Project $project
+     *
+     * @return User
+     */
+    public function addProject(\AppBundle\Entity\Project $project)
+    {
+        $this->projects[] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Remove project
+     *
+     * @param \AppBundle\Entity\Project $project
+     */
+    public function removeProject(\AppBundle\Entity\Project $project)
+    {
+        $this->projects->removeElement($project);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
     }
 }

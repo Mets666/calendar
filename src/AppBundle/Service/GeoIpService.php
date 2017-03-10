@@ -8,10 +8,13 @@ class GeoIpService
 {
     public function getCity($ip)
     {
-        $reader = new Reader('GeoLite2-City.mmdb');
-
-//        $record = $reader->city($ip);
-        $record = $reader->city('46.39.178.136');
+        try {
+            $reader = new Reader('GeoLite2-City.mmdb');
+            $record = $reader->city($ip);
+        }
+        catch (\Exception $e) {
+            return 'Brno,CZ';
+        }
 
         return $record->city->name.','.$record->country->isoCode;
     }

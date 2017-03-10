@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\FormHandling;
 
 
 use AppBundle\Entity\CalendarEvent;
@@ -19,7 +19,6 @@ class CalendarEventController extends Controller
     {
         $calendarEventRepository = $this->get('app.calendar_event.repository');
         $validator = $this->get('validator');
-
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $event = new CalendarEvent();
@@ -33,15 +32,15 @@ class CalendarEventController extends Controller
 
         if ($calendarEventForm->isSubmitted()) {
             if ($calendarEventForm->isValid()) {
-//                try {
+                try {
                     $calendarEventRepository->add($event);
                     $calendarEventRepository->save();
-//                } catch (\Exception $e) {
-//                    $this->addFlash(
-//                        'error',
-//                        'Unable to create event!'
-//                    );
-//                }
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to create event!'
+                    );
+                }
                 $this->addFlash(
                     'success',
                     'Event successfully added!'
@@ -69,7 +68,6 @@ class CalendarEventController extends Controller
     {
         $calendarEventRepository = $this->get('app.calendar_event.repository');
         $validator = $this->get('validator');
-
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $formData = $request->request->get('calendar_event');

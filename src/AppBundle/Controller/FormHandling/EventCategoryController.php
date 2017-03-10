@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\FormHandling;
 
 
 use AppBundle\Entity\EventCategory;
@@ -18,6 +18,7 @@ class EventCategoryController extends Controller
     public function addCategoryAction(Request $request)
     {
         $eventCategoryRepository = $this->get('app.event_category.repository');
+        $validator = $this->get('validator');
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $category = new EventCategory();
@@ -25,17 +26,29 @@ class EventCategoryController extends Controller
         $addCategoryForm = $this->createForm(EventCategoryType::class, $category);
 
         $addCategoryForm->handleRequest($request);
-        if ($addCategoryForm->isSubmitted() && $addCategoryForm->isValid()) {
-            try {
-                $eventCategoryRepository->add($category);
-                $eventCategoryRepository->save();
-            } catch (\Exception $e) {
-                $this->addFlash(
-                    'error',
-                    'Unable to create category!'
-                );
+        if ($addCategoryForm->isSubmitted()) {
+            if($addCategoryForm->isValid()) {
+                try {
+                    $eventCategoryRepository->add($category);
+                    $eventCategoryRepository->save();
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to create category!'
+                    );
+                }
+                return $this->redirectToRoute('homepage');
             }
-            return $this->redirectToRoute('homepage');
+            else {
+                $errors = $validator->validate($category);
+
+                foreach ($errors as $error){
+                    $this->addFlash(
+                        'error',
+                        'Unable to add category: ' . $error->getMessage()
+                    );
+                }
+            }
         }
 
         return $this->redirectToRoute('homepage');
@@ -47,6 +60,7 @@ class EventCategoryController extends Controller
     public function editCategoryAction(Request $request)
     {
         $eventCategoryRepository = $this->get('app.event_category.repository');
+        $validator = $this->get('validator');
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $formData = $request->request->get('event_category');
@@ -63,21 +77,32 @@ class EventCategoryController extends Controller
         $categoryForm = $this->createForm(EventCategoryType::class, $category);
 
         $categoryForm->handleRequest($request);
-        if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
-            try {
-                $eventCategoryRepository->add($category);
-                $eventCategoryRepository->save();
-            } catch (\Exception $e) {
+        if ($categoryForm->isSubmitted()) {
+            if($categoryForm->isValid()){
+                try {
+                    $eventCategoryRepository->add($category);
+                    $eventCategoryRepository->save();
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to edit category!'
+                    );
+                    return $this->redirectToRoute('time_log');
+                }
                 $this->addFlash(
-                    'error',
-                    'Unable to edit category!'
+                    'success',
+                    'Category successfully edited!'
                 );
-                return $this->redirectToRoute('time_log');
             }
-            $this->addFlash(
-                'success',
-                'Category successfully edited!'
-            );
+            else{
+                $errors = $validator->validate($category);
+                foreach ($errors as $error){
+                    $this->addFlash(
+                        'error',
+                        'Unable to edit category: ' . $error->getMessage()
+                    );
+                }
+            }
         }
 
         return $this->redirectToRoute('time_log');

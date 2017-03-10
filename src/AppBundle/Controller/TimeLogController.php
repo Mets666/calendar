@@ -15,6 +15,8 @@ class TimeLogController extends DefaultController
 {
     /**
      * @Route("/time_log", name="time_log")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function timeLogAction(Request $request)
     {

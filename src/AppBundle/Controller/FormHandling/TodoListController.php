@@ -1,17 +1,17 @@
 <?php
 
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\FormHandling;
 
 
-use AppBundle\AppBundle;
 use AppBundle\Entity\TodoList;
 use AppBundle\Form\TodoListType;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TodoListController extends DefaultController
+class TodoListController extends Controller
 {
 
     /**
@@ -20,6 +20,7 @@ class TodoListController extends DefaultController
     public function addList(Request $request)
     {
         $todoListRepository = $this->get('app.todo_list.repository');
+        $validator = $this->get('validator');
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $list = new TodoList();
@@ -29,17 +30,28 @@ class TodoListController extends DefaultController
         $addListForm->remove('description');
 
         $addListForm->handleRequest($request);
-        if ($addListForm->isSubmitted() && $addListForm->isValid()) {
-            try {
-                $todoListRepository->add($list);
-                $todoListRepository->save();
-            } catch (\Exception $e) {
-                $this->addFlash(
-                    'error',
-                    'Unable to create To-Do list!'
-                );
+        if ($addListForm->isSubmitted()) {
+            if($addListForm->isValid()) {
+                try {
+                    $todoListRepository->add($list);
+                    $todoListRepository->save();
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to create To-Do list!'
+                    );
+                }
+                return $this->redirectToRoute('lists');
             }
-            return $this->redirectToRoute('lists');
+            else {
+                $errors = $validator->validate($list);
+                foreach ($errors as $error){
+                    $this->addFlash(
+                        'error',
+                        'Unable to edit To-Do list: ' . $error->getMessage()
+                    );
+                }
+            }
         }
 
         return $this->redirectToRoute('lists');
@@ -51,6 +63,7 @@ class TodoListController extends DefaultController
     public function editList(Request $request)
     {
         $todoListRepository = $this->get('app.todo_list.repository');
+        $validator = $this->get('validator');
 
         $formData = $request->request->get('todo_list');
         try {
@@ -72,32 +85,43 @@ class TodoListController extends DefaultController
         $editListForm = $this->createForm(TodoListType::class, $list);
 
         $editListForm->handleRequest($request);
-        if ($editListForm->isSubmitted() && $editListForm->isValid()) {
-            try {
-                foreach ($list->getItems() as $item){
-                    if($item->getList() === null){
-                        $item->setList($list);
+        if ($editListForm->isSubmitted()) {
+            if($editListForm->isValid()){
+                try {
+                    foreach ($list->getItems() as $item){
+                        if($item->getList() === null){
+                            $item->setList($list);
+                        }
                     }
-                }
-
-                foreach ($originalItems as $item) {
-                    if (false === $list->getItems()->contains($item)) {
-                        $todoListRepository->remove($item);
+    
+                    foreach ($originalItems as $item) {
+                        if (false === $list->getItems()->contains($item)) {
+                            $todoListRepository->remove($item);
+                        }
                     }
+                    $todoListRepository->add($list);
+                    $todoListRepository->save();
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to edit To-Do list!'
+                    );
+                    return $this->redirectToRoute('lists', array('listId' => $formData['id']));
                 }
-                $todoListRepository->add($list);
-                $todoListRepository->save();
-            } catch (\Exception $e) {
                 $this->addFlash(
-                    'error',
-                    'Unable to edit To-Do list!'
+                    'success',
+                    'To-Do list successfully edited!'
                 );
-                return $this->redirectToRoute('lists', array('listId' => $formData['id']));
             }
-            $this->addFlash(
-                'success',
-                'To-Do list successfully edited!'
-            );
+            else {
+                $errors = $validator->validate($list);
+                foreach ($errors as $error){
+                    $this->addFlash(
+                        'error',
+                        'Unable to edit To-Do list: ' . $error->getMessage()
+                    );
+                }
+            }
         }
 
         return $this->redirectToRoute('lists', array('listId' => $formData['id']));
