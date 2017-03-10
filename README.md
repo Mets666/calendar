@@ -13,8 +13,12 @@ Note:
 -push notifications or mail
 
 Write about:
--weather api + caching
--statistics
+- weather api + caching
+- statistics
 - OOP
 - Doctrine + query builder
+
+TODO: 
+- add project option to add/edit event
+- create twig for projects with graphs
 

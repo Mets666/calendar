@@ -1,0 +1,40 @@
+<div id="addProjectContent" title="New project" style="display:none;">
+    {{ form_start(add_project_form) }}
+
+    <div class="form-group">
+        {{ form_label(add_project_form.title) }}
+        {{ form_errors(add_project_form.title) }}
+        {{ form_widget(add_project_form.title) }}
+    </div>
+
+    <div class="form-group">
+        <div>
+            {{ form_label(add_project_form.acronym) }}
+            {{ form_errors(add_project_form.acronym) }}
+            {{ form_widget(add_project_form.acronym) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            {{ form_label(add_project_form.timeLimit) }}
+            {{ form_errors(add_project_form.timeLimit) }}
+            {{ form_widget(add_project_form.timeLimit) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            {{ form_label(add_project_form.description) }}
+            {{ form_errors(add_project_form.description) }}
+            {{ form_widget(add_project_form.description) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            {{ form_widget(add_project_form.add, { 'label': 'Save' }) }}
+        </div>
+    </div>
+    {{ form_end(add_project_form) }}
+</div>

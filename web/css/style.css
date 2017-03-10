@@ -89,7 +89,7 @@ h3{
     font-weight: bold;
 }
 
-
+/**********************************************************************************************************************/
 /***Main page layout***/
 
 .header-wrapper{
@@ -134,6 +134,7 @@ h3{
     /*background-color: #1b6d85;*/
 }
 
+/**********************************************************************************************************************/
 /*FLASH MESSAGES*/
 
 .flash-success {
@@ -174,12 +175,13 @@ h3{
     border-radius: 4px;
 }
 
-/*LIST MENU*/
-.list-menu{
+/**********************************************************************************************************************/
+/*SIDE MENU*/
+.side-menu{
     /*overflow: auto;*/
 }
 
-.list-menu-item{
+.side-menu-item{
     border: solid 1px #CCCCCC;
     border-radius: 15px;
     margin: 2px 5px;
@@ -187,11 +189,11 @@ h3{
     background: #faf2cc;
 }
 
-.list-menu-item a{
+.side-menu-item a{
     text-decoration: none !important;
 }
 
-.list-menu-item:hover{
+.side-menu-item:hover{
     background: #FFCF90;
     background: -webkit-linear-gradient(left, #FFCF90 60%, #faf2cc); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Opera 11.1 to 12.0 */
@@ -199,7 +201,7 @@ h3{
     background: linear-gradient(to right, #FFCF90 60%, #faf2cc); /* Standard syntax */
 }
 
-.list-menu-item-selected{
+.side-menu-item-selected{
     background: #FFCF90;
     background: -webkit-linear-gradient(left, #FFCF90 60%, #faf2cc); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Opera 11.1 to 12.0 */
@@ -207,21 +209,30 @@ h3{
     background: linear-gradient(to right, #FFCF90 60%, #faf2cc); /* Standard syntax */
 }
 
-.list-menu-item-title{
+.side-menu-item-title{
     font-size: 10pt;
     color: #555;
 }
 
-.list-menu-item-delete-link{
+.side-menu-item-delete-link{
     font-size: 14px;
     vertical-align: middle;
 }
 
-#list-menu-add-new{
+.side-menu-add-new{
     padding: 8px 5px;
 }
 
+/**********************************************************************************************************************/
+/*TIME LOG*/
+
+.openEditCategoryModal:focus{
+    outline: none;
+}
+
+/**********************************************************************************************************************/
 /*LIST*/
+
 .list{}
 
 #text-list-description{
@@ -249,9 +260,7 @@ h3{
 }
 
 .list-item{
-    /*border: solid 1px black;*/
     border-radius: 20px;
-    /*background-color: #ffffcc;*/
     padding: 3px 10px 3px 10px;
     margin-bottom: 5px;
     background: #FFCF90; /* For browsers that do not support gradients */
@@ -266,7 +275,6 @@ h3{
     -moz-transform: scale(2.3); /* FF */
     -webkit-transform: scale(2.3); /* Safari and Chrome */
     -o-transform: scale(2.2); /* Opera */
-    /*float: right;*/
     margin: 10px !important;
     vertical-align: middle;
 }
@@ -290,40 +298,10 @@ h3{
     font-size: 28px;
 }
 
-/*CATEGORY*/
+/**********************************************************************************************************************/
+/*PROJECT*/
 
-.category-menu{
+.project{
 
 }
-
-.category-menu-item{
-    border: solid 1px #CCCCCC;
-    border-radius: 15px;
-    margin: 2px 5px;
-    padding: 4px 10px 3px 10px;
-    background: #faf2cc;
-}
-
-.category-menu-item:hover{
-    background: #FFCF90;
-    background: -webkit-linear-gradient(left, #FFCF90 60%, #faf2cc); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #FFCF90 60%, #faf2cc); /* Standard syntax */
-}
-
-.openEditCategoryModal:focus{
-    outline: none;
-}
-
-.category-menu-item-title{
-    font-size: 10pt;
-    color: #555;
-}
-
-#category-menu-add-new{
-    padding: 8px 5px;
-}
-
-
 

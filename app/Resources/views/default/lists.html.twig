@@ -16,20 +16,20 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <div class="list-menu">
+                <div class="side-menu">
                 {% if todo_lists is not empty %}
                     {% for list in todo_lists %}
-                        <div class="list-menu-item {% if list.id == selected_list.id %} list-menu-item-selected {% endif %}" title="{{ list.title }}">
+                        <div class="side-menu-item {% if list.id == selected_list.id %} side-menu-item-selected {% endif %}" title="{{ list.title }}">
                             <div class="row">
                                 <a href="{{ path('lists', { 'listId' : list.id }) }}">
                                     <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
-                                        <div class="list-menu-item-title">
+                                        <div class="side-menu-item-title">
                                             <b>{{ list.title|length > 35 ? list.title|slice(0, 35) ~ '...' : list.title  }}</b>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="col-md-1 col-sm-1" style="padding-left: 0px;">
-                                    <div class="list-menu-item-delete-link">
+                                    <div class="side-menu-item-delete-link">
                                         <a href="{{ path('delete_todo_list', { 'listId' : list.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12">
-                <div id="list-menu-add-new">
+                <div class="side-menu-add-new">
                     <a href="#" id="openAddListModal" class="btn btn-sm btn-primary width100p">Add new</a>
                 </div>
             </div>
@@ -138,7 +138,7 @@
     </div>
 </div>
 
-    {#Modal window - add lsit #}
+    {#Modal window - add list #}
     {% include 'modal/modalListAdd.html.twig' %}
 
     <script type="application/javascript">
@@ -184,15 +184,11 @@
 
         function addTagFormDeleteLink($tagFormLi) {
             var $removeFormA = $('<a href="#" title="Delete this list item"><span class="glyphicon glyphicon-remove"></span></a>');
-//            $tagFormLi.append($removeFormA);
             var $delteLinktag = $tagFormLi.find('div.delete-list-item-link');
             $delteLinktag.append($removeFormA);
 
             $removeFormA.on('click', function(e) {
-                // prevent the link from creating a "#" on the URL
                 e.preventDefault();
-
-                // remove the li for the tag form
                 if(confirm('Are you sure?')) {
                     $tagFormLi.remove();
                 }

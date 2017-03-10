@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-sm-3">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <h3>Projects:</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="side-menu">
+                    {% if projects is not empty %}
+                        {% for project in projects %}
+                            <div class="side-menu-item {% if project.id == selected_project.id %} side-menu-item-selected {% endif %}" title="{{ project.title }}">
+                                <div class="row">
+                                    <a href="{{ path('projects', { 'projectId' : project.id }) }}">
+                                        <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
+                                            <div class="side-menu-item-title">
+                                                <b>{{ project.title|length > 35 ? project.title|slice(0, 35) ~ '...' : project.title  }}</b>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="col-md-1 col-sm-1" style="padding-left: 0px;">
+                                        <div class="side-menu-item-delete-link">
+                                            <a href="{{ path('delete_project', { 'projectId' : project.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="side-menu-add-new">
+                    <a href="#" id="openAddProjectModal" class="btn btn-sm btn-primary width100p">Add new</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-9 col-sm-9">
+        {% include 'flashMessages.html.twig' %}
+        {% if selected_project is empty %}
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="no-data-message">
+                        <i>There is no project to display! Please add some first.</i>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+        {% endif %}
+    </div>
+</div>
+
+{#Modal window - add project #}
+    {% include 'modal/modalProjectAdd.html.twig' %}
+
+
+{% endblock %}

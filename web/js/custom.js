@@ -35,6 +35,13 @@ $(document).ready(function () {
         return false;
     });
 
+    $('#addProjectContent').dialog({modal: true, autoOpen: false, title: 'Add new project', width: 400, position: {at: 'top'}});
+
+    $('#openAddProjectModal').click(function () {
+        $('#addProjectContent').dialog('open');
+        return false;
+    });
+
 });
 
 function editCalendarEvent() {

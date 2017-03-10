@@ -4,9 +4,9 @@
 namespace AppBundle\Form;
 
 
-use AppBundle\Entity\CalendarEvent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,7 +24,12 @@ class ProjectType extends AbstractType
                 )
             )
             ->add('acronym', TextType::class, array(
-                    'label' => 'Acronym (used to event identification):',
+                    'label' => 'Acronym (used as prefix for project events):',
+                    'attr' => array('class' => 'form-control')
+                )
+            )
+            ->add('timeLimit', IntegerType::class, array(
+                    'label' => 'Time assigned to project (in hours):',
                     'attr' => array('class' => 'form-control')
                 )
             )

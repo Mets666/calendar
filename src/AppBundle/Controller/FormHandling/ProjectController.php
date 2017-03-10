@@ -38,6 +38,10 @@ class ProjectController extends Controller
                         'Unable to create project!'
                     );
                 }
+                $this->addFlash(
+                    'success',
+                    'Project successfully added!'
+                );
                 return $this->redirectToRoute('projects');
             }
             else {
@@ -121,7 +125,7 @@ class ProjectController extends Controller
         try {
             /** @var \AppBundle\Entity\TodoList $list */
             $project = $projectRepository->get($projectId);
-            if($list->getUser() === $user) {
+            if($project->getUser() === $user) {
                 $projectRepository->remove($project);
                 $projectRepository->save();
             }
@@ -133,7 +137,7 @@ class ProjectController extends Controller
                 'error',
                 'Unable to delete project!'
             );
-            return $this->redirectToRoute('lists');
+            return $this->redirectToRoute('projects');
         }
         $this->addFlash(
             'success',

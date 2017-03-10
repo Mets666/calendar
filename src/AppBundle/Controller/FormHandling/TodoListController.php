@@ -41,6 +41,10 @@ class TodoListController extends Controller
                         'Unable to create To-Do list!'
                     );
                 }
+                $this->addFlash(
+                    'success',
+                    'To-Do list successfully added!'
+                );
                 return $this->redirectToRoute('lists');
             }
             else {
