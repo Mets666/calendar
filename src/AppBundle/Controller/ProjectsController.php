@@ -18,6 +18,7 @@ class ProjectsController extends DefaultController
         /** @var \AppBundle\Entity\User $user */
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+
         /** @var \AppBundle\Entity\Project[] $projects */
         $projects = $user->getProjects();
 
@@ -40,6 +41,7 @@ class ProjectsController extends DefaultController
             'action' => $this->generateUrl('add_project')
         ));
         $addProjectForm->remove('id');
+        $addProjectForm->remove('calendarEvents');
 
         $editProjectForm = $this->createForm(ProjectType::class, $selectedProject, array(
             'action' => $this->generateUrl('edit_project')

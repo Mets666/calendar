@@ -16,11 +16,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
-/**
- * @property \AppBundle\Entity\User user
- */
+
 class CalendarEventType extends AbstractType
 {
+
+    private $user;
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -53,6 +53,23 @@ class CalendarEventType extends AbstractType
                     'attr' => array(
                         'class' => 'form-control input-sm',
                     )
+                )
+            )
+            ->add('project', EntityType::class, array(
+                    'class' => 'AppBundle:Project',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('project')
+                            ->where('project.user = :userId')
+                            ->setParameter('userId', $this->user->getId())
+                            ->orderBy('project.title', 'ASC');
+                    },
+                    'choice_label' => 'title',
+                    'choice_value' => 'id',
+                    'required' => false,
+                    'placeholder' => 'None',
+                    'empty_data' => null,
+                    'label' => 'Project:',
+                    'attr' => array('class' => 'form-control input-sm')
                 )
             )
             ->add('category', EntityType::class, array(

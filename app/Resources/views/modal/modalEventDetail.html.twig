@@ -22,6 +22,18 @@
         </div>
 
         <div class="form-group">
+            <label>Project:</label>
+            <div id="text-eventProject">
+
+            </div>
+            <div id="form-eventProject" class="collapse">
+                {#{{ form_label(edit_calendar_event_form.project) }}#}
+                {{ form_errors(edit_calendar_event_form.project) }}
+                {{ form_widget(edit_calendar_event_form.project, {'attr': {'class': 'form-control input-eventProject'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
             <label>Category:</label>
             <div id="text-eventCategory">
 

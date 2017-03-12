@@ -59,47 +59,47 @@
                 </div>
             {% else %}
                 {{ form_start(edit_project_form) }}
-                {{ form_widget(edit_project_form.id, {'value': selected_list.id}) }}
+                {{ form_widget(edit_project_form.id, {'value': selected_project.id}) }}
                 <div class="row">
                     <div class="col-md-10 col-sm-10 form-group">
-                        <div id="text-list-title">
-                            <h3>{{ selected_project.acronym }}</h3>
+                        <div id="text-project-title">
+                            <h3>{{ selected_project.title }}</h3>
                         </div>
-                        <div id="form-list-title" class="collapse">
-                            {{ form_label(edit_project_form.acronym) }}
-                            {{ form_errors(edit_project_form.acronym) }}
-                            {{ form_widget(edit_project_form.acronym, {'value': selected_list.title}) }}
+                        <div id="form-project-title" class="collapse">
+                            {{ form_label(edit_project_form.title) }}
+                            {{ form_errors(edit_project_form.title) }}
+                            {{ form_widget(edit_project_form.title) }}
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 form-group">
-                        <div id="text-list-edit" style="float: right">
+                        <div id="text-project-edit" style="float: right">
                             <div class="spacer20"></div>
                             <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editTodoList()">
                         </div>
-                        <div id="form-list-save" class="collapse" style="float: right">
+                        <div id="form-project-save" class="collapse" style="float: right">
                             <div class="spacer25"></div>
                             {{ form_widget(edit_project_form.add, {'label': 'Save'}) }}
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 form-group">
-                        <div id="text-list-description">
-                            <p>{{ selected_project.title }}</p>
+                    <div class="col-md-6 col-sm-6 form-group">
+                        <div id="text-project-acronym">
+                            <label>Arconym:</label>
+                            <h4>{{ selected_project.acronym }}</h4>
                         </div>
-                        <div id="form-list-description" class="collapse">
-                            {{ form_label(edit_project_form.title) }}
-                            {{ form_errors(edit_project_form.title) }}
-                            {{ form_widget(edit_project_form.title) }}
+                        <div id="form-project-acronym" class="collapse">
+                            {{ form_label(edit_project_form.acronym) }}
+                            {{ form_errors(edit_project_form.acronym) }}
+                            {{ form_widget(edit_project_form.acronym) }}
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 form-group">
-                        <div id="text-list-description">
-                            <p>{{ selected_project.timeLimit }}</p>
+                    <div class="col-md-6 col-sm-6 form-group">
+                        <div id="text-project-limit">
+                            <label>Time assigned to project (in hours):</label>
+                            <h4>{{ selected_project.timeLimit }}</h4>
                         </div>
-                        <div id="form-list-description" class="collapse">
+                        <div id="form-project-limit" class="collapse">
                             {{ form_label(edit_project_form.timeLimit) }}
                             {{ form_errors(edit_project_form.timeLimit) }}
                             {{ form_widget(edit_project_form.timeLimit) }}
@@ -108,14 +108,22 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 form-group">
-                        <div id="text-list-description">
+                        <div id="text-project-description">
+                            <label>Description:</label>
                             <p>{{ selected_project.description }}</p>
                         </div>
-                        <div id="form-list-description" class="collapse">
+                        <div id="form-project-description" class="collapse">
                             {{ form_label(edit_project_form.description) }}
                             {{ form_errors(edit_project_form.description) }}
                             {{ form_widget(edit_project_form.description) }}
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 form-group">
+                        {% for event in selected_project.calendarEvents %}
+                            {{ event.title }}
+                        {% endfor %}
                     </div>
                 </div>
                 {{ form_end(edit_project_form) }}

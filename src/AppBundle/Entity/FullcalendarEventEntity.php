@@ -24,7 +24,12 @@ class FullcalendarEventEntity extends EventEntity
     protected $note;
 
     /**
-     * @var object AppBundle\Entity\EvnetCategory object Relative to calendar event.
+     * @var object AppBundle\Entity\Project Project where this event belong.
+     */
+    protected $project;
+
+    /**
+     * @var object AppBundle\Entity\EventCategory object Relative to calendar event.
      */
     protected $category;
 
@@ -95,11 +100,19 @@ class FullcalendarEventEntity extends EventEntity
         }
 
         $event['title'] = $this->title;
+        $event['defaultTitle'] = $this->title;
         $event['note'] = $this->note;
         $event['start'] = $this->startDatetime->format("Y-m-d\TH:i:sP");
 
         if ($this->url !== null) {
             $event['url'] = $this->url;
+        }
+
+        if ($this->project !== null) {
+            $event['project']['id'] = $this->project->getId();
+            $event['project']['title'] = $this->project->getTitle();
+            $event['project']['acronym'] = $this->project->getAcronym();
+            $event['title'] = '['.$this->project->getAcronym().'] '.$this->title;
         }
 
         if ($this->category !== null) {
@@ -162,6 +175,16 @@ class FullcalendarEventEntity extends EventEntity
     public function getNote()
     {
         return $this->note;
+    }
+
+    public function setProject($project)
+    {
+        $this->project = $project;
+    }
+
+    public function getProject()
+    {
+        return $this->project;
     }
 
     public function setCategory($category)

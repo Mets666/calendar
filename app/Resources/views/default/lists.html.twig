@@ -70,7 +70,7 @@
                     <div id="form-list-title" class="collapse">
                         {{ form_label(edit_todo_list_form.title) }}
                         {{ form_errors(edit_todo_list_form.title) }}
-                        {{ form_widget(edit_todo_list_form.title, {'value': selected_list.title}) }}
+                        {{ form_widget(edit_todo_list_form.title) }}
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2 form-group">
@@ -104,12 +104,16 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="list-items-counter">
                         {% set done_count = 0 %}
-                        {% for item in selected_list.items %}
-                            {% if item.done %}
-                                {% set done_count = done_count + 1%}
-                            {% endif %}
-                        {% endfor %}
-                        {% set percentage = done_count/selected_list.items|length*100 %}
+                        {% if selected_list.items is not empty %}
+                            {% for item in selected_list.items %}
+                                {% if item.done %}
+                                    {% set done_count = done_count + 1%}
+                                {% endif %}
+                            {% endfor %}
+                            {% set percentage = done_count/selected_list.items|length*100 %}
+                        {% else %}
+                            {% set percentage = 0 %}
+                        {% endif %}
                         <span class="list-items-counter-ratio">{{ done_count }}/{{ selected_list.items|length }}</span>
                         <span class="list-items-counter-percentage {% if percentage > 75 %}text-success{% elseif percentage < 25 %}text-danger{% endif %} ">({{ percentage|round(2) }}%)</span>
                     </div>
@@ -118,7 +122,6 @@
 
             <div class="row">
                 <div class="col-md-12 col-sm-12" >
-
                     <div class="line1px" style="border-color: #CCCCCC"></div>
                     <div class="spacer5"></div>
                     {#{{ form_label(edit_todo_list_form.items) }}#}

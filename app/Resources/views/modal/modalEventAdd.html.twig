@@ -18,6 +18,14 @@
 
     <div class="form-group">
         <div>
+            {{ form_label(calendar_event_form.project) }}
+            {{ form_errors(calendar_event_form.project) }}
+            {{ form_widget(calendar_event_form.project, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
             {{ form_label(calendar_event_form.category) }}
             {{ form_errors(calendar_event_form.category) }}
             {{ form_widget(calendar_event_form.category, {'attr': {'class': 'form-control'}}) }}

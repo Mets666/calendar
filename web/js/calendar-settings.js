@@ -19,10 +19,19 @@ $(function () {
 
                 $(".input-eventId").val(event.id);
 
-                $(".input-eventTitle").val(event.title);
+                $(".input-eventTitle").val(event.defaultTitle);
 
                 $("#text-eventNote").html(event.note);
                 $(".input-eventNote").val(event.note);
+
+                if(event.project){
+                    $("#text-eventProject").html(event.project.title);
+                    $(".input-eventProject").val(event.project.id);
+                }
+                else {
+                    $("#text-eventProject").html("None");
+                }
+
 
                 if(event.category){
                     $("#text-eventCategory").html(event.category.title);
@@ -39,12 +48,13 @@ $(function () {
                 $(".input-eventEndTime").val(moment(event.end).format('YYYY-MM-DD HH:mm'));
 
 
-
                 $("#eventLink").attr('href', event.url);
-                $("#eventContent").dialog({ modal: true, title: event.title, width:400, position: {at: 'top'}});
                 $("#eventDeleteLink").attr('href',
                     Routing.generate('delete_event', {'eventId': event.id})
                 );
+
+                $("#eventContent").dialog({modal: true, title: event.title, width: 400, position: {at: 'top'}});
+
             });
             var filter = $('#filter_selector').val();
 

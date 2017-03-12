@@ -48,6 +48,7 @@ function editCalendarEvent() {
     document.getElementById("form-event-edit").classList.add("collapse");
 
     document.getElementById("text-eventNote").classList.add("collapse");
+    document.getElementById("text-eventProject").classList.add("collapse");
     document.getElementById("text-eventCategory").classList.add("collapse");
     document.getElementById("text-eventStartTime").classList.add("collapse");
     document.getElementById("text-eventEndTime").classList.add("collapse");
@@ -57,6 +58,7 @@ function editCalendarEvent() {
 
     document.getElementById("form-eventTitle").classList.remove("collapse");
     document.getElementById("form-eventNote").classList.remove("collapse");
+    document.getElementById("form-eventProject").classList.remove("collapse");
     document.getElementById("form-eventCategory").classList.remove("collapse");
     document.getElementById("form-eventStartTime").classList.remove("collapse");
     document.getElementById("form-eventEndTime").classList.remove("collapse");
@@ -67,6 +69,7 @@ function revertEditCalendarEvent() {
     document.getElementById("form-event-edit").classList.remove("collapse");
 
     document.getElementById("text-eventNote").classList.remove("collapse");
+    document.getElementById("text-eventProject").classList.remove("collapse");
     document.getElementById("text-eventCategory").classList.remove("collapse");
     document.getElementById("text-eventStartTime").classList.remove("collapse");
     document.getElementById("text-eventEndTime").classList.remove("collapse");
@@ -76,6 +79,7 @@ function revertEditCalendarEvent() {
 
     document.getElementById("form-eventTitle").classList.add("collapse");
     document.getElementById("form-eventNote").classList.add("collapse");
+    document.getElementById("form-eventProject").classList.add("collapse");
     document.getElementById("form-eventCategory").classList.add("collapse");
     document.getElementById("form-eventStartTime").classList.add("collapse");
     document.getElementById("form-eventEndTime").classList.add("collapse");

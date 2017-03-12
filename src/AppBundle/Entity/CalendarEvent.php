@@ -227,11 +227,11 @@ class CalendarEvent
     /**
      * Set project
      *
-     * @param \AppBundle\Entity\EventCategory $project
+     * @param \AppBundle\Entity\Project $project
      *
      * @return CalendarEvent
      */
-    public function setProject(\AppBundle\Entity\EventCategory $project = null)
+    public function setProject(\AppBundle\Entity\Project $project = null)
     {
         $this->project = $project;
 
@@ -241,7 +241,7 @@ class CalendarEvent
     /**
      * Get project
      *
-     * @return \AppBundle\Entity\EventCategory
+     * @return \AppBundle\Entity\Project
      */
     public function getProject()
     {
