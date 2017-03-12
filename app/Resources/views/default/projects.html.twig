@@ -3,66 +3,127 @@
 
 {% block content %}
 
-<div class="row">
-    <div class="col-md-3 col-sm-3">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <h3>Projects:</h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h3>Projects:</h3>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="side-menu">
-                    {% if projects is not empty %}
-                        {% for project in projects %}
-                            <div class="side-menu-item {% if project.id == selected_project.id %} side-menu-item-selected {% endif %}" title="{{ project.title }}">
-                                <div class="row">
-                                    <a href="{{ path('projects', { 'projectId' : project.id }) }}">
-                                        <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
-                                            <div class="side-menu-item-title">
-                                                <b>{{ project.title|length > 35 ? project.title|slice(0, 35) ~ '...' : project.title  }}</b>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="side-menu">
+                        {% if projects is not empty %}
+                            {% for project in projects %}
+                                <div class="side-menu-item {% if project.id == selected_project.id %} side-menu-item-selected {% endif %}" title="{{ project.title }}">
+                                    <div class="row">
+                                        <a href="{{ path('projects', { 'projectId' : project.id }) }}">
+                                            <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
+                                                <div class="side-menu-item-title">
+                                                    <b>{{ project.title|length > 35 ? project.title|slice(0, 35) ~ '...' : project.title  }}</b>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                    <div class="col-md-1 col-sm-1" style="padding-left: 0px;">
-                                        <div class="side-menu-item-delete-link">
-                                            <a href="{{ path('delete_project', { 'projectId' : project.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </a>
+                                        <div class="col-md-1 col-sm-1" style="padding-left: 0px;">
+                                            <div class="side-menu-item-delete-link">
+                                                <a href="{{ path('delete_project', { 'projectId' : project.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="side-menu-add-new">
-                    <a href="#" id="openAddProjectModal" class="btn btn-sm btn-primary width100p">Add new</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-md-9 col-sm-9">
-        {% include 'flashMessages.html.twig' %}
-        {% if selected_project is empty %}
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="no-data-message">
-                        <i>There is no project to display! Please add some first.</i>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        {% else %}
-        {% endif %}
-    </div>
-</div>
 
-{#Modal window - add project #}
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="side-menu-add-new">
+                        <a href="#" id="openAddProjectModal" class="btn btn-sm btn-primary width100p">Add new</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-9 col-sm-9">
+            {% include 'flashMessages.html.twig' %}
+            {% if selected_project is empty %}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="no-data-message">
+                            <i>There is no project to display! Please add some first.</i>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {{ form_start(edit_project_form) }}
+                {{ form_widget(edit_project_form.id, {'value': selected_list.id}) }}
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 form-group">
+                        <div id="text-list-title">
+                            <h3>{{ selected_project.acronym }}</h3>
+                        </div>
+                        <div id="form-list-title" class="collapse">
+                            {{ form_label(edit_project_form.acronym) }}
+                            {{ form_errors(edit_project_form.acronym) }}
+                            {{ form_widget(edit_project_form.acronym, {'value': selected_list.title}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 form-group">
+                        <div id="text-list-edit" style="float: right">
+                            <div class="spacer20"></div>
+                            <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editTodoList()">
+                        </div>
+                        <div id="form-list-save" class="collapse" style="float: right">
+                            <div class="spacer25"></div>
+                            {{ form_widget(edit_project_form.add, {'label': 'Save'}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 form-group">
+                        <div id="text-list-description">
+                            <p>{{ selected_project.title }}</p>
+                        </div>
+                        <div id="form-list-description" class="collapse">
+                            {{ form_label(edit_project_form.title) }}
+                            {{ form_errors(edit_project_form.title) }}
+                            {{ form_widget(edit_project_form.title) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 form-group">
+                        <div id="text-list-description">
+                            <p>{{ selected_project.timeLimit }}</p>
+                        </div>
+                        <div id="form-list-description" class="collapse">
+                            {{ form_label(edit_project_form.timeLimit) }}
+                            {{ form_errors(edit_project_form.timeLimit) }}
+                            {{ form_widget(edit_project_form.timeLimit) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 form-group">
+                        <div id="text-list-description">
+                            <p>{{ selected_project.description }}</p>
+                        </div>
+                        <div id="form-list-description" class="collapse">
+                            {{ form_label(edit_project_form.description) }}
+                            {{ form_errors(edit_project_form.description) }}
+                            {{ form_widget(edit_project_form.description) }}
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(edit_project_form) }}
+            {% endif %}
+        </div>
+    </div>
+
+    {#Modal window - add project #}
     {% include 'modal/modalProjectAdd.html.twig' %}
 
 
