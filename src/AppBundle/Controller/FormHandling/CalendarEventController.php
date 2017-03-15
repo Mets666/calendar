@@ -72,8 +72,6 @@ class CalendarEventController extends Controller
 
         $formData = $request->request->get('calendar_event');
 
-//        dump($formData); die;
-
         $event = $calendarEventRepository->get($formData['id']);
 
         $editCalendarEventForm = $this->createForm(CalendarEventType::class, $event, array(
@@ -81,8 +79,6 @@ class CalendarEventController extends Controller
         ));
 
         $editCalendarEventForm->handleRequest($request);
-
-        dump($event); die;
 
         if ($editCalendarEventForm->isSubmitted()) {
             if($editCalendarEventForm->isValid()){

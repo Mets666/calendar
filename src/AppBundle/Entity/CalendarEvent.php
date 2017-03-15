@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="calendar_event")
  * @ORM\Entity
  */
-class CalendarEvent
+class CalendarEvent implements \JsonSerializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -23,6 +23,9 @@ class CalendarEvent
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
      *     message="Title must be filled."
+     * )
+     * @Assert\Length(max=255,
+     *     maxMessage="Title is too long."
      * )
      */
     private $title;
@@ -57,6 +60,9 @@ class CalendarEvent
 
     /**
      * @ORM\Column(type="string", length=1000, nullable=true)
+     * @Assert\Length(max=1000,
+     *     maxMessage="Note is too long."
+     * )
      */
     private $note;
 
@@ -246,5 +252,27 @@ class CalendarEvent
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'note' => $this->getNote(),
+            'start' => $this->getStartDate()->format('D M d Y H:i:s O'),
+            'end'   => $this->getEndDate()->format("Y-m-d H:i:sP"),
+            'project' => $this->getProject()->jsonSerialize(),
+            'category' => $this->getCategory()->jsonSerialize(),
+            'user' => $this->getUser()->getId(),
+            'mainTitle' => (empty($this->getProject())) ? $this->getTitle() : '['.$this->getProject()->getAcronym().'] '.$this->getTitle(),
+        ];
     }
 }

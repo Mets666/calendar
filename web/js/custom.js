@@ -41,7 +41,7 @@ $(document).ready(function () {
         $('#addProjectContent').dialog('open');
         return false;
     });
-
+    
 });
 
 function editCalendarEvent() {
@@ -111,5 +111,79 @@ function editTodoList() {
     document.getElementById("form-list-title").classList.remove("collapse");
     document.getElementById("form-list-description").classList.remove("collapse");
     document.getElementById("form-add-item").classList.remove("collapse");
+}
+
+function editProject() {
+    document.getElementById("text-project-edit").classList.add("collapse");
+
+    document.getElementById("text-project-title").classList.add("collapse");
+    document.getElementById("text-project-acronym").classList.add("collapse");
+    document.getElementById("text-project-limit").classList.add("collapse");
+    document.getElementById("text-project-description").classList.add("collapse");
+
+
+    document.getElementById("form-project-save").classList.remove("collapse");
+
+
+    document.getElementById("form-project-title").classList.remove("collapse");
+    document.getElementById("form-project-acronym").classList.remove("collapse");
+    document.getElementById("form-project-limit").classList.remove("collapse");
+    document.getElementById("form-project-description").classList.remove("collapse");
+
+}
+
+function openEditEventModal(event, editable) {
+
+    editable = editable || false;
+
+    console.log(event);
+
+    if(editable){
+        editCalendarEvent();
+    }
+    else {
+        revertEditCalendarEvent();
+    }
+
+    $(".input-eventId").val(event.id);
+
+    $(".input-eventTitle").val(event.title);
+
+    $("#text-eventNote").html(event.note);
+    $(".input-eventNote").val(event.note);
+
+    if(event.project){
+        $("#text-eventProject").html(event.project.title);
+        $(".input-eventProject").val(event.project.id);
+    }
+    else {
+        $("#text-eventProject").html("None");
+    }
+
+    if(event.category){
+        $("#text-eventCategory").html(event.category.title);
+        $(".input-eventCategory").val(event.category.id);
+    }
+    else {
+        $("#text-eventCategory").html("None");
+    }
+
+    $("#text-eventStartTime").html(moment(event.start).format('MMM Do hh:mm A'));
+    $(".input-eventStartTime").val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+
+    $("#text-eventEndTime").html(moment(event.end).format('MMM Do hh:mm A'));
+    $(".input-eventEndTime").val(moment(event.end).format('YYYY-MM-DD HH:mm'));
+
+    $("#eventDeleteLink").attr('href',
+        Routing.generate('delete_event', {'eventId': event.id})
+    );
+
+    if(event.mainTitle)    {
+        $('#eventContent').dialog({modal: true, title: event.mainTitle, width: 400, position: {at: 'top'}});
+    }
+    else {
+        $('#eventContent').dialog({modal: true, title: event.title, width: 400, position: {at: 'top'}});
+    }
+    return false;
 }
 

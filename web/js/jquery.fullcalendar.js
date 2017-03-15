@@ -3399,7 +3399,7 @@
                 if (!event.allDay && seg.isStart) {
                     html += "<span class='fc-event-time'>" + htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) + "</span>"
                 }
-                html += "<span class='fc-event-title'>" + htmlEscape(event.title) + "</span>" + "</div>";
+                html += "<span class='fc-event-title'>" + htmlEscape(event.mainTitle) + "</span>" + "</div>";
                 if (seg.isEnd && isEventResizable(event)) {
                     html += "<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'>" + "&nbsp;&nbsp;&nbsp;" + "</div>"
                 }

@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="project")
  * @ORM\Entity
  */
-class Project
+class Project implements \JsonSerializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -224,5 +224,24 @@ class Project
     public function getAcronym()
     {
         return $this->acronym;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'acronym' => $this->getAcronym(),
+            'description' => $this->getDescription(),
+            'timeLimit' => $this->getTimeLimit(),
+            'user' => $this->getUser()->getId()
+        ];
     }
 }

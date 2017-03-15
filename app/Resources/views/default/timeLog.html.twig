@@ -73,13 +73,13 @@
                     {{ form_end(daterange_form) }}
 
                     {% for spend_by_category in spend_time %}
-                    {% if spend_by_category.id %}
-                    <label>{{ spend_by_category.title }}</label>
-                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
-                    {% else %}
-                    <label>Without category</label>
-                    <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
-                    {% endif %}
+                        {% if spend_by_category.id %}
+                        <label>{{ spend_by_category.title }}</label>
+                        <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                        {% else %}
+                        <label>Without category</label>
+                        <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
 

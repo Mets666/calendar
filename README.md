@@ -21,4 +21,6 @@ Write about:
 TODO: 
 - add project option to add/edit event
 - create twig for projects with graphs
+- dates in projects are shifted by 1 hour -> bad format from calendar event entity NEEDS FIX!
+- category modals need same rework as calendar event modals
 

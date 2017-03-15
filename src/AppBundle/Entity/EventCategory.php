@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="event_category")
  * @ORM\Entity
  */
-class EventCategory
+class EventCategory implements \JsonSerializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -40,11 +40,6 @@ class EventCategory
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="category", fetch="LAZY")
      */
     private $calendarEvents;
-
-    
-
-
-
 
     /**
      * Get id
@@ -167,5 +162,22 @@ class EventCategory
     public function getCalendarEvents()
     {
         return $this->calendarEvents;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'color' => $this->getColor(),
+            'user' => $this->getUser()->getId()
+        ];
     }
 }

@@ -74,7 +74,7 @@
                     <div class="col-md-2 col-sm-2 form-group">
                         <div id="text-project-edit" style="float: right">
                             <div class="spacer20"></div>
-                            <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editTodoList()">
+                            <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editProject()">
                         </div>
                         <div id="form-project-save" class="collapse" style="float: right">
                             <div class="spacer25"></div>
@@ -83,47 +83,70 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 form-group">
-                        <div id="text-project-acronym">
-                            <label>Arconym:</label>
-                            <h4>{{ selected_project.acronym }}</h4>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 form-group">
+                                <div id="text-project-acronym">
+                                    <label>Arconym:</label>
+                                    <p class="sub-label">(used as prefix for project events)</p>
+                                    <h4>{{ selected_project.acronym }}</h4>
+                                </div>
+                                <div id="form-project-acronym" class="collapse">
+                                    {{ form_label(edit_project_form.acronym) }}
+                                    <p class="sub-label">(used as prefix for project events)</p>
+                                    {{ form_errors(edit_project_form.acronym) }}
+                                    {{ form_widget(edit_project_form.acronym) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 form-group">
+                                <div id="text-project-limit">
+                                    <label>Time assigned to project:</label>
+                                    <p class="sub-label">(in hours)</p>
+                                    <h4>{{ selected_project.timeLimit }}</h4>
+                                </div>
+                                <div id="form-project-limit" class="collapse">
+                                    {{ form_label(edit_project_form.timeLimit) }}
+                                    <p class="sub-label">(in hours)</p>
+                                    {{ form_errors(edit_project_form.timeLimit) }}
+                                    {{ form_widget(edit_project_form.timeLimit) }}
+                                </div>
+                            </div>
                         </div>
-                        <div id="form-project-acronym" class="collapse">
-                            {{ form_label(edit_project_form.acronym) }}
-                            {{ form_errors(edit_project_form.acronym) }}
-                            {{ form_widget(edit_project_form.acronym) }}
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 form-group">
+                                <div id="text-project-description">
+                                    <label>Description:</label>
+                                    <p>{{ selected_project.description }}</p>
+                                </div>
+                                <div id="form-project-description" class="collapse">
+                                    {{ form_label(edit_project_form.description) }}
+                                    {{ form_errors(edit_project_form.description) }}
+                                    {{ form_widget(edit_project_form.description) }}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 form-group">
-                        <div id="text-project-limit">
-                            <label>Time assigned to project (in hours):</label>
-                            <h4>{{ selected_project.timeLimit }}</h4>
-                        </div>
-                        <div id="form-project-limit" class="collapse">
-                            {{ form_label(edit_project_form.timeLimit) }}
-                            {{ form_errors(edit_project_form.timeLimit) }}
-                            {{ form_widget(edit_project_form.timeLimit) }}
-                        </div>
+                    <div class="col-md-6 col-sm-6">
+                        {% if spend_time %}
+                            <canvas id="projectCategoryChart" width="200" height="200"></canvas>
+                        {% else %}
+                            <div class="no-data-message">
+                                <i>There are no project events to calculate statistics! Please add some first.</i>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 form-group">
-                        <div id="text-project-description">
-                            <label>Description:</label>
-                            <p>{{ selected_project.description }}</p>
+                        <div class="project-events">
+                            {% for event in selected_project.calendarEvents %}
+                                <div class="project-events-item">
+                                    <a href="#" onclick="openEditEventModal({{ event|json_encode }}, true)">
+                                        {{ event.title }}
+                                    </a>
+                                </div>
+                            {% endfor %}
                         </div>
-                        <div id="form-project-description" class="collapse">
-                            {{ form_label(edit_project_form.description) }}
-                            {{ form_errors(edit_project_form.description) }}
-                            {{ form_widget(edit_project_form.description) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 form-group">
-                        {% for event in selected_project.calendarEvents %}
-                            {{ event.title }}
-                        {% endfor %}
                     </div>
                 </div>
                 {{ form_end(edit_project_form) }}
@@ -134,5 +157,77 @@
     {#Modal window - add project #}
     {% include 'modal/modalProjectAdd.html.twig' %}
 
+    {#Modal window - event creation #}
+    {% include 'modal/modalEventAdd.html.twig' %}
+
+    {#Modal window - event detail/edit #}
+    {% include 'modal/modalEventDetail.html.twig' %}
+
+    {#Script and data setting for pie graph#}
+    <script>
+        $(function() {
+            if(document.getElementById("projectCategoryChart")){
+                var ctx = document.getElementById("projectCategoryChart");
+
+                var data = {
+                    labels: [
+                        {% for category in spend_time %}
+                        {% if category.id %}
+                        "{{ category.title }}",
+                        {% else %}
+                        "Without category",
+                        {% endif %}
+                        {% endfor %}
+                    ],
+                    datasets: [
+                        {
+                            data: [
+                                {% for category in spend_time %}
+                                "{{ category.time|round }}",
+                                {% endfor %}
+                            ],
+                            backgroundColor: [
+                                {% for category in spend_time %}
+                                {% if category.id %}
+                                "#{{ category.color }}",
+                                {% else %}
+                                "#BBBBBB",
+                                {% endif %}
+                                {% endfor %}
+                            ],
+                            hoverBackgroundColor: [
+                                {% for category in spend_time %}
+                                {% if category.id %}
+                                "#{{ category.color }}",
+                                {% else %}
+                                "#BBBBBB",
+                                {% endif %}
+                                {% endfor %}
+                            ]
+                        }]
+                };
+
+                var myChart = new Chart(ctx,{
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var cData = data.datasets[tooltipItem.datasetIndex].data;
+                                    var _meta = data.datasets[tooltipItem.datasetIndex]._meta;
+                                    var meta = _meta[Object.keys(_meta)[0]];
+                                    var ttLbl = data.labels[tooltipItem.index];
+                                    var ttData = cData[tooltipItem.index];
+                                    var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
+                                    return ttLbl + ' : ' + Math.floor(ttData/60) + ' hours '+ ttData%60 + ' minutes (' + ttPct + '%)';
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 
 {% endblock %}

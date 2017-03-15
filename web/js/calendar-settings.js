@@ -14,47 +14,7 @@ $(function () {
         eventRender: function eventRender( event, element, view ) {
             element.attr('href', 'javascript:void(0);');
             element.click(function() {
-
-                revertEditCalendarEvent();
-
-                $(".input-eventId").val(event.id);
-
-                $(".input-eventTitle").val(event.defaultTitle);
-
-                $("#text-eventNote").html(event.note);
-                $(".input-eventNote").val(event.note);
-
-                if(event.project){
-                    $("#text-eventProject").html(event.project.title);
-                    $(".input-eventProject").val(event.project.id);
-                }
-                else {
-                    $("#text-eventProject").html("None");
-                }
-
-
-                if(event.category){
-                    $("#text-eventCategory").html(event.category.title);
-                    $(".input-eventCategory").val(event.category.id);
-                }
-                else {
-                    $("#text-eventCategory").html("None");
-                }
-
-                $("#text-eventStartTime").html(moment(event.start).format('MMM Do hh:mm A'));
-                $(".input-eventStartTime").val(moment(event.start).format('YYYY-MM-DD HH:mm'));
-
-                $("#text-eventEndTime").html(moment(event.end).format('MMM Do hh:mm A'));
-                $(".input-eventEndTime").val(moment(event.end).format('YYYY-MM-DD HH:mm'));
-
-
-                $("#eventLink").attr('href', event.url);
-                $("#eventDeleteLink").attr('href',
-                    Routing.generate('delete_event', {'eventId': event.id})
-                );
-
-                $("#eventContent").dialog({modal: true, title: event.title, width: 400, position: {at: 'top'}});
-
+                openEditEventModal(event);
             });
             var filter = $('#filter_selector').val();
 
@@ -71,10 +31,9 @@ $(function () {
 
             $("#addEventContent").dialog({ modal: true, title: 'New event', width:400, position: {at: 'top'}});
         },
-        // lazyFetching: true,
         timeFormat: {
             // for agendaWeek and agendaDay
-            agenda: 'h:mmtt',    // 5:00 - 6:30
+            agenda: 'h:mmtt',
 
             // for all other views
             '': 'h:mmtt'

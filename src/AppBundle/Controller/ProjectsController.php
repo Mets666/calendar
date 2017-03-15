@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Project;
+use AppBundle\Form\CalendarEventType;
 use AppBundle\Form\ProjectType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -15,6 +16,9 @@ class ProjectsController extends DefaultController
      */
     public function projectsAction($projectId)
     {
+        /** @var \AppBundle\Repository\EventCategoryRepository $eventCategoryRepository */
+        $eventCategoryRepository = $this->get('app.event_category.repository');
+
         /** @var \AppBundle\Entity\User $user */
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -47,11 +51,26 @@ class ProjectsController extends DefaultController
             'action' => $this->generateUrl('edit_project')
         ));
 
+        $calendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
+            'action' => $this->generateUrl('add_event'),
+            'user' => $user
+        ));
+
+        $editCalendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
+            'action' => $this->generateUrl('edit_event'),
+            'user' => $user
+        ));
+
+        $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUserAndProject($user->getId(), $selectedProject->getId() );
+
         return $this->render('default/projects.html.twig', array(
             'add_project_form' => $addProjectForm->createView(),
             'edit_project_form' => $editProjectForm->createView(),
+            'calendar_event_form' => $calendarEventForm->createView(),
+            'edit_calendar_event_form' => $editCalendarEventForm->createView(),
             'projects' => $projects,
             'selected_project' => $selectedProject,
+            'spend_time' => $spendTime,
         ));
     }
 }

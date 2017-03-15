@@ -253,3 +253,16 @@
     pointer-events: none;
     opacity: 0.4;
 }
+
+.sub-label{
+    margin-top: -5px;
+    font-size: 8pt;
+}
+
+.vertical-resize{
+    resize: vertical;
+}
+
+.horizontal-resize{
+    resize: horizontal;
+}

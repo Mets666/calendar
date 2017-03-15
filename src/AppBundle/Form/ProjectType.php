@@ -28,18 +28,18 @@ class ProjectType extends AbstractType
                 )
             )
             ->add('acronym', TextType::class, array(
-                    'label' => 'Acronym (used as prefix for project events):',
+                    'label' => 'Acronym:',
                     'attr' => array('class' => 'form-control')
                 )
             )
             ->add('timeLimit', IntegerType::class, array(
-                    'label' => 'Time assigned to project (in hours):',
+                    'label' => 'Time assigned to project:',
                     'attr' => array('class' => 'form-control')
                 )
             )
             ->add('description', TextareaType::class, array(
                     'label' => 'Description:',
-                    'attr' => array('class' => 'form-control', 'rows' => '4')
+                    'attr' => array('class' => 'form-control vertical-resize', 'rows' => '4')
                 )
             )
             ->add('add', SubmitType::class, array(

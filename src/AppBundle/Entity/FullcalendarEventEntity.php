@@ -100,9 +100,9 @@ class FullcalendarEventEntity extends EventEntity
         }
 
         $event['title'] = $this->title;
-        $event['defaultTitle'] = $this->title;
+        $event['mainTitle'] = $this->title;
         $event['note'] = $this->note;
-        $event['start'] = $this->startDatetime->format("Y-m-d\TH:i:sP");
+        $event['start'] = $this->startDatetime->format("Y-m-d H:i:sP");
 
         if ($this->url !== null) {
             $event['url'] = $this->url;
@@ -112,7 +112,7 @@ class FullcalendarEventEntity extends EventEntity
             $event['project']['id'] = $this->project->getId();
             $event['project']['title'] = $this->project->getTitle();
             $event['project']['acronym'] = $this->project->getAcronym();
-            $event['title'] = '['.$this->project->getAcronym().'] '.$this->title;
+            $event['mainTitle'] = '['.$this->project->getAcronym().'] '.$this->title;
         }
 
         if ($this->category !== null) {
@@ -135,7 +135,7 @@ class FullcalendarEventEntity extends EventEntity
         }
 
         if ($this->endDatetime !== null) {
-            $event['end'] = $this->endDatetime->format("Y-m-d\TH:i:sP");
+            $event['end'] = $this->endDatetime->format("Y-m-d H:i:sP");
         }
 
         $event['allDay'] = $this->allDay;

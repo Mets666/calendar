@@ -65,4 +65,18 @@ class EventCategoryRepository extends BasicRepository implements RepositoryInter
                 ->getQuery()->getResult();
         }
     }
+
+    public function getSpendTimeByCategoriesForUserAndProject($userId, $projectId)
+    {
+        return $this->doctrine->getRepository('AppBundle:CalendarEvent')
+            ->createQueryBuilder('events')
+            ->select(array('SUM(TIME_DIFF(events.endDate, events.startDate)) as time' , 'IDENTITY(events.category) as id', 'category.title as title', 'category.color as color'))
+            ->leftjoin('events.category', 'category')
+            ->where('events.user = :userId')
+            ->andWhere('events.project = :projectId')
+            ->groupBy('category')
+            ->setParameter('userId', $userId)
+            ->setParameter('projectId', $projectId)
+            ->getQuery()->getResult();
+    }
 }
