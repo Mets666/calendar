@@ -27,6 +27,7 @@ class ProjectsController extends DefaultController
         $projects = $user->getProjects();
 
         $selectedProject = null;
+        $spendTime = null;
 
         if(!empty($projects)){
             if($projectId == 0) {
@@ -39,6 +40,10 @@ class ProjectsController extends DefaultController
                     }
                 }
             }
+        }
+
+        if($selectedProject != null) {
+            $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUserAndProject($user->getId(), $selectedProject->getId() );
         }
 
         $addProjectForm = $this->createForm(ProjectType::class, new Project(), array(
@@ -60,8 +65,6 @@ class ProjectsController extends DefaultController
             'action' => $this->generateUrl('edit_event'),
             'user' => $user
         ));
-
-        $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUserAndProject($user->getId(), $selectedProject->getId() );
 
         return $this->render('default/projects.html.twig', array(
             'add_project_form' => $addProjectForm->createView(),

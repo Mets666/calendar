@@ -45,6 +45,7 @@ class Project implements \JsonSerializable
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="project", fetch="LAZY")
+     * @ORM\OrderBy({"startDate" = "ASC"})
      */
     private $calendarEvents;
 

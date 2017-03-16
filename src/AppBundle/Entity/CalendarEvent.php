@@ -267,12 +267,18 @@ class CalendarEvent implements \JsonSerializable
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'note' => $this->getNote(),
-            'start' => $this->getStartDate()->format('D M d Y H:i:s O'),
-            'end'   => $this->getEndDate()->format("Y-m-d H:i:sP"),
+//            'start' => $this->getStartDate()->format('D M d Y/TH:i:s O'),
+            'start' => $this->getStartDate()->format('c'),
+            'end'   => $this->getEndDate()->format("Y-m-d\TH:i:sP"),
             'project' => $this->getProject()->jsonSerialize(),
             'category' => $this->getCategory()->jsonSerialize(),
             'user' => $this->getUser()->getId(),
             'mainTitle' => (empty($this->getProject())) ? $this->getTitle() : '['.$this->getProject()->getAcronym().'] '.$this->getTitle(),
         ];
     }
+
+//    public function getStartDateInJSFormat()
+//    {
+//        var t = $this->startDate.split(/[- :]/);
+//    }
 }

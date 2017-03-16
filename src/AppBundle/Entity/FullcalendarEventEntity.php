@@ -102,7 +102,7 @@ class FullcalendarEventEntity extends EventEntity
         $event['title'] = $this->title;
         $event['mainTitle'] = $this->title;
         $event['note'] = $this->note;
-        $event['start'] = $this->startDatetime->format("Y-m-d H:i:sP");
+        $event['start'] = $this->startDatetime->format("Y-m-d\TH:i:sP");
 
         if ($this->url !== null) {
             $event['url'] = $this->url;
@@ -135,7 +135,7 @@ class FullcalendarEventEntity extends EventEntity
         }
 
         if ($this->endDatetime !== null) {
-            $event['end'] = $this->endDatetime->format("Y-m-d H:i:sP");
+            $event['end'] = $this->endDatetime->format("Y-m-d\TH:i:sP");
         }
 
         $event['allDay'] = $this->allDay;
