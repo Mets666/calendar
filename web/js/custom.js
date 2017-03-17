@@ -4,30 +4,6 @@ $(document).ready(function () {
         $(this).datetimepicker();
     });
 
-    $('#addCategoryContent').dialog({modal: true, autoOpen: false, title: 'Category', width: 400, position: {at: 'top'}});
-
-    $('#openAddCategoryModal').click(function () {
-
-        $(".input-categoryId").val("");
-        $(".input-categoryTitle").val("");
-        $(".input-categoryColor")[0].jscolor.fromString("FFFFFF");
-
-        $('#addCategoryContent').dialog('open');
-        return false;
-    });
-
-    $('.openEditCategoryModal').each(function () {
-        $(this).click(function () {
-
-            $(".input-categoryId").val($(this).data('id'));
-            $(".input-categoryTitle").val($(this).data('title'));
-            $(".input-categoryColor")[0].jscolor.fromString($(this).data('color'));
-
-            $('#addCategoryContent').dialog('open');
-            return false;
-        });
-    });
-
     $('#addListContent').dialog({modal: true, autoOpen: false, title: 'Add new list', width: 400, position: {at: 'top'}});
 
     $('#openAddListModal').click(function () {
@@ -94,18 +70,16 @@ function editTodoList() {
     for (var i = 0; i < checkboxes.length; i++) {
         checkboxes.item(i).disabled = false;
     }
-    ;
+
     var texts = document.getElementsByClassName("list-item-text");
     for (i = 0; i < texts.length; i++) {
         texts.item(i).disabled = false;
     }
-    ;
 
     var items = document.getElementsByClassName("disabled-btn");
     while (items.length) {
         items[0].classList.remove("disabled-btn");
     }
-    ;
 
     document.getElementById("form-list-save").classList.remove("collapse");
     document.getElementById("form-list-title").classList.remove("collapse");
@@ -123,8 +97,7 @@ function editProject() {
 
 
     document.getElementById("form-project-save").classList.remove("collapse");
-
-
+    
     document.getElementById("form-project-title").classList.remove("collapse");
     document.getElementById("form-project-acronym").classList.remove("collapse");
     document.getElementById("form-project-limit").classList.remove("collapse");
@@ -187,3 +160,18 @@ function openEditEventModal(event, editable) {
     return false;
 }
 
+function openAddCategoryModal() {
+    $('#addCategoryContent').dialog({modal: true, title: 'Add new category', width: 400, position: {at: 'top'}});
+}
+
+function openEditCategoryModal(category) {
+    console.log(category);
+    $(".input-categoryId").val(category.id);
+    $(".input-categoryTitle").val(category.title);
+    $(".input-categoryColor").each(function(){
+        this.jscolor.fromString(category.color);
+    });
+
+    $('#categoryContent').dialog({modal: true, title: category.title, width: 400, position: {at: 'top'}});
+    return false;
+}

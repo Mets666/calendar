@@ -40,6 +40,7 @@ class CalendarEventController extends Controller
                         'error',
                         'Unable to create event!'
                     );
+                    return $this->redirectToRoute('homepage');
                 }
                 $this->addFlash(
                     'success',

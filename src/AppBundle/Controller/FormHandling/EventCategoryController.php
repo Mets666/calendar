@@ -4,13 +4,13 @@
 namespace AppBundle\Controller\FormHandling;
 
 
+use AppBundle\Controller\DefaultController;
 use AppBundle\Entity\EventCategory;
 use AppBundle\Form\EventCategoryType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class EventCategoryController extends Controller
+class EventCategoryController extends DefaultController
 {
     /**
      * @Route("/add_category", name="add_category", options = { "expose" = true })
@@ -37,7 +37,7 @@ class EventCategoryController extends Controller
                         'Unable to create category!'
                     );
                 }
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('time_log');
             }
             else {
                 $errors = $validator->validate($category);
@@ -50,8 +50,7 @@ class EventCategoryController extends Controller
                 }
             }
         }
-
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('time_log');
     }
 
     /**
@@ -65,20 +64,21 @@ class EventCategoryController extends Controller
 
         $formData = $request->request->get('event_category');
 
-        if($formData['id']){
+        try {
             $category = $eventCategoryRepository->get($formData['id']);
-        }
-//      New category
-        else{
-            $category = new EventCategory();
-            $category->setUser($user);
+        } catch (\Exception $e) {
+            $this->addFlash(
+                'error',
+                'Unable to edit category!'
+            );
+            return $this->redirectToRoute('time_log');
         }
 
-        $categoryForm = $this->createForm(EventCategoryType::class, $category);
+        $editCategoryForm = $this->createForm(EventCategoryType::class, $category);
 
-        $categoryForm->handleRequest($request);
-        if ($categoryForm->isSubmitted()) {
-            if($categoryForm->isValid()){
+        $editCategoryForm->handleRequest($request);
+        if ($editCategoryForm->isSubmitted()) {
+            if($editCategoryForm->isValid()){
                 try {
                     $eventCategoryRepository->add($category);
                     $eventCategoryRepository->save();

@@ -35,6 +35,10 @@ class TimeLogController extends DefaultController
             )
             ->getForm();
 
+        $addCategoryForm = $this->createForm(EventCategoryType::class, array(), array(
+            'action' => $this->generateUrl('add_category')
+        ));
+
         $editCategoryForm = $this->createForm(EventCategoryType::class, array(), array(
             'action' => $this->generateUrl('edit_category')
         ));
@@ -53,7 +57,8 @@ class TimeLogController extends DefaultController
         }
 
         return $this->render('default/timeLog.html.twig', array(
-            'category_form' => $editCategoryForm->createView(),
+            'add_category_form' => $addCategoryForm->createView(),
+            'edit_category_form' => $editCategoryForm->createView(),
             'daterange_form' => $daterangeForm->createView(),
             'categories' => $categories,
             'spend_time' => $spendTime,

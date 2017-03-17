@@ -1,0 +1,18 @@
+<div id="addCategoryContent" title="Add new category" style="display:none;">
+    {{ form_start(add_category_form) }}
+    {{ form_widget(add_category_form.id) }}
+    <div class="form-group">
+        {{ form_label(add_category_form.title) }}
+        {{ form_errors(add_category_form.title) }}
+        {{ form_widget(add_category_form.title) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(add_category_form.color) }}
+        {{ form_errors(add_category_form.color) }}
+        {{ form_widget(add_category_form.color) }}
+    </div>
+    <div class="form-group">
+        {{ form_widget(add_category_form.add) }}
+    </div>
+    {{ form_end(add_category_form) }}
+</div>

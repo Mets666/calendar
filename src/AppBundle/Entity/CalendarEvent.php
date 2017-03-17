@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="calendar_event")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="CalendarEventRepository")
  */
 class CalendarEvent implements \JsonSerializable
 {
@@ -255,6 +255,19 @@ class CalendarEvent implements \JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getMainTitle()
+    {
+        if($this->project){
+            return '['.$this->getProject()->getAcronym().'] '.$this->getTitle();
+        }
+        else{
+            return $this->getTitle();
+        }
+    }
+
+    /**
      * Specify data which should be serialized to JSON
      * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
      * @return mixed data which can be serialized by <b>json_encode</b>,
@@ -267,18 +280,12 @@ class CalendarEvent implements \JsonSerializable
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'note' => $this->getNote(),
-//            'start' => $this->getStartDate()->format('D M d Y/TH:i:s O'),
             'start' => $this->getStartDate()->format('c'),
-            'end'   => $this->getEndDate()->format("Y-m-d\TH:i:sP"),
+            'end'   => $this->getEndDate()->format('c'),
             'project' => $this->getProject()->jsonSerialize(),
             'category' => $this->getCategory()->jsonSerialize(),
             'user' => $this->getUser()->getId(),
-            'mainTitle' => (empty($this->getProject())) ? $this->getTitle() : '['.$this->getProject()->getAcronym().'] '.$this->getTitle(),
+            'mainTitle' => $this->getMainTitle(),
         ];
     }
-
-//    public function getStartDateInJSFormat()
-//    {
-//        var t = $this->startDate.split(/[- :]/);
-//    }
 }

@@ -2,11 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\CalendarEventType;
-use AppBundle\Form\EventCategoryFilterType;
-use AppBundle\Form\EventCategoryType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
@@ -31,5 +29,13 @@ class DefaultController extends Controller
         $response->setContent($this->container->get('twig')->render($view, $parameters));
 
         return $response;
+    }
+
+    public function redirectToReferer(Request $request) {
+        return $this->redirect(
+            $request
+                ->headers
+                ->get('referer')
+        );
     }
 }

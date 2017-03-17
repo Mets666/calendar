@@ -26,7 +26,7 @@ class HomepageController extends DefaultController
             'user' => $user
         ));
 
-        $categoryForm = $this->createForm(EventCategoryType::class, array(), array(
+        $addCategoryForm = $this->createForm(EventCategoryType::class, array(), array(
             'action' => $this->generateUrl('add_category')
         ));
 
@@ -43,7 +43,7 @@ class HomepageController extends DefaultController
         return $this->render('default/index.html.twig', [
             'calendar_event_form' => $calendarEventForm->createView(),
             'edit_calendar_event_form' => $editCalendarEventForm->createView(),
-            'category_form' => $categoryForm->createView(),
+            'add_category_form' => $addCategoryForm->createView(),
             'filter_category_form' => $filterCategoryForm->createView()
         ]);
 
