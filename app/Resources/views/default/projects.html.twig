@@ -138,14 +138,35 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 form-group">
+                        <label>Project events:</label>
                         <div class="project-events">
+                            <div class="row">
                             {% for event in selected_project.calendarEvents %}
-                                <div class="project-events-item">
-                                    <a href="#" onclick="openEditEventModal({{ event|json_encode }}, true)">
-                                        {{ event.title }}
-                                    </a>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="project-events-item">
+                                        <a href="javascript:;" onclick="openEditEventModal({{ event|json_encode }}, true)">
+                                            <div class="row">
+                                                <div class="col-md-8 col-sm-8">
+                                                    <div class="project-events-item-title">
+                                                        {{ event.title }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-2">
+                                                    <div class="project-events-item-date">
+                                                        {{ event.startDate|date('D j. n. Y') }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-2">
+                                                    <div class="project-events-item-time">
+                                                        at <b>{{ event.startDate|date('H:i') }}</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,15 +233,18 @@
                     data: data,
                     options: {
                         tooltips: {
+                            titleFontSize: 4,
+
                             callbacks: {
                                 label: function(tooltipItem, data) {
+
                                     var cData = data.datasets[tooltipItem.datasetIndex].data;
                                     var _meta = data.datasets[tooltipItem.datasetIndex]._meta;
                                     var meta = _meta[Object.keys(_meta)[0]];
                                     var ttLbl = data.labels[tooltipItem.index];
                                     var ttData = cData[tooltipItem.index];
                                     var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
-                                    return ttLbl + ' : ' + Math.floor(ttData/60) + ' hours '+ ttData%60 + ' minutes (' + ttPct + '%)';
+                                    return ttLbl + ': ' + Math.floor(ttData/60) + 'h '+ ttData%60 + 'min (' + ttPct + '%)';
                                 }
                             }
                         }

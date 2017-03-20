@@ -19,7 +19,5 @@ Write about:
 - Doctrine + query builder
 
 TODO: 
-- add project option to add/edit event
-- create twig for projects with graphs
-- category modals need same rework as calendar event modals
-
+- implement project timeLimit calculations
+- add asserts with error messages to all entities

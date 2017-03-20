@@ -1,20 +1,20 @@
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     background-color: #FFE5AA;
     min-height: 100%;
     position: relative;
     padding-bottom: 70px;
 }
 
-h1{
+h1 {
     font-family: "Berlin Sans FB";
     font-size: 40pt;
 }
 
-h3{
+h3 {
     font-family: "Berlin Sans FB";
 }
 
@@ -31,23 +31,23 @@ h3{
     background-color: #AA7A3D;
 }
 
-.form-field-error{
+.form-field-error {
     text-align: center;
     color: #fff;
     border-radius: 4px;
     background-color: #880000;
 }
 
-.form-field-error ul{
+.form-field-error ul {
     padding: 2px 5px;
     margin-bottom: 3px;
 }
 
-.form-field-error li{
+.form-field-error li {
     list-style: none;
 }
 
-.message{
+.message {
     border-radius: 4px;
     padding: 5px;
     text-align: center;
@@ -57,42 +57,42 @@ h3{
 
 /***Login page***/
 
-.major-title{
+.major-title {
     color: #916319;
 }
 
-.minor-title{
+.minor-title {
     color: #6c6159;
 }
 
-.login{
+.login {
     margin: 10px;
     padding: 20px 20px 5px 20px;
     border: 5px solid #916319;
     border-radius: 10px;
 }
 
-.login label{
+.login label {
     font-weight: bold;
 }
 
-.login input{
+.login input {
     font-family: "Century Gothic";
     font-weight: bold;
 }
 
-.login button{
+.login button {
     font-weight: bold;
 }
 
-.login a{
+.login a {
     font-weight: bold;
 }
 
 /**********************************************************************************************************************/
 /***Main page layout***/
 
-.header-wrapper{
+.header-wrapper {
     padding: 10px;
     margin-top: 10px;
     border-top: solid 5px #713707;
@@ -102,35 +102,35 @@ h3{
 
 }
 
-.content-wrapper{
+.content-wrapper {
     padding: 10px;
 }
 
-.footer-wrapper{
+.footer-wrapper {
     height: 50px;
     padding: 5px 10px;
     color: #fff;
 }
 
-.header-title{
+.header-title {
     padding: 0 10px;
 }
 
-.header-navbar{
+.header-navbar {
     margin-top: 10px;
     margin-bottom: -10px;
 }
 
-.navbar-custom-btn{
+.navbar-custom-btn {
     background-color: rgba(113, 55, 7, 0.71);
     color: #ffffff !important;
 }
 
-.navbar-custom-btn:hover{
+.navbar-custom-btn:hover {
     background-color: #713707;
 }
 
-.calendar-event{
+.calendar-event {
     /*background-color: #1b6d85;*/
 }
 
@@ -164,7 +164,7 @@ h3{
     border-radius: 5px;
 }
 
-.no-data-message{
+.no-data-message {
     color: #000000;
     background-color: #f9f9f9;
     padding: 4px 10px;
@@ -177,11 +177,11 @@ h3{
 
 /**********************************************************************************************************************/
 /*SIDE MENU*/
-.side-menu{
+.side-menu {
     /*overflow: auto;*/
 }
 
-.side-menu-item{
+.side-menu-item {
     border: solid 1px #CCCCCC;
     border-radius: 15px;
     margin: 2px 5px;
@@ -189,11 +189,11 @@ h3{
     background: #faf2cc;
 }
 
-.side-menu-item a{
+.side-menu-item a {
     text-decoration: none !important;
 }
 
-.side-menu-item:hover{
+.side-menu-item:hover {
     background: #FFCF90;
     background: -webkit-linear-gradient(left, #FFCF90 60%, #faf2cc); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Opera 11.1 to 12.0 */
@@ -201,7 +201,7 @@ h3{
     background: linear-gradient(to right, #FFCF90 60%, #faf2cc); /* Standard syntax */
 }
 
-.side-menu-item-selected{
+.side-menu-item-selected {
     background: #FFCF90;
     background: -webkit-linear-gradient(left, #FFCF90 60%, #faf2cc); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #FFCF90 60%, #faf2cc); /* For Opera 11.1 to 12.0 */
@@ -209,68 +209,71 @@ h3{
     background: linear-gradient(to right, #FFCF90 60%, #faf2cc); /* Standard syntax */
 }
 
-.side-menu-item-title{
+.side-menu-item-title {
     font-size: 10pt;
     color: #555;
 }
 
-.side-menu-item-delete-link{
+.side-menu-item-delete-link {
     font-size: 14px;
     vertical-align: middle;
 }
 
-.side-menu-add-new{
+.side-menu-add-new {
     padding: 8px 5px;
 }
 
 /**********************************************************************************************************************/
 /*TIME LOG*/
 
-.openEditCategoryModal:focus{
+.openEditCategoryModal:focus {
     outline: none;
 }
 
 /**********************************************************************************************************************/
 /*LIST*/
 
-.list{}
+.list {
+}
 
-#text-list-description{
+#text-list-description {
     background: #FFCF90;
     border-radius: 15px;
     padding: 10px;
 }
 
-#text-list-description p{
+#text-list-description p {
     white-space: pre-wrap;
 }
 
-.list-items-counter{
+.list-items-counter {
 
     float: right;
     padding: 0 15px 0 15px;
 }
-.list-items-counter-ratio{
+
+.list-items-counter-ratio {
     font-size: 20pt;
     font-weight: bold;
 }
-.list-items-counter-percentage{
+
+.list-items-counter-percentage {
     font-size: 10pt;
     font-weight: bold;
 }
 
-.list-item{
+.list-item {
     border-radius: 20px;
     padding: 3px 10px 3px 10px;
     margin-bottom: 5px;
     background: #FFCF90; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, transparent , #FFCF90); /* For Safari 5.1 to 6.0 */
+    background: -webkit-linear-gradient(left, transparent, #FFCF90); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, transparent, #FFCF90); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, transparent, #FFCF90); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, transparent , #FFCF90); /* Standard syntax */
+    background: linear-gradient(to right, transparent, #FFCF90); /* Standard syntax */
 }
 
-.list-item input[type='checkbox']{
+.list-item input[type='checkbox'] {
     -ms-transform: scale(2.3); /* IE */
     -moz-transform: scale(2.3); /* FF */
     -webkit-transform: scale(2.3); /* Safari and Chrome */
@@ -279,20 +282,20 @@ h3{
     vertical-align: middle;
 }
 
-.list-item input[type='text']{
+.list-item input[type='text'] {
     border-radius: 15px;
 }
 
-.add-list-item-link{
+.add-list-item-link {
     font-size: 40px;
     text-align: center;
 }
 
-.add-list-item-link a:visited{
+.add-list-item-link a:visited {
     color: #1b6d85;
 }
 
-.delete-list-item-link{
+.delete-list-item-link {
     height: 28px;
     width: 28px;
     font-size: 28px;
@@ -301,7 +304,47 @@ h3{
 /**********************************************************************************************************************/
 /*PROJECT*/
 
-.project{
+.project {
 
 }
 
+.project-events {
+
+}
+
+.project-events-item {
+    border-radius: 15px;
+    padding: 3px 10px;
+    margin-bottom: 2px;
+    background: rgba(135, 68, 7, 0.59);
+}
+
+.project-events-item a {
+    color: #ffffff;
+    text-decoration: none !important;
+    outline: none;
+}
+
+.project-events-item-title {
+
+}
+
+.project-events-item-date {
+
+}
+
+.project-events-item-time {
+    text-align: right;
+}
+
+.project-events-item-time b {
+    color: #fbf069;
+}
+
+#projectCategoryChart {
+    z-index: 5;
+}
+
+.ui-dialog {
+    position: fixed !important;
+}

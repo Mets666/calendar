@@ -159,7 +159,7 @@
                                     var ttLbl = data.labels[tooltipItem.index];
                                     var ttData = cData[tooltipItem.index];
                                     var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
-                                    return ttLbl + ' : ' + Math.floor(ttData/60) + ' hours '+ ttData%60 + ' minutes (' + ttPct + '%)';
+                                    return ttLbl + ': ' + Math.floor(ttData/60) + 'h '+ ttData%60 + 'min (' + ttPct + '%)';
                                 }
                             }
                         }

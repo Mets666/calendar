@@ -18,6 +18,8 @@ $(document).ready(function () {
         return false;
     });
     
+    
+    
 });
 
 function editCalendarEvent() {
@@ -109,8 +111,6 @@ function openEditEventModal(event, editable) {
 
     editable = editable || false;
 
-    console.log(event);
-
     if(editable){
         editCalendarEvent();
     }
@@ -162,10 +162,10 @@ function openEditEventModal(event, editable) {
 
 function openAddCategoryModal() {
     $('#addCategoryContent').dialog({modal: true, title: 'Add new category', width: 400, position: {at: 'top'}});
+    return false;
 }
 
 function openEditCategoryModal(category) {
-    console.log(category);
     $(".input-categoryId").val(category.id);
     $(".input-categoryTitle").val(category.title);
     $(".input-categoryColor").each(function(){
