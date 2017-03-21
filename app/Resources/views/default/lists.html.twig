@@ -110,7 +110,7 @@
                                     {% set done_count = done_count + 1%}
                                 {% endif %}
                             {% endfor %}
-                            {% set percentage = done_count/selected_list.items|length*100 %}
+                            {% set (percentage = done_count/selected_list.items|length)*100 %}
                         {% else %}
                             {% set percentage = 0 %}
                         {% endif %}

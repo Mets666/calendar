@@ -100,9 +100,9 @@
                             </div>
                             <div class="col-md-6 col-sm-6 form-group">
                                 <div id="text-project-limit">
-                                    <label>Time assigned to project:</label>
+                                    <label>Project time used/assigned:</label>
                                     <p class="sub-label">(in hours)</p>
-                                    <h4>{{ selected_project.timeLimit }}</h4>
+                                    <h4 {% if total_spend_time/60 > selected_project.timeLimit %} class="text-danger" {% endif %}>{{ (total_spend_time/ 60)|round(0, 'ceil')}}/{{ selected_project.timeLimit }}</h4>
                                 </div>
                                 <div id="form-project-limit" class="collapse">
                                     {{ form_label(edit_project_form.timeLimit) }}
@@ -121,7 +121,7 @@
                                 <div id="form-project-description" class="collapse">
                                     {{ form_label(edit_project_form.description) }}
                                     {{ form_errors(edit_project_form.description) }}
-                                    {{ form_widget(edit_project_form.description) }}
+                                    {{ form_widget(edit_project_form.description, {'attr': {'rows': 12}}) }}
                                 </div>
                             </div>
                         </div>

@@ -19,5 +19,4 @@ Write about:
 - Doctrine + query builder
 
 TODO: 
-- implement project timeLimit calculations
 - add asserts with error messages to all entities

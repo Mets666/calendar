@@ -28,6 +28,7 @@ class ProjectsController extends DefaultController
 
         $selectedProject = null;
         $spendTime = null;
+        $totalSpendTime = 0;
 
         if(!empty($projects)){
             if($projectId == 0) {
@@ -44,6 +45,9 @@ class ProjectsController extends DefaultController
 
         if($selectedProject != null) {
             $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUserAndProject($user->getId(), $selectedProject->getId() );
+            foreach($spendTime as $category){
+                $totalSpendTime += $category['time'];
+            }
         }
 
         $addProjectForm = $this->createForm(ProjectType::class, new Project(), array(
@@ -74,6 +78,7 @@ class ProjectsController extends DefaultController
             'projects' => $projects,
             'selected_project' => $selectedProject,
             'spend_time' => $spendTime,
+            'total_spend_time' => $totalSpendTime,
         ));
     }
 }

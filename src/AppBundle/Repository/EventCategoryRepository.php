@@ -66,6 +66,11 @@ class EventCategoryRepository extends BasicRepository implements RepositoryInter
         }
     }
 
+    /**
+     * @param $userId
+     * @param $projectId
+     * @return array
+     */
     public function getSpendTimeByCategoriesForUserAndProject($userId, $projectId)
     {
         return $this->doctrine->getRepository('AppBundle:CalendarEvent')
