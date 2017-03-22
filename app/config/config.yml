@@ -39,9 +39,6 @@ twig:
     paths:
       '%kernel.root_dir%/Resources/views': templates
 
-    form_themes:
-        - 'form/fields.html.twig'
-
 # Doctrine Configuration
 doctrine:
     dbal:

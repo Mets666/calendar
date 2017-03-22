@@ -24,13 +24,16 @@ class TodoList
      * @Assert\NotBlank(
      *     message="Title must be filled."
      * )
+     * @Assert\Length(max=100,
+     *     maxMessage="Title cannot be longer than {{ limit }} characters."
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
      * @Assert\Length(max=2000,
-     *     maxMessage="Description is too long."
+     *     maxMessage="Description cannot be longer than {{ limit }} characters."
      * )
      */
     private $description;

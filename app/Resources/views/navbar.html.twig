@@ -1,10 +1,21 @@
-<div>
-    <ul class="list-inline" style="float: left">
-        <li><a href="{{ path('homepage') }}" class="btn navbar-custom-btn">Calendar</a></li>
-        <li><a href="{{ path('lists') }}" class="btn navbar-custom-btn">To-Do Lists</a></li>
-        <li><a href="{{ path('projects') }}" class="btn navbar-custom-btn">Projects</a></li>
-        <li><a href="{{ path('time_log') }}" class="btn navbar-custom-btn">Time Log</a></li>
-    </ul>
-    <a href="{{url("logout")}}" class="btn btn-danger" style="float: right">Logout</a>
-    <div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-9 col-sm-9">
+        <ul class="list-inline" style="float: left">
+            <li><a href="{{ path('homepage') }}" class="btn navbar-custom-btn">Calendar</a></li>
+            <li><a href="{{ path('lists') }}" class="btn navbar-custom-btn">To-Do Lists</a></li>
+            <li><a href="{{ path('projects') }}" class="btn navbar-custom-btn">Projects</a></li>
+            <li><a href="{{ path('time_log') }}" class="btn navbar-custom-btn">Time Log</a></li>
+        </ul>
+    </div>
+    <div class="col-md-2 col-sm-2">
+
+    </div>
+    <div class="col-md-3 col-sm-3">
+        <div class="logged-title">
+            <label>Logged as: </label>
+            <span> {{ app.user.username }} </span>
+            <a href="{{url("logout")}}" class="btn btn-danger" style="float: right">Logout</a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 </div>

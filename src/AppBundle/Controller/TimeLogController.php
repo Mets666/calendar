@@ -45,6 +45,9 @@ class TimeLogController extends DefaultController
 
         $daterangeForm->handleRequest($request);
 
+        $startDate = null;
+        $endDate = null;
+
         if ($daterangeForm->isSubmitted() && $daterangeForm->isValid()) {
             $data = $daterangeForm->getData();
             $dates = explode("-", $data["daterange"]);
@@ -62,6 +65,8 @@ class TimeLogController extends DefaultController
             'daterange_form' => $daterangeForm->createView(),
             'categories' => $categories,
             'spend_time' => $spendTime,
+            'start_date' => $startDate,
+            'end_date' => $endDate,
         ));
     }
 }

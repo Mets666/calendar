@@ -24,13 +24,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: calendar.load_events, method: loadEvents }
 
-
-    app.form.type.color:
-        class: AppBundle\Form\Type\ColorType
-        tags:
-            - { name: form.type, alias: color }
-
-
 #AppBundle\Repository
     app.basic.repository:
         class: AppBundle\Repository\BasicRepository

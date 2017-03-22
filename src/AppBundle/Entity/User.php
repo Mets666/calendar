@@ -25,13 +25,23 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="Username must be filled."
+     * )
+     * @Assert\Length(max=25,
+     *     maxMessage="Username cannot be longer than {{ limit }} characters."
+     * )
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="Password must be filled."
+     * )
+     * @Assert\Length(max=64,
+     *     maxMessage="Password cannot be longer than {{ limit }} characters."
+     * )
      */
     private $password;
 
@@ -65,7 +75,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="user", fetch="LAZY")
-     * @ORM\OrderBy({"acronym" = "ASC"})
+     * @ORM\OrderBy({"title" = "ASC"})
      */
     private $projects;
 

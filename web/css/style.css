@@ -130,9 +130,12 @@ h3 {
     background-color: #713707;
 }
 
-.calendar-event {
-    /*background-color: #1b6d85;*/
+.logged-title{
+    line-height: 34px;
+    font-size: 10pt;
+    text-align: center;
 }
+
 
 /**********************************************************************************************************************/
 /*FLASH MESSAGES*/

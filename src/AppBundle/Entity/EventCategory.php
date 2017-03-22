@@ -20,13 +20,20 @@ class EventCategory implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="Title must be filled."
+     * )
+     * @Assert\Length(max=255,
+     *     maxMessage="Title cannot be longer than {{ limit }} characters."
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=10)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="You must choose a color."
+     * )
      */
     private $color;
 

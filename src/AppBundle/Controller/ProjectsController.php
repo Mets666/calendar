@@ -12,7 +12,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ProjectsController extends DefaultController
 {
     /**
-     * @Route("/projects", name="projects", defaults={"projectId" = 0})
+     * @Route("/projects/{projectId}", name="projects", defaults={"projectId" = 0})
+     * @param $projectId
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function projectsAction($projectId)
     {
@@ -30,6 +32,8 @@ class ProjectsController extends DefaultController
         $spendTime = null;
         $totalSpendTime = 0;
 
+        dump($projectId);
+
         if(!empty($projects)){
             if($projectId == 0) {
                 $selectedProject = $projects[0];
@@ -42,6 +46,8 @@ class ProjectsController extends DefaultController
                 }
             }
         }
+
+        dump($selectedProject);
 
         if($selectedProject != null) {
             $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUserAndProject($user->getId(), $selectedProject->getId() );

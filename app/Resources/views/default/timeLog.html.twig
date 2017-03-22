@@ -4,6 +4,7 @@
 
     <div class="row">
         <div class="col-md-3 col-sm-3">
+
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <h3>Manage categories:</h3>
@@ -13,35 +14,43 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="side-menu">
-                    {% if categories is not empty %}
-                        {% for category in categories %}
-                            <div class="side-menu-item">
-                                <div class="row">
-                                    <a href="#" id="" onclick="openEditCategoryModal({{ category|json_encode }})">
-                                    <div class="col-md-9 col-sm-9" style="padding-right: 3px;">
-                                        <div class="side-menu-item-title">
-                                            <b>{{ category.title|length > 25 ? category.title|slice(0, 25) ~ '...' : category.title  }}</b>
+                        {% if categories is not empty %}
+                            {% for category in categories %}
+                                <div class="side-menu-item">
+
+                                    <div class="row">
+                                        <a href="#" id="" onclick="openEditCategoryModal({{ category|json_encode }})">
+                                            <div class="col-md-9 col-sm-9" style="padding-right: 3px;">
+                                                <div class="side-menu-item-title">
+                                                    <b>{{ category.title|length > 25 ? category.title|slice(0, 25) ~ '...' : category.title }}</b>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="col-md-1 col-sm-1">
+                                            <div class="side-menu-item-edit-link">
+                                                <a href="#" id=""
+                                                   onclick="openEditCategoryModal({{ category|json_encode }})">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                            <div class="side-menu-item-delete-link">
+                                                <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}"
+                                                   onClick="return confirm('Are you sure?');">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    </a>
-                                    <div class="col-md-1 col-sm-1">
-                                        <div class="side-menu-item-edit-link">
-                                            <a href="#" id="" onclick="openEditCategoryModal({{ category|json_encode }})"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 col-sm-1">
-                                        <div class="side-menu-item-delete-link">
-                                            <a href="{{ path('delete_category', { 'categoryId' : category.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
-                                        </div>
-                                    </div>
+
                                 </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="no-data-message">
+                                <i>There are no categories! Please add some first.</i>
                             </div>
-                        {% endfor %}
-                    {% else %}
-                        <div class="no-data-message">
-                            <i>There are no categories! Please add some first.</i>
-                        </div>
-                    {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -49,14 +58,16 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="side-menu-add-new">
-                        <a href="#" onclick="openAddCategoryModal()" class="btn btn-sm btn-primary width100p">Add new</a>
+                        <a href="#" onclick="openAddCategoryModal()" class="btn btn-sm btn-primary width100p">Add
+                            new</a>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
         <div class="col-md-9 col-sm-9">
             {% include 'flashMessages.html.twig' %}
+
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <h3>Statistics:</h3>
@@ -65,24 +76,30 @@
 
             <div class="row">
                 <div class="col-md-3 col-sm-12" style="vertical-align: middle">
+                    <label>For:</label>
+                    {% if start_date is not null and end_date is not null %}
+                        {{ start_date|date('j. n. Y') }} - {{ end_date|date('j. n. Y') }}
+                    {% else %}
+                        All events
+                    {% endif %}
+
                     {{ form_start(daterange_form, {'attr': {'id': 'daterange_form'}}) }}
                     <div class="form-group">
-                        <a id="daterange_picker_button" class="btn btn-primary">Select dates</a>
+                        <a id="daterange_picker_button" class="btn btn-primary">Change dates</a>
                         {{ form_widget(daterange_form.daterange, { 'id': 'daterange_picker_input'} ) }}
                     </div>
                     {{ form_end(daterange_form) }}
 
                     {% for spend_by_category in spend_time %}
                         {% if spend_by_category.id %}
-                        <label>{{ spend_by_category.title }}</label>
-                        <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                            <label>{{ spend_by_category.title }}</label>
+                            <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
                         {% else %}
-                        <label>Without category</label>
-                        <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
+                            <label>Without category</label>
+                            <p>{{ (spend_by_category.time / 60)|round }} hours {{ spend_by_category.time % 60 }} minutes</p>
                         {% endif %}
                     {% endfor %}
                 </div>
-
                 <div class="col-md-9 col-sm-12">
                     {% if spend_time %}
                         <canvas id="categoryChart" width="400" height="400"></canvas>
@@ -93,6 +110,7 @@
                     {% endif %}
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -104,17 +122,17 @@
 
     {#Script and data setting for pie graph#}
     <script>
-        $(function() {
-            if(document.getElementById("categoryChart")){
+        $(function () {
+            if (document.getElementById("categoryChart")) {
                 var ctx = document.getElementById("categoryChart");
 
                 var data = {
                     labels: [
                         {% for category in spend_time %}
                         {% if category.id %}
-                            "{{ category.title }}",
+                        "{{ category.title }}",
                         {% else %}
-                            "Without category",
+                        "Without category",
                         {% endif %}
                         {% endfor %}
                     ],
@@ -127,39 +145,39 @@
                             ],
                             backgroundColor: [
                                 {% for category in spend_time %}
-                                    {% if category.id %}
-                                        "#{{ category.color }}",
-                                    {% else %}
-                                        "#BBBBBB",
-                                    {% endif %}
+                                {% if category.id %}
+                                "#{{ category.color }}",
+                                {% else %}
+                                "#BBBBBB",
+                                {% endif %}
                                 {% endfor %}
                             ],
                             hoverBackgroundColor: [
                                 {% for category in spend_time %}
-                                    {% if category.id %}
-                                        "#{{ category.color }}",
-                                    {% else %}
-                                        "#BBBBBB",
-                                    {% endif %}
+                                {% if category.id %}
+                                "#{{ category.color }}",
+                                {% else %}
+                                "#BBBBBB",
+                                {% endif %}
                                 {% endfor %}
                             ]
                         }]
                 };
 
-                var myChart = new Chart(ctx,{
+                var myChart = new Chart(ctx, {
                     type: 'pie',
                     data: data,
                     options: {
                         tooltips: {
                             callbacks: {
-                                label: function(tooltipItem, data) {
+                                label: function (tooltipItem, data) {
                                     var cData = data.datasets[tooltipItem.datasetIndex].data;
                                     var _meta = data.datasets[tooltipItem.datasetIndex]._meta;
                                     var meta = _meta[Object.keys(_meta)[0]];
                                     var ttLbl = data.labels[tooltipItem.index];
                                     var ttData = cData[tooltipItem.index];
                                     var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
-                                    return ttLbl + ': ' + Math.floor(ttData/60) + 'h '+ ttData%60 + 'min (' + ttPct + '%)';
+                                    return ttLbl + ': ' + Math.floor(ttData / 60) + 'h ' + ttData % 60 + 'min (' + ttPct + '%)';
                                 }
                             }
                         }
@@ -168,7 +186,7 @@
             }
         });
 
-        $(function() {
+        $(function () {
             var start = moment().subtract(29, 'days');
             var end = moment();
 
@@ -176,7 +194,9 @@
                 $('#daterange_picker_input').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
             }
 
-            $("#daterange_picker_button").daterangepicker({
+            var btn = $("#daterange_picker_button");
+
+            btn.daterangepicker({
                 startDate: start,
                 endDate: end,
                 alwaysShowCalendars: true,
@@ -192,7 +212,7 @@
 
             cb(start, end);
 
-            $('#daterange_picker_button').on('apply.daterangepicker', function(ev, picker) {
+            btn.on('apply.daterangepicker', function (ev, picker) {
                 $('#daterange_form').submit();
             });
         });

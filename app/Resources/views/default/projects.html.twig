@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block content %}
 
     <div class="row">
@@ -16,18 +15,22 @@
                     <div class="side-menu">
                         {% if projects is not empty %}
                             {% for project in projects %}
-                                <div class="side-menu-item {% if project.id == selected_project.id %} side-menu-item-selected {% endif %}" title="{{ project.title }}">
+                                <div class="side-menu-item {% if project.id == selected_project.id %} side-menu-item-selected {% endif %}"
+                                     title="{{ project.title }}">
                                     <div class="row">
                                         <a href="{{ path('projects', { 'projectId' : project.id }) }}">
                                             <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
                                                 <div class="side-menu-item-title">
-                                                    <b>{{ project.title|length > 35 ? project.title|slice(0, 35) ~ '...' : project.title  }}</b>
+                                                    <b>{{ project.title|length > 35 ? project.title|slice(0, 35) ~ '...' : project.title }}</b>
                                                 </div>
                                             </div>
                                         </a>
                                         <div class="col-md-1 col-sm-1" style="padding-left: 0px;">
                                             <div class="side-menu-item-delete-link">
-                                                <a href="{{ path('delete_project', { 'projectId' : project.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a href="{{ path('delete_project', { 'projectId' : project.id }) }}"
+                                                   onClick="return confirm('Are you sure?');">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +77,8 @@
                     <div class="col-md-2 col-sm-2 form-group">
                         <div id="text-project-edit" style="float: right">
                             <div class="spacer20"></div>
-                            <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editProject()">
+                            <input type="button" value="Edit" class="btn btn-primary width80px"
+                                   onclick="return editProject()">
                         </div>
                         <div id="form-project-save" class="collapse" style="float: right">
                             <div class="spacer25"></div>
@@ -102,7 +106,8 @@
                                 <div id="text-project-limit">
                                     <label>Project time used/assigned:</label>
                                     <p class="sub-label">(in hours)</p>
-                                    <h4 {% if total_spend_time/60 > selected_project.timeLimit %} class="text-danger" {% endif %}>{{ (total_spend_time/ 60)|round(0, 'ceil')}}/{{ selected_project.timeLimit }}</h4>
+                                    <h4 {% if total_spend_time/60 > selected_project.timeLimit %} class="text-danger" {% endif %}>{{ (total_spend_time/ 60)|round(0, 'ceil') }}
+                                        /{{ selected_project.timeLimit }}</h4>
                                 </div>
                                 <div id="form-project-limit" class="collapse">
                                     {{ form_label(edit_project_form.timeLimit) }}
@@ -141,31 +146,32 @@
                         <label>Project events:</label>
                         <div class="project-events">
                             <div class="row">
-                            {% for event in selected_project.calendarEvents %}
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="project-events-item">
-                                        <a href="javascript:;" onclick="openEditEventModal({{ event|json_encode }}, true)">
-                                            <div class="row">
-                                                <div class="col-md-8 col-sm-8">
-                                                    <div class="project-events-item-title">
-                                                        {{ event.title }}
+                                {% for event in selected_project.calendarEvents %}
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="project-events-item">
+                                            <a href="javascript:;"
+                                               onclick="openEditEventModal({{ event|json_encode }}, true)">
+                                                <div class="row">
+                                                    <div class="col-md-8 col-sm-8">
+                                                        <div class="project-events-item-title">
+                                                            {{ event.title }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2">
+                                                        <div class="project-events-item-date">
+                                                            {{ event.startDate|date('D j. n. Y') }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2">
+                                                        <div class="project-events-item-time">
+                                                            at <b>{{ event.startDate|date('H:i') }}</b>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 col-sm-2">
-                                                    <div class="project-events-item-date">
-                                                        {{ event.startDate|date('D j. n. Y') }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 col-sm-2">
-                                                    <div class="project-events-item-time">
-                                                        at <b>{{ event.startDate|date('H:i') }}</b>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -186,8 +192,8 @@
 
     {#Script and data setting for pie graph#}
     <script>
-        $(function() {
-            if(document.getElementById("projectCategoryChart")){
+        $(function () {
+            if (document.getElementById("projectCategoryChart")) {
                 var ctx = document.getElementById("projectCategoryChart");
 
                 var data = {
@@ -228,7 +234,7 @@
                         }]
                 };
 
-                var myChart = new Chart(ctx,{
+                var myChart = new Chart(ctx, {
                     type: 'pie',
                     data: data,
                     options: {
@@ -236,7 +242,7 @@
                             titleFontSize: 4,
 
                             callbacks: {
-                                label: function(tooltipItem, data) {
+                                label: function (tooltipItem, data) {
 
                                     var cData = data.datasets[tooltipItem.datasetIndex].data;
                                     var _meta = data.datasets[tooltipItem.datasetIndex]._meta;
@@ -244,7 +250,7 @@
                                     var ttLbl = data.labels[tooltipItem.index];
                                     var ttData = cData[tooltipItem.index];
                                     var ttPct = Math.round((ttData / meta.total) * 10000) / 100;
-                                    return ttLbl + ': ' + Math.floor(ttData/60) + 'h '+ ttData%60 + 'min (' + ttPct + '%)';
+                                    return ttLbl + ': ' + Math.floor(ttData / 60) + 'h ' + ttData % 60 + 'min (' + ttPct + '%)';
                                 }
                             }
                         }

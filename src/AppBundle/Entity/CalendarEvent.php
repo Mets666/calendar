@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="calendar_event")
- * @ORM\Entity(repositoryClass="CalendarEventRepository")
+ * @ORM\Entity
  */
 class CalendarEvent implements \JsonSerializable
 {
@@ -24,19 +24,29 @@ class CalendarEvent implements \JsonSerializable
      * @Assert\NotBlank(
      *     message="Title must be filled."
      * )
-     * @Assert\Length(max=255,
-     *     maxMessage="Title is too long."
+     * @Assert\Length(max=100,
+     *     maxMessage="Title cannot be longer than {{ limit }} characters."
      * )
      */
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=1000, nullable=true)
+     * @Assert\Length(max=1000,
+     *     maxMessage="Note cannot be longer than {{ limit }} characters."
+     * )
+     */
+    private $note;
+
+    /**
      * @ORM\Column(type="datetime")
+     * @Assert\Datetime()
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Datetime()
      */
     private $endDate;
 
@@ -57,14 +67,6 @@ class CalendarEvent implements \JsonSerializable
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id", nullable=true)
      */
     private $project;
-
-    /**
-     * @ORM\Column(type="string", length=1000, nullable=true)
-     * @Assert\Length(max=1000,
-     *     maxMessage="Note is too long."
-     * )
-     */
-    private $note;
 
     /**
      * Get id

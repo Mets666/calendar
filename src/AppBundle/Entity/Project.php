@@ -25,21 +25,37 @@ class Project implements \JsonSerializable
      * @Assert\NotBlank(
      *     message="Title must be filled."
      * )
+     * @Assert\Length(max=100,
+     *     maxMessage="Title cannot be longer than {{ limit }} characters."
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\Length(max=10,
+     *     maxMessage="Acronym cannot be longer than {{ limit }} characters."
+     * )
      */
     private $acronym;
 
     /**
      * @ORM\Column(type="string", length=2000)
+     * @Assert\Length(max=2000,
+     *     maxMessage="Description cannot be longer than {{ limit }} characters."
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 1000,
+     *      minMessage = "You must assign at least {{ limit }} hour to project.",
+     *      maxMessage = "You can assign maximum of {{ limit }} hours to project"
+     * )
      */
     private $timeLimit;
 

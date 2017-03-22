@@ -6,140 +6,140 @@
 
 {% block content %}
 
-<div class="row">
-    <div class="col-md-3 col-sm-3">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <h3>To-Do Lists:</h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h3>To-Do Lists:</h3>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="side-menu">
-                {% if todo_lists is not empty %}
-                    {% for list in todo_lists %}
-                        <div class="side-menu-item {% if list.id == selected_list.id %} side-menu-item-selected {% endif %}" title="{{ list.title }}">
-                            <div class="row">
-                                <a href="{{ path('lists', { 'listId' : list.id }) }}">
-                                    <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
-                                        <div class="side-menu-item-title">
-                                            <b>{{ list.title|length > 35 ? list.title|slice(0, 35) ~ '...' : list.title  }}</b>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="side-menu">
+                    {% if todo_lists is not empty %}
+                        {% for list in todo_lists %}
+                            <div class="side-menu-item {% if list.id == selected_list.id %} side-menu-item-selected {% endif %}" title="{{ list.title }}">
+                                <div class="row">
+                                    <a href="{{ path('lists', { 'listId' : list.id }) }}">
+                                        <div class="col-md-11 col-sm-11" style="padding-right: 3px;">
+                                            <div class="side-menu-item-title">
+                                                <b>{{ list.title|length > 35 ? list.title|slice(0, 35) ~ '...' : list.title  }}</b>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <div class="col-md-1 col-sm-1" style="padding-left: 0px;">
-                                    <div class="side-menu-item-delete-link">
-                                        <a href="{{ path('delete_todo_list', { 'listId' : list.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </a>
+                                    <div class="col-md-1 col-sm-1" style="padding-left: 0px;">
+                                        <div class="side-menu-item-delete-link">
+                                            <a href="{{ path('delete_todo_list', { 'listId' : list.id }) }}" onClick="return confirm('Are you sure?');"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="side-menu-add-new">
-                    <a href="#" id="openAddListModal" class="btn btn-sm btn-primary width100p">Add new</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-9 col-sm-9">
-        {% include 'flashMessages.html.twig' %}
-        {% if selected_list is empty %}
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <div class="no-data-message">
-                        <i>There is no list to display! Please add some first.</i>
+                    <div class="side-menu-add-new">
+                        <a href="#" id="openAddListModal" class="btn btn-sm btn-primary width100p">Add new</a>
                     </div>
                 </div>
             </div>
-        {% else %}
-            {{ form_start(edit_todo_list_form) }}
-            {{ form_widget(edit_todo_list_form.id, {'value': selected_list.id}) }}
-            <div class="row">
-                <div class="col-md-10 col-sm-10 form-group">
-                    <div id="text-list-title">
-                        <h3>{{ selected_list.title }}</h3>
-                    </div>
-                    <div id="form-list-title" class="collapse">
-                        {{ form_label(edit_todo_list_form.title) }}
-                        {{ form_errors(edit_todo_list_form.title) }}
-                        {{ form_widget(edit_todo_list_form.title) }}
+        </div>
+        <div class="col-md-9 col-sm-9">
+            {% include 'flashMessages.html.twig' %}
+            {% if selected_list is empty %}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="no-data-message">
+                            <i>There is no list to display! Please add some first.</i>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-2 form-group">
-                    <div id="text-list-edit" style="float: right">
-                        <div class="spacer20"></div>
-                        <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editTodoList()">
+            {% else %}
+                {{ form_start(edit_todo_list_form) }}
+                {{ form_widget(edit_todo_list_form.id, {'value': selected_list.id}) }}
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 form-group">
+                        <div id="text-list-title">
+                            <h3>{{ selected_list.title }}</h3>
+                        </div>
+                        <div id="form-list-title" class="collapse">
+                            {{ form_label(edit_todo_list_form.title) }}
+                            {{ form_errors(edit_todo_list_form.title) }}
+                            {{ form_widget(edit_todo_list_form.title) }}
+                        </div>
                     </div>
-                    <div id="form-list-save" class="collapse" style="float: right">
-                        <div class="spacer25"></div>
-                        {{ form_widget(edit_todo_list_form.add, {'label': 'Save'}) }}
+                    <div class="col-md-2 col-sm-2 form-group">
+                        <div id="text-list-edit" style="float: right">
+                            <div class="spacer20"></div>
+                            <input type="button" value="Edit" class="btn btn-primary width80px" onclick="return editTodoList()">
+                        </div>
+                        <div id="form-list-save" class="collapse" style="float: right">
+                            <div class="spacer25"></div>
+                            {{ form_widget(edit_todo_list_form.add, {'label': 'Save'}) }}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 form-group">
-                    <div id="text-list-description">
-                        <p>{{ selected_list.description }}</p>
-                    </div>
-                    <div id="form-list-description" class="collapse">
-                        {{ form_label(edit_todo_list_form.description) }}
-                        {{ form_errors(edit_todo_list_form.description) }}
-                        {{ form_widget(edit_todo_list_form.description) }}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 form-group">
+                        <div id="text-list-description">
+                            <p>{{ selected_list.description }}</p>
+                        </div>
+                        <div id="form-list-description" class="collapse">
+                            {{ form_label(edit_todo_list_form.description) }}
+                            {{ form_errors(edit_todo_list_form.description) }}
+                            {{ form_widget(edit_todo_list_form.description) }}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-9 col-sm-9">
-                    <p class="font16pt fontBold">Things to do:</p>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <div class="list-items-counter">
-                        {% set done_count = 0 %}
-                        {% if selected_list.items is not empty %}
-                            {% for item in selected_list.items %}
-                                {% if item.done %}
-                                    {% set done_count = done_count + 1%}
-                                {% endif %}
-                            {% endfor %}
-                            {% set (percentage = done_count/selected_list.items|length)*100 %}
-                        {% else %}
-                            {% set percentage = 0 %}
-                        {% endif %}
-                        <span class="list-items-counter-ratio">{{ done_count }}/{{ selected_list.items|length }}</span>
-                        <span class="list-items-counter-percentage {% if percentage > 75 %}text-success{% elseif percentage < 25 %}text-danger{% endif %} ">({{ percentage|round(2) }}%)</span>
+                <div class="row">
+                    <div class="col-md-9 col-sm-9">
+                        <p class="font16pt fontBold">Things to do:</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="list-items-counter">
+                            {% set done_count = 0 %}
+                            {% if selected_list.items is not empty %}
+                                {% for item in selected_list.items %}
+                                    {% if item.done %}
+                                        {% set done_count = done_count + 1%}
+                                    {% endif %}
+                                {% endfor %}
+                                {% set percentage = (done_count/selected_list.items|length)*100 %}
+                            {% else %}
+                                {% set percentage = 0 %}
+                            {% endif %}
+                            <span class="list-items-counter-ratio">{{ done_count }}/{{ selected_list.items|length }}</span>
+                            <span class="list-items-counter-percentage {% if percentage > 75 %}text-success{% elseif percentage < 25 %}text-danger{% endif %} ">({{ percentage|round(2) }}%)</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-12 col-sm-12" >
-                    <div class="line1px" style="border-color: #CCCCCC"></div>
-                    <div class="spacer5"></div>
-                    {#{{ form_label(edit_todo_list_form.items) }}#}
-                    {{ form_errors(edit_todo_list_form.items) }}
-                    {{ form_widget(edit_todo_list_form.items) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 form-group" >
-                    <div class="line1px" style="border-color: #CCCCCC"></div>
-                    <div id="form-add-item" class="collapse">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12" >
+                        <div class="line1px" style="border-color: #CCCCCC"></div>
+                        <div class="spacer5"></div>
+                        {#{{ form_label(edit_todo_list_form.items) }}#}
+                        {{ form_errors(edit_todo_list_form.items) }}
+                        {{ form_widget(edit_todo_list_form.items) }}
                     </div>
                 </div>
-            </div>
-            {{ form_end(edit_todo_list_form) }}
-        {% endif %}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 form-group" >
+                        <div class="line1px" style="border-color: #CCCCCC"></div>
+                        <div id="form-add-item" class="collapse">
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(edit_todo_list_form) }}
+            {% endif %}
+        </div>
     </div>
-</div>
 
     {#Modal window - add list #}
     {% include 'modal/modalListAdd.html.twig' %}
@@ -177,7 +177,6 @@
             // increase the index with one for the next item
             $collectionHolder.data('index', index + 1);
 
-            // Display the form in the page in an li, before the "Add a tag" link li
             var $newFormLi = $('<div class="list-item-prototype"></div>').append(newForm);
             $newFormLi.find('div.list-item').each(function() {
                 addTagFormDeleteLink($(this));
@@ -198,6 +197,5 @@
             });
         }
     </script>
-
 
 {% endblock %}
