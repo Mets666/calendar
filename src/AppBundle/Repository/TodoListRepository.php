@@ -1,13 +1,12 @@
 <?php
 
-
 namespace AppBundle\Repository;
 
 
 use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class TodoListRepository extends BasicRepository
+class TodoListRepository extends AbstractRepository
 {
 
     /**

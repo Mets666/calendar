@@ -26,7 +26,7 @@ services:
 
 #AppBundle\Repository
     app.basic.repository:
-        class: AppBundle\Repository\BasicRepository
+        class: AppBundle\Repository\AbstractRepository
         arguments:
             doctrine:       '@doctrine'
 

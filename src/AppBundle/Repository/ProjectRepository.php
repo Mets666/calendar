@@ -7,7 +7,7 @@ namespace AppBundle\Repository;
 use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class ProjectRepository extends BasicRepository implements RepositoryInterface
+class ProjectRepository extends AbstractRepository
 {
     /**
      * TodoListRepository constructor.

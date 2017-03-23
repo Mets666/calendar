@@ -2,10 +2,11 @@
 
 namespace AppBundle\Repository;
 
+
 use AppBundle\Repository\Exception\DatabaseException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class CalendarEventRepository extends BasicRepository implements RepositoryInterface
+class CalendarEventRepository extends AbstractRepository
 {
 
     /**
