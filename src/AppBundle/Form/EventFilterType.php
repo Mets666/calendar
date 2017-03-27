@@ -10,7 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EventCategoryFilterType extends AbstractType
+class EventFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -27,14 +27,29 @@ class EventCategoryFilterType extends AbstractType
                             ->orderBy('category.title', 'ASC');
                     },
                     'choice_label' => 'title',
-//                    'choice_value' => 'title',
                     'required' => false,
-                    'placeholder' => 'All',
+                    'placeholder' => 'All categories',
                     'empty_data' => null,
                     'label' => 'Filter by category:',
-                    'attr' => array('class' => 'form-control input-sm', 'id' => 'filter_selector')
+                    'attr' => array('class' => 'form-control input-sm', 'id' => 'category_filter_selector')
                 )
-            );
+            )
+            ->add('filter_project', EntityType::class, array(
+                'class' => 'AppBundle:Project',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('project')
+                        ->where('project.user = :userId')
+                        ->setParameter('userId', $this->user->getId())
+                        ->orderBy('project.title', 'ASC');
+                },
+                'choice_label' => 'title',
+                'required' => false,
+                'placeholder' => 'All projects',
+                'empty_data' => null,
+                'label' => 'Filter by project:',
+                'attr' => array('class' => 'form-control input-sm', 'id' => 'project_filter_selector')
+            )
+    );
     }
 
     public function configureOptions(OptionsResolver $resolver)

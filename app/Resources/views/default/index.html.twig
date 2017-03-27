@@ -8,14 +8,20 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-12 col-md-offset-4">
+        {{ form_start(event_filter_form) }}
+        <div class="col-md-2 col-sm-12">
             {#Category filter#}
-            {{ form_start(filter_category_form) }}
-            {{ form_label(filter_category_form.filter_category) }}
-            {{ form_errors(filter_category_form.filter_category) }}
-            {{ form_widget(filter_category_form.filter_category, { 'id': 'filter_selector'} )}}
-            {{ form_end(filter_category_form) }}
+            {{ form_label(event_filter_form.filter_category) }}
+            {{ form_errors(event_filter_form.filter_category) }}
+            {{ form_widget(event_filter_form.filter_category, { 'id': 'category_filter_selector'} )}}
         </div>
+        <div class="col-md-2 col-sm-12">
+            {#Project filter#}
+            {{ form_label(event_filter_form.filter_project) }}
+            {{ form_errors(event_filter_form.filter_project) }}
+            {{ form_widget(event_filter_form.filter_project, { 'id': 'project_filter_selector'} )}}
+        </div>
+        {{ form_end(event_filter_form) }}
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12">

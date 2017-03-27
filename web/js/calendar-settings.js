@@ -5,7 +5,6 @@ $(function () {
     var y = date.getFullYear();
 
     $('#calendar-holder').fullCalendar({
-        // events: basepath + "json-events.php",
         header: {
             left: 'prev, next',
             center: 'title',
@@ -16,9 +15,11 @@ $(function () {
             element.click(function() {
                 openEditEventModal(event);
             });
-            var filter = $('#filter_selector').val();
+            var project_filter = $('#project_filter_selector').val();
 
-            if(!filter || (event.category && filter == event.category.id)){
+            var category_filter = $('#category_filter_selector').val();
+
+            if((!category_filter || (event.category && category_filter == event.category.id)) && (!project_filter || (event.project && project_filter == event.project.id))){
                 return true;
             }
             else{
@@ -52,7 +53,11 @@ $(function () {
         ]
     });
 
-    $('#filter_selector').on('change',function(){
+    $('#category_filter_selector').on('change',function(){
         $('#calendar-holder').fullCalendar('rerenderEvents');
-    })
+    });
+
+    $('#project_filter_selector').on('change',function(){
+        $('#calendar-holder').fullCalendar('rerenderEvents');
+    });
 });

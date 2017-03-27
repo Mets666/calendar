@@ -9,7 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\CalendarEventType;
-use AppBundle\Form\EventCategoryFilterType;
+use AppBundle\Form\EventFilterType;
 use AppBundle\Form\EventCategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -22,7 +22,7 @@ class HomepageController extends DefaultController
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $filterCategoryForm = $this->createForm(EventCategoryFilterType::class, array(), array(
+        $eventFilterForm = $this->createForm(EventFilterType::class, array(), array(
             'user' => $user
         ));
 
@@ -44,7 +44,7 @@ class HomepageController extends DefaultController
             'calendar_event_form' => $calendarEventForm->createView(),
             'edit_calendar_event_form' => $editCalendarEventForm->createView(),
             'add_category_form' => $addCategoryForm->createView(),
-            'filter_category_form' => $filterCategoryForm->createView()
+            'event_filter_form' => $eventFilterForm->createView()
         ]);
 
     }

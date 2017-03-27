@@ -194,6 +194,7 @@ h3 {
 
 .side-menu-item a {
     text-decoration: none !important;
+    outline: none;
 }
 
 .side-menu-item:hover {

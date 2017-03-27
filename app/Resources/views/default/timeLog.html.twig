@@ -19,7 +19,7 @@
                                 <div class="side-menu-item">
 
                                     <div class="row">
-                                        <a href="#" id="" onclick="openEditCategoryModal({{ category|json_encode }})">
+                                        <a href="javascript:;" id="" onclick="openEditCategoryModal({{ category|json_encode }})">
                                             <div class="col-md-9 col-sm-9" style="padding-right: 3px;">
                                                 <div class="side-menu-item-title">
                                                     <b>{{ category.title|length > 25 ? category.title|slice(0, 25) ~ '...' : category.title }}</b>
@@ -28,8 +28,7 @@
                                         </a>
                                         <div class="col-md-1 col-sm-1">
                                             <div class="side-menu-item-edit-link">
-                                                <a href="#" id=""
-                                                   onclick="openEditCategoryModal({{ category|json_encode }})">
+                                                <a href="javascript:;" onclick="openEditCategoryModal({{ category|json_encode }})">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
                                             </div>
