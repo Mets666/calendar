@@ -32,8 +32,6 @@ class ProjectsController extends DefaultController
         $spendTime = null;
         $totalSpendTime = 0;
 
-        dump($projectId);
-
         if(!empty($projects)){
             if($projectId == 0) {
                 $selectedProject = $projects[0];
@@ -47,7 +45,6 @@ class ProjectsController extends DefaultController
             }
         }
 
-        dump($selectedProject);
 
         if($selectedProject != null) {
             $spendTime = $eventCategoryRepository->getSpendTimeByCategoriesForUserAndProject($user->getId(), $selectedProject->getId() );
