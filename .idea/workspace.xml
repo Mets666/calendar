@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f18fc0c-6138-471e-9622-9a7bb3efedec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Notes.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notes.docx" afterPath="$PROJECT_DIR$/Notes.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="calendar.iws" />
@@ -515,14 +515,7 @@
       <workItem from="1490601245624" duration="3888000" />
       <workItem from="1490619688771" duration="7633000" />
       <workItem from="1491303101325" duration="1619000" />
-      <workItem from="1491310706344" duration="640000" />
-    </task>
-    <task id="LOCAL-00018" summary="minor changes">
-      <created>1480517269213</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1480517269214</updated>
+      <workItem from="1491310706344" duration="1852000" />
     </task>
     <task id="LOCAL-00019" summary="category filter added">
       <created>1480955555770</created>
@@ -860,11 +853,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490632508172</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="- notes added">
+      <created>1491312111555</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1491312111555</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="528165000" />
+    <option name="totallyTimeSpent" value="529377000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -882,7 +882,7 @@
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21995708" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.49570817" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20875421" sideWeight="0.5171674" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20898877" sideWeight="0.5171674" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.252809" sideWeight="0.49356222" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -914,7 +914,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="minor changes" />
     <MESSAGE value="css changes" />
     <MESSAGE value="lists controller + twig created" />
     <MESSAGE value="list entity created + some preparation stuff" />
@@ -939,7 +938,8 @@
     <MESSAGE value="- refactoring" />
     <MESSAGE value="- project filter added" />
     <MESSAGE value="- minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="- minor changes" />
+    <MESSAGE value="- notes added" />
+    <option name="LAST_COMMIT_MESSAGE" value="- notes added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
