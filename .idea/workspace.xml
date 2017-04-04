@@ -515,14 +515,7 @@
       <workItem from="1490601245624" duration="3888000" />
       <workItem from="1490619688771" duration="7633000" />
       <workItem from="1491303101325" duration="1619000" />
-      <workItem from="1491310706344" duration="1852000" />
-    </task>
-    <task id="LOCAL-00019" summary="category filter added">
-      <created>1480955555770</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1480955555770</updated>
+      <workItem from="1491310706344" duration="2461000" />
     </task>
     <task id="LOCAL-00020" summary="edit event in progress">
       <created>1481043934752</created>
@@ -860,11 +853,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491312111555</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="- notes edit">
+      <created>1491320068622</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1491320068622</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="529377000" />
+    <option name="totallyTimeSpent" value="529986000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -914,7 +914,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="css changes" />
     <MESSAGE value="lists controller + twig created" />
     <MESSAGE value="list entity created + some preparation stuff" />
     <MESSAGE value="lists controller + twig edit" />
@@ -939,7 +938,8 @@
     <MESSAGE value="- project filter added" />
     <MESSAGE value="- minor changes" />
     <MESSAGE value="- notes added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- notes added" />
+    <MESSAGE value="- notes edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="- notes edit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
