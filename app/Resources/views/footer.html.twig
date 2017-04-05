@@ -1,1 +1,6 @@
-<div><h4>Footer</h4></div>
+<div class="footer-link">
+    <a href="{{ path('homepage') }}">{{ app.request.getSchemeAndHttpHost()|trim('http://') }}</a>
+</div>
+<div class="footer-description">
+    Life O'Clock - Your personal time manager © 2017 {{ app.request.getSchemeAndHttpHost()|trim('http://') }}
+</div>

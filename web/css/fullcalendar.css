@@ -135,6 +135,7 @@ html .fc,
 	border-style: groove;
 	border-color: #713707;
 	background-color: #FFCF90;
+	cursor: pointer;
 	}
 	
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
