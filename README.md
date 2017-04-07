@@ -17,6 +17,7 @@ Write about:
 - statistics
 - OOP
 - Doctrine + query builder
+- methodology of sub-tasks
 
 TODO: 
 - add asserts with error messages to all entities

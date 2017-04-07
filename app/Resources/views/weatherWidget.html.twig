@@ -1,18 +1,18 @@
 <div id="weather-widget">
     {% if weather %}
     <div class="row">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="weather-widget-city">
                 <h3>{{ weather.city }}, {{ weather.country_code }}</h3>
 
             </div>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-3 col-xs-4">
             <div class="weather-widget-description">
                 <p>{{ weather.description }}</p>
             </div>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-9 col-xs-8">
             <div class="weather-widget-temperature">
                 <p>{{ weather.temperature }}°C</p>
             </div>
@@ -20,35 +20,34 @@
 
     </div>
     <div class="row">
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-5 col-sm-3 col-xs-4">
             <div class="weather-widget-image">
-                {#<div class="spacer10"></div>#}
                 <img src="{{ weather.image_url }}"  alt="Weather in {{ weather.city }}">
             </div>
         </div>
-        <div class="col-md-7 col-sm-12">
+        <div class="col-md-7 col-sm-9 col-xs-8">
             <div class="weather-widget-details">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <p>Wind:</p>
                     </div>
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <b>{{ weather.wind }} m/s</b>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <p>Humidity:</p>
                     </div>
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <b>{{ weather.humidity }}%</b>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <p>Pressure:</p>
                     </div>
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <b>{{ weather.pressure|round }} mb</b>
                     </div>
                 </div>

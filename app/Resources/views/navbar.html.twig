@@ -1,16 +1,17 @@
 <div class="row">
-    <div class="col-md-9 col-sm-9">
+    <div class="col-md-9 col-sm-12">
         <ul class="list-inline" style="float: left">
+            {#<div class="col-sm-12">#}
             <li><a href="{{ path('homepage') }}" class="btn navbar-custom-btn">Calendar</a></li>
             <li><a href="{{ path('lists') }}" class="btn navbar-custom-btn">To-Do Lists</a></li>
+            {#</div>#}
+            {#<div class="col-sm-12">#}
             <li><a href="{{ path('projects') }}" class="btn navbar-custom-btn">Projects</a></li>
             <li><a href="{{ path('time_log') }}" class="btn navbar-custom-btn">Time Log</a></li>
+            {#</div>#}
         </ul>
     </div>
-    <div class="col-md-2 col-sm-2">
-
-    </div>
-    <div class="col-md-3 col-sm-3">
+    <div class="col-md-3 col-sm-12">
         <div class="logged-title">
             <label>Logged as: </label>
             <span> {{ app.user.username }} </span>
