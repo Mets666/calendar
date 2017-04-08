@@ -13,11 +13,15 @@ Note:
 -push notifications or mail
 
 Write about:
-- weather api + caching
-- statistics
 - OOP
 - Doctrine + query builder
+**************************************
+- weather api + caching
+- statistics (Chart.js)
 - methodology of sub-tasks
+- Design: non-formal specification of system, ER diagram, Use case diagram?
+- Implementation: entities->db, Forms and user imputs, routing, controllers, templates, 3rd party systems
+- Testing and user
 
 TODO: 
 - add asserts with error messages to all entities
