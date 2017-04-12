@@ -32,7 +32,7 @@
                         <div class="form-group text-center">
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                             <button type="submit" class="btn btn-success">Login</button>
-                            <a class="btn btn-warning" href="{{ url("registration") }}">Register now</a>
+                            <a class="btn btn-warning" href="{{ path("registration") }}">Register now</a>
                         </div>
                     </form>
                 </div>
