@@ -75,6 +75,8 @@ class FullcalendarEventEntity extends EventEntity
 
     public function __construct($title, \DateTime $startDatetime, \DateTime $endDatetime = null, $allDay = false)
     {
+        parent::__construct($title, $startDatetime, $endDatetime, $allDay);
+
         $this->title = $title;
         $this->startDatetime = $startDatetime;
         $this->setAllDay($allDay);

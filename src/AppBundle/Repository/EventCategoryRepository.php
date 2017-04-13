@@ -48,7 +48,7 @@ class EventCategoryRepository extends AbstractRepository
     }
 
     /**
-     * @param $userId
+     * @param integer $userId
      * @param DateTime $startDate
      * @param DateTime $endDate
      * @return array
@@ -81,8 +81,8 @@ class EventCategoryRepository extends AbstractRepository
     }
 
     /**
-     * @param $userId
-     * @param $projectId
+     * @param integer $userId
+     * @param integer $projectId
      * @return array
      */
     public function getSpendTimeByCategoriesForUserAndProject($userId, $projectId)

@@ -20,7 +20,7 @@ class TodoListRepository extends AbstractRepository
 
 
     /**
-     * @param $id
+     * @param integer $id
      * @return object
      * @throws DatabaseException
      */

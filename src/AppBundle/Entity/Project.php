@@ -4,6 +4,7 @@
 namespace AppBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -76,7 +77,7 @@ class Project implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->calendarEvents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->calendarEvents = new ArrayCollection();
     }
 
     /**

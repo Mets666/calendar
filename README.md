@@ -3,9 +3,10 @@ calendar
 
 A Symfony project created on October 17, 2016, 3:23 pm.
 
+**************************************
+
 Note:
- -tasks and subtasks
--time log connected with calendar trough categories (categories have types: positive, neutral, negative time use)
+-tasks and subtasks
 -settings for time log 
 -time log statistics
 -weather api
@@ -15,7 +16,6 @@ Note:
 Write about:
 - OOP
 - Doctrine + query builder
-**************************************
 - weather api + caching
 - statistics (Chart.js)
 - methodology of sub-tasks

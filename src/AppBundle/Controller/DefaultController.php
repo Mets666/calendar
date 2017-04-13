@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @param string $view
+     * @param array $parameters
+     * @param Response|null $response
+     * @return Response
+     */
     protected function render($view, array $parameters = array(), Response $response = null)
     {
         $parameters['weather'] = $this->container->get('app.weather.api.service')->getByIp($this->container->get('request_stack')->getMasterRequest()->getClientIp());

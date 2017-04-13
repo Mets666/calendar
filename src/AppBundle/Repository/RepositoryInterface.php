@@ -11,8 +11,26 @@ namespace AppBundle\Repository;
 
 interface RepositoryInterface
 {
+    /**
+     * @param integer $id
+     * @return object
+     */
     public function get($id);
+
+    /**
+     * @return void
+     */
     public function save();
+
+    /**
+     * @param $object
+     * @return void
+     */
     public function add($object);
+
+    /**
+     * @param $object
+     * @return void
+     */
     public function remove($object);
 }
