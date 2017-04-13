@@ -21,7 +21,7 @@ Write about:
 - methodology of sub-tasks
 - Design: non-formal specification of system, ER diagram, Use case diagram?
 - Implementation: entities->db, Forms and user imputs, routing, controllers, templates, 3rd party systems
-- Testing and user
+- User testing, debugger, weather widget tested with VPN
 
 TODO: 
 - add asserts with error messages to all entities

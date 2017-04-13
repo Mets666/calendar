@@ -39,7 +39,7 @@ class TodoList
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ListItem", mappedBy="list", fetch="LAZY",cascade={"persist", "remove" })
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ListItem", mappedBy="list", fetch="LAZY", cascade={"persist", "remove" })
      */
     private $items;
 

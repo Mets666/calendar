@@ -40,13 +40,13 @@ class CalendarEvent implements \JsonSerializable
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Datetime()
+     * @Assert\Date()
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Datetime()
+     * @Assert\Date()
      */
     private $endDate;
 

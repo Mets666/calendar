@@ -35,6 +35,19 @@ class EventCategoryRepository extends AbstractRepository
     }
 
     /**
+     * @param \AppBundle\Entity\EventCategory $category
+     */
+    public function remove($category)
+    {
+        foreach ($category->getCalendarEvents() as $event){
+            $event->setCategory(null);
+        }
+
+        $em = $this->doctrine->getManager();
+        $em->remove($category);
+    }
+
+    /**
      * @param $userId
      * @param DateTime $startDate
      * @param DateTime $endDate

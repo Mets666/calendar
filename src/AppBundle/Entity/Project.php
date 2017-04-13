@@ -60,7 +60,7 @@ class Project implements \JsonSerializable
     private $timeLimit;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="project", fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="project", fetch="LAZY", cascade={"remove"})
      * @ORM\OrderBy({"startDate" = "ASC"})
      */
     private $calendarEvents;
