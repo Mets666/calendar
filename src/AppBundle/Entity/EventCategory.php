@@ -23,7 +23,7 @@ class EventCategory implements \JsonSerializable
      * @Assert\NotBlank(
      *     message="Title must be filled."
      * )
-     * @Assert\Length(max=255,
+     * @Assert\Length(max=100,
      *     maxMessage="Title cannot be longer than {{ limit }} characters."
      * )
      */

@@ -24,6 +24,9 @@ class ListItem
      * @Assert\NotBlank(
      *     message="You must add some text first."
      * )
+     * @Assert\Length(max=200,
+     *     maxMessage="Text cannot be longer than {{ limit }} characters."
+     * )
      */
     private $text;
 

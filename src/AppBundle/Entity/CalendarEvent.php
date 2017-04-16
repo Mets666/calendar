@@ -157,7 +157,7 @@ class CalendarEvent implements \JsonSerializable
      *
      * @return CalendarEvent
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\AppBundle\Entity\Uskiser $user = null)
     {
         $this->user = $user;
 
