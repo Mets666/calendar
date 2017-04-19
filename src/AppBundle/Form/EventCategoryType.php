@@ -11,6 +11,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class EventCategoryType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

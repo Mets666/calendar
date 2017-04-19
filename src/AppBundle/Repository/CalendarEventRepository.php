@@ -18,6 +18,11 @@ class CalendarEventRepository extends AbstractRepository
         parent::__construct($doctrine);
     }
 
+    /**
+     * @param integer $id
+     * @return object
+     * @throws DatabaseException
+     */
     public function get($id)
     {
         try {

@@ -14,6 +14,8 @@ class EventCategoryController extends DefaultController
 {
     /**
      * @Route("/add_category", name="add_category", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function addCategoryAction(Request $request)
     {
@@ -55,6 +57,8 @@ class EventCategoryController extends DefaultController
 
     /**
      * @Route("/edit_category", name="edit_category", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editCategoryAction(Request $request)
     {
@@ -110,6 +114,8 @@ class EventCategoryController extends DefaultController
 
     /**
      * @Route("/delete_category/{categoryId}", name="delete_category", options = { "expose" = true })
+     * @param integer $categoryId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteCategoryAction($categoryId)
     {

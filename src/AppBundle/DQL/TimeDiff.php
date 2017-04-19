@@ -4,23 +4,23 @@ namespace AppBundle\DQL;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\Lexer;
+use Doctrine\ORM\Query\Parser;
+use Doctrine\ORM\Query\SqlWalker;
 
 /**
  * TimeDiffFunction ::= "TIMEDIFF" "(" ArithmeticPrimary "," ArithmeticPrimary ")"
  */
 class TimeDiff extends FunctionNode
 {
-    /**
-     * @var string
-     */
-    public $dateTime1;
 
-    /**
-     * @var string
-     */
+    public $dateTime1;
+    
     public $dateTime2;
 
-    public function parse(\Doctrine\ORM\Query\Parser $parser)
+    /**
+     * @param Parser $parser
+     */
+    public function parse(Parser $parser)
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
@@ -30,7 +30,11 @@ class TimeDiff extends FunctionNode
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
-    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
+    /**
+     * @param SqlWalker $sqlWalker
+     * @return string
+     */
+    public function getSql(SqlWalker $sqlWalker)
     {
         return 'TIME_TO_SEC(TIMEDIFF(' .
         $this->dateTime1->dispatch($sqlWalker) . ', ' .

@@ -40,13 +40,13 @@ class CalendarEvent implements \JsonSerializable
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Datetime()
+     * @Assert\Date()
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Datetime()
+     * @Assert\Date()
      */
     private $endDate;
 
@@ -284,8 +284,8 @@ class CalendarEvent implements \JsonSerializable
             'note' => $this->getNote(),
             'start' => $this->getStartDate()->format('c'),
             'end'   => $this->getEndDate()->format('c'),
-            'project' => $this->getProject()->jsonSerialize(),
-            'category' => $this->getCategory()->jsonSerialize(),
+            'project' => $this->getProject() == null ? null : $this->getProject()->jsonSerialize(),
+            'category' => $this->getCategory() == null ? null : $this->getCategory()->jsonSerialize(),
             'user' => $this->getUser()->getId(),
             'mainTitle' => $this->getMainTitle(),
         ];

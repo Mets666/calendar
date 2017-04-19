@@ -54,6 +54,10 @@ abstract class AbstractRepository implements RepositoryInterface
         $em->remove($object);
     }
 
-     abstract public function get($id);
+    /**
+     * @param integer $id
+     * @return mixed
+     */
+    abstract public function get($id);
 
 }

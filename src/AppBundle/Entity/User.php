@@ -47,7 +47,12 @@ class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="Email must be filled."
+     * )
+     * @Assert\Length(max=60,
+     *     maxMessage="Email cannot be longer than {{ limit }} characters."
+     * )
      */
     private $email;
 

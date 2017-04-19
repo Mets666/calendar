@@ -53,18 +53,22 @@ class WeatherApiService
 
     public function getAndParseWeather($location)
     {
-        $res = $this->guzzleClient->request('GET', $this->url.'?q='.$location.'&APPID='.$this->key);
-        $weatherData = json_decode($res->getBody()->getContents(), true);
+        try {
+            $res = $this->guzzleClient->request('GET', $this->url . '?q=' . $location . '&APPID=' . $this->key);
+            $weatherData = json_decode($res->getBody()->getContents(), true);
 
-        $weather['city'] = $weatherData['name'];
-        $weather['country_code'] = $weatherData['sys']['country'];
-        $weather['temperature'] = $this->k_to_c($weatherData['main']['temp']);
-        $weather['humidity'] = $weatherData['main']['humidity'];
-        $weather['pressure'] = $weatherData['main']['pressure'];
-        $weather['wind'] = $weatherData['wind']['speed'];
-        $weather['description'] = $weatherData['weather'][0]['description'];
-        $weather['image_url'] = 'http://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/'.$weatherData['weather'][0]['icon'].'.png';
-
+            $weather['city'] = $weatherData['name'];
+            $weather['country_code'] = $weatherData['sys']['country'];
+            $weather['temperature'] = $this->k_to_c($weatherData['main']['temp']);
+            $weather['humidity'] = $weatherData['main']['humidity'];
+            $weather['pressure'] = $weatherData['main']['pressure'];
+            $weather['wind'] = $weatherData['wind']['speed'];
+            $weather['description'] = $weatherData['weather'][0]['description'];
+            $weather['image_url'] = 'http://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/' . $weatherData['weather'][0]['icon'] . '.png';
+        }
+        catch (\Exception $e){
+            return null;
+        }
 //        dump($weatherData); die;
         return $weather;
     }

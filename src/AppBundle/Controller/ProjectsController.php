@@ -13,7 +13,7 @@ class ProjectsController extends DefaultController
 {
     /**
      * @Route("/projects/{projectId}", name="projects", defaults={"projectId" = 0})
-     * @param $projectId
+     * @param integer $projectId
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function projectsAction($projectId)

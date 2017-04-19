@@ -4,6 +4,7 @@
 namespace AppBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,6 +34,9 @@ class Project implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank(
+     *     message="Acronym must be filled."
+     * )
      * @Assert\Length(max=10,
      *     maxMessage="Acronym cannot be longer than {{ limit }} characters."
      * )
@@ -60,7 +64,7 @@ class Project implements \JsonSerializable
     private $timeLimit;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="project", fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CalendarEvent", mappedBy="project", fetch="LAZY", cascade={"remove"})
      * @ORM\OrderBy({"startDate" = "ASC"})
      */
     private $calendarEvents;
@@ -76,7 +80,7 @@ class Project implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->calendarEvents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->calendarEvents = new ArrayCollection();
     }
 
     /**

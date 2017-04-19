@@ -13,6 +13,11 @@ class CalendarEventListener
     private $entityManager;
     private $tokenStorage;
 
+    /**
+     * CalendarEventListener constructor.
+     * @param ManagerRegistry $doctrine
+     * @param TokenStorage $tokenStorage
+     */
     public function __construct(ManagerRegistry $doctrine, TokenStorage $tokenStorage)
     {
         $this->entityManager = $doctrine;
@@ -27,15 +32,7 @@ class CalendarEventListener
         $startDate = $calendarEvent->getStartDatetime();
         $endDate = $calendarEvent->getEndDatetime();
 
-        // The original request so you can get filters from the calendar
-        // Use the filter in your query for example
-
-        $request = $calendarEvent->getRequest();
-        $filter = $request->get('filter');
-        
-
-        // load events using your custom logic here,
-        // for instance, retrieving events from a repository
+        // load events
 
         $userEvents = $this->entityManager->getRepository('AppBundle:CalendarEvent')
             ->createQueryBuilder('events')
@@ -45,24 +42,13 @@ class CalendarEventListener
             ->setParameter('endDate', $endDate->format('Y-m-d H:i:s'))
             ->setParameter('userId', $user->getId())
             ->getQuery()->getResult();
-
-
-        // $companyEvents and $companyEvent in this example
-        // represent entities from your database, NOT instances of EventEntity
-        // within this bundle.
-        //
+        
         // Create EventEntity instances and populate it's properties with data
-        // from your own entities/database values.
 
         /** @var \AppBundle\Entity\CalendarEvent $userEvent */
         foreach($userEvents as $userEvent) {
-
-            // create an event with a start/end time, or an all day event
-//            if ($calendarEvent->getAllDayEvent() === false) {
-                $eventEntity = new FullcalendarEventEntity($userEvent->getTitle(), $userEvent->getStartDate(), $userEvent->getEndDate());
-//            } else {
-//                $eventEntity = new EventEntity($calendarEvent->getTitle(), $calendarEvent->getStartDatetime(), null, true);
-//            }
+            
+            $eventEntity = new FullcalendarEventEntity($userEvent->getTitle(), $userEvent->getStartDate(), $userEvent->getEndDate());
 
             if($userEvent->getCategory() !== null){
                 $bgColor = $userEvent->getCategory()->getColor();
@@ -71,18 +57,15 @@ class CalendarEventListener
             else{
                 $bgColor = "123456"; //Default background color
             }
-
-            //optional calendar event settings
-//            $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
+            
             $eventEntity->setId($userEvent->getId());
             $eventEntity->setNote($userEvent->getNote());
             $eventEntity->setProject($userEvent->getProject());
-            $eventEntity->setBgColor('#'.$bgColor); //set the background color of the event's label
-            $eventEntity->setFgColor('#'.$this->getContrastYIQ($bgColor)); //set the foreground color of the event's label with contrast to background
-            $eventEntity->setUrl('#'); // url to send user to when event label is clicked
-            $eventEntity->setCssClass('calendar-event'); // a custom class you may want to apply to event labels
+            $eventEntity->setBgColor('#'.$bgColor);
+            $eventEntity->setFgColor('#'.$this->getContrastYIQ($bgColor));
+            $eventEntity->setUrl('#');
+            $eventEntity->setCssClass('calendar-event');
 
-            //finally, add the event to the CalendarEvent for displaying on the calendar
             $calendarEvent->addEvent($eventEntity);
         }
     }

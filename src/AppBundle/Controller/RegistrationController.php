@@ -22,14 +22,29 @@ class RegistrationController extends DefaultController
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $password = $this->get('security.password_encoder')
-                ->encodePassword($user, $form["password"]->getData());
-            $user->setPassword($password);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            return $this->redirectToRoute('login');
+        if ($form->isSubmitted()) {
+            if($form->isValid()) {
+                try {
+                    $password = $this->get('security.password_encoder')
+                        ->encodePassword($user, $form["password"]->getData());
+                    $user->setPassword($password);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($user);
+                    $em->flush();
+                } catch (\Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        'Unable to register account!'
+                    );
+                    return $this->redirectToRoute('time_log');
+                }
+                $this->addFlash(
+                    'success',
+                    'Account successfully registered!'
+                );
+
+                return $this->redirectToRoute('login');
+            }
         }
 
         return $this->render(

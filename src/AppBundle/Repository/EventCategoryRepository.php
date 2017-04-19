@@ -35,7 +35,20 @@ class EventCategoryRepository extends AbstractRepository
     }
 
     /**
-     * @param $userId
+     * @param \AppBundle\Entity\EventCategory $category
+     */
+    public function remove($category)
+    {
+        foreach ($category->getCalendarEvents() as $event){
+            $event->setCategory(null);
+        }
+
+        $em = $this->doctrine->getManager();
+        $em->remove($category);
+    }
+
+    /**
+     * @param integer $userId
      * @param DateTime $startDate
      * @param DateTime $endDate
      * @return array
@@ -68,8 +81,8 @@ class EventCategoryRepository extends AbstractRepository
     }
 
     /**
-     * @param $userId
-     * @param $projectId
+     * @param integer $userId
+     * @param integer $projectId
      * @return array
      */
     public function getSpendTimeByCategoriesForUserAndProject($userId, $projectId)

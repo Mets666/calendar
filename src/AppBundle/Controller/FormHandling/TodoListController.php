@@ -16,6 +16,8 @@ class TodoListController extends Controller
 
     /**
      * @Route("/add_todo_list", name="add_todo_list", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function addList(Request $request)
     {
@@ -63,6 +65,8 @@ class TodoListController extends Controller
 
     /**
      * @Route("/edit_todo_list", name="edit_todo_list", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editList(Request $request)
     {
@@ -133,6 +137,8 @@ class TodoListController extends Controller
 
     /**
      * @Route("/delete_todo_list/{listId}", name="delete_todo_list", options = { "expose" = true })
+     * @param $listId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteList($listId)
     {

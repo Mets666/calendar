@@ -14,6 +14,8 @@ class ProjectController extends Controller
 {
     /**
      * @Route("/add_project", name="add_project", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function addProject(Request $request)
     {
@@ -60,6 +62,8 @@ class ProjectController extends Controller
 
     /**
      * @Route("/edit_project", name="edit_project", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editProject(Request $request)
     {
@@ -115,6 +119,8 @@ class ProjectController extends Controller
 
     /**
      * @Route("/delete_project/{projectId}", name="delete_project", options = { "expose" = true })
+     * @param integer $projectId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteList($projectId)
     {

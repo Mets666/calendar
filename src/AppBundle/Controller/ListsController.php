@@ -14,7 +14,7 @@ class ListsController extends DefaultController
 
     /**
      * @Route("/lists/{listId}", name="lists", defaults={"listId" = 0})
-     * @param $listId
+     * @param integer $listId
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listsAction($listId)

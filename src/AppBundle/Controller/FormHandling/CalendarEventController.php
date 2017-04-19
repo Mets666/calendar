@@ -14,6 +14,8 @@ class CalendarEventController extends Controller
 {
     /**
      * @Route("/add_event", name="add_event", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function addEventAction(Request $request)
     {
@@ -64,6 +66,8 @@ class CalendarEventController extends Controller
 
     /**
      * @Route("/edit_event", name="edit_event", options = { "expose" = true })
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editEventAction(Request $request)
     {
@@ -115,6 +119,8 @@ class CalendarEventController extends Controller
 
     /**
      * @Route("/delete_event/{eventId}", name="delete_event", options = { "expose" = true })
+     * @param integer $eventId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteEventAction($eventId)
     {
