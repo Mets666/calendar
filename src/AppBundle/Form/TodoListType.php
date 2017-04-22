@@ -39,10 +39,9 @@ class TodoListType extends AbstractType
                     'attr' => array('class' => 'form-control', 'rows' => '4')
                 )
             )
+            // collection of embed forms for list items
             ->add('items', CollectionType::class, array(
-                    // each entry in the array will be an "email" field
                     'entry_type'   => ListItemType::class,
-                    // these options are passed to each "email" type
                     'allow_add' => true,
                     'allow_delete' => true,
                 )
