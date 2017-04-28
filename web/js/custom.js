@@ -141,11 +141,11 @@ function openEditEventModal(event, editable) {
         $("#text-eventCategory").html("None");
     }
 
-    $("#text-eventStartTime").html(moment(event.start).utc().format('MMM Do hh:mm A'));
-    $(".input-eventStartTime").val(moment(event.start).utc().format('YYYY-MM-DD HH:mm'));
+    $("#text-eventStartTime").html(moment(event.start).format('MMM Do hh:mm A'));
+    $(".input-eventStartTime").val(moment(event.start).format('YYYY-MM-DD HH:mm'));
 
-    $("#text-eventEndTime").html(moment(event.end).utc().format('MMM Do hh:mm A'));
-    $(".input-eventEndTime").val(moment(event.end).utc().format('YYYY-MM-DD HH:mm'));
+    $("#text-eventEndTime").html(moment(event.end).format('MMM Do hh:mm A'));
+    $(".input-eventEndTime").val(moment(event.end).format('YYYY-MM-DD HH:mm'));
 
     $("#eventDeleteLink").attr('href',
         Routing.generate('delete_event', {'eventId': event.id})
