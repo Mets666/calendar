@@ -6,6 +6,10 @@ use GeoIp2\Database\Reader;
 
 class GeoIpService
 {
+    /**
+     * @param integer $ip
+     * @return string
+     */
     public function getCity($ip)
     {
         try {

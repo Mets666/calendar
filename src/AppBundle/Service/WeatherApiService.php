@@ -26,6 +26,10 @@ class WeatherApiService
         $this->geoIpService = $geoIpService;
     }
 
+    /**
+     * @param integer $ip
+     * @return array|null
+     */
     public function getByIp($ip)
     {
         $location = $this->geoIpService->getCity($ip);
@@ -46,11 +50,23 @@ class WeatherApiService
         return $weather;
     }
 
+    /**
+     * @param integer $temp
+     * @return bool|float
+     */
     function k_to_c($temp) {
-        if ( !is_numeric($temp) ) { return false; }
+        if ( !is_numeric($temp) ) {
+
+            return false;
+        }
+
         return round(($temp - 273.15));
     }
 
+    /**
+     * @param string $location
+     * @return null|array
+     */
     public function getAndParseWeather($location)
     {
         try {
@@ -67,9 +83,10 @@ class WeatherApiService
             $weather['image_url'] = 'http://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/' . $weatherData['weather'][0]['icon'] . '.png';
         }
         catch (\Exception $e){
+            
             return null;
         }
-//        dump($weatherData); die;
+
         return $weather;
     }
 }
