@@ -37,12 +37,13 @@ class CalendarEventController extends Controller
                 try {
                     $calendarEventRepository->add($event);
                     $calendarEventRepository->save();
+
                 } catch (\Exception $e) {
                     $this->addFlash(
                         'error',
                         'Unable to create event!'
                     );
-                    return $this->redirectToRoute('homepage');
+                    return $this->redirect($request->server->get('HTTP_REFERER'));
                 }
                 $this->addFlash(
                     'success',
@@ -61,7 +62,7 @@ class CalendarEventController extends Controller
             }
         }
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 
     /**
@@ -94,7 +95,7 @@ class CalendarEventController extends Controller
                         'error',
                         'Unable to edit event: Database error.'
                     );
-                    return $this->redirectToRoute('homepage');
+                    return $this->redirect($request->server->get('HTTP_REFERER'));
                 }
                 $this->addFlash(
                     'success',
@@ -113,16 +114,17 @@ class CalendarEventController extends Controller
             }
         }
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 
 
     /**
      * @Route("/delete_event/{eventId}", name="delete_event", options = { "expose" = true })
+     * @param Request $request
      * @param integer $eventId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteEventAction($eventId)
+    public function deleteEventAction(Request $request, $eventId)
     {
         $calendarEventRepository = $this->get('app.calendar_event.repository');
 
@@ -143,12 +145,13 @@ class CalendarEventController extends Controller
                 'error',
                 'Unable to delete event!'
             );
-            return $this->redirectToRoute('homepage');
+            return $this->redirect($request->server->get('HTTP_REFERER'));
         }
         $this->addFlash(
             'success',
             'Event successfully deleted!'
         );
-        return $this->redirectToRoute('homepage');
+
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 }

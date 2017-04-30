@@ -18,8 +18,6 @@ $(document).ready(function () {
         return false;
     });
     
-    
-    
 });
 
 function editCalendarEvent() {
@@ -105,6 +103,10 @@ function editProject() {
     document.getElementById("form-project-limit").classList.remove("collapse");
     document.getElementById("form-project-description").classList.remove("collapse");
 
+}
+
+function openAddEventModal() {
+    $("#addEventContent").dialog({ modal: true, title: 'New event', width:400, position: {at: 'top'}});
 }
 
 function openEditEventModal(event, editable) {

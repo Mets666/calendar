@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\CalendarEvent;
 use AppBundle\Entity\Project;
 use AppBundle\Form\CalendarEventType;
 use AppBundle\Form\ProjectType;
@@ -63,7 +64,10 @@ class ProjectsController extends DefaultController
             'action' => $this->generateUrl('edit_project')
         ));
 
-        $calendarEventForm = $this->createForm(CalendarEventType::class, array(), array(
+        $newProjectEvent = new CalendarEvent();
+        $newProjectEvent->setProject($selectedProject);
+
+        $calendarEventForm = $this->createForm(CalendarEventType::class, $newProjectEvent, array(
             'action' => $this->generateUrl('add_event'),
             'user' => $user
         ));

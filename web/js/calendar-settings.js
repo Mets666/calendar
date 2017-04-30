@@ -29,8 +29,7 @@ $(function () {
         },
         dayClick: function(date, jsEvent, view) {
             $(".new-input-eventStart").val(moment(date).format('YYYY-MM-DD HH:mm'));
-
-            $("#addEventContent").dialog({ modal: true, title: 'New event', width:400, position: {at: 'top'}});
+            openAddEventModal();
         },
         timeFormat: {
             // for agendaWeek and agendaDay
